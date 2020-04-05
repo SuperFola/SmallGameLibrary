@@ -43,6 +43,12 @@ namespace sgl
         return *this;
     }
 
+    Application& Application::setCurrentScene(int id)
+    {
+        m_sceneManager.setCurrent(id);
+        return *this;
+    }
+
     void Application::run()
     {
         while (m_screen.isOpen())

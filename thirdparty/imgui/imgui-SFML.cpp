@@ -18,6 +18,7 @@
 #include <cmath>    // abs
 #include <cstddef>  // offsetof, NULL
 #include <cstring>  // memcpy
+#include <map>
 
 #ifdef ANDROID
 #ifdef USE_JNI
@@ -646,6 +647,58 @@ void DrawRectFilled(const sf::FloatRect& rect, const sf::Color& color,
     draw_list->AddRectFilled(
         getTopLeftAbsolute(rect), getDownRightAbsolute(rect),
         ColorConvertFloat4ToU32(color), rounding, rounding_corners);
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+struct PlotVarData
+{
+    ImGuiID            id;
+    std::vector<float> data;
+    int                dataInsertIdx;
+    int                lastFrame;
+
+    PlotVarData() : id(0), dataInsertIdx(0), lastFrame(-1) {}
+};
+
+static std::map<ImGuiID, PlotVarData> g_PlotVarsMap;
+
+void PlotVariable(const char* label, float value)
+{
+    const int bufferSize = 120;
+
+    ImGui::PushID(label);
+    const ImGuiID id = ImGui::GetID("");
+
+    PlotVarData& pvd = g_PlotVarsMap[id];
+
+    if (pvd.data.capacity() != bufferSize)
+    {
+        pvd.data.resize(bufferSize);
+        memset(&pvd.data[0], 0, sizeof(float) * bufferSize);
+        pvd.dataInsertIdx = 0;
+        pvd.lastFrame     = -1;
+    }
+
+    if (pvd.dataInsertIdx == bufferSize)
+        pvd.dataInsertIdx = 0;
+
+    const int displayIndex = pvd.dataInsertIdx;
+
+    if (value != FLT_MAX)
+        pvd.data[pvd.dataInsertIdx++] = value;
+
+    const int currentFrame = ImGui::GetFrameCount();
+    if (pvd.lastFrame != currentFrame)
+    {
+        ImGui::PlotLines("##plot", &pvd.data[0], bufferSize, pvd.dataInsertIdx,
+                        nullptr, FLT_MIN, FLT_MAX, ImVec2(0, 40));
+        ImGui::SameLine();
+        ImGui::Text("%s\n%-3.4f", label, pvd.data[displayIndex]);
+        pvd.lastFrame = currentFrame;
+    }
+
+    ImGui::PopID();
 }
 
 }  // end of namespace ImGui

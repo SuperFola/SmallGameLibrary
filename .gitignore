@@ -1,5 +1,14 @@
+# build folder
 build/
+# example build folders
 build_*/
+# fake submodule SGL for the examples
 SGL/
+# linux build made from my WSL
 linux/
+# doxygen temp files
 *.tmp
+# imgui config
+imgui.ini
+# tests files
+*.dll

@@ -21,17 +21,19 @@ namespace sgl
     {
         if (m_showDebug)
         {
-            static bool wireframe = false;
-
             ImGui::SFML::Update(m_screen, dt);
 
             ImGui::Begin("Debug");
-            ImGui::Text("dt: %d ms", dt.asMilliseconds());
-//            ImGui::PlotVariable("Frame time: ", dt.asMilliseconds());
 
-            if (ImGui::Checkbox("Wireframe", &wireframe))
+            if (m_time % m_sampleRate == 0)
+                ImGui::PlotVariable("Frame time: ", dt.asSeconds() * 1000.0f);
+            else
+                ImGui::PlotVariable("Frame Time: ", FLT_MAX);
+            ImGui::SliderInt("Debug Sample Rate", &m_sampleRate, 1, 60);
+
+            if (ImGui::Checkbox("Wireframe", &m_wireframe))
             {
-                if (wireframe)
+                if (m_wireframe)
                     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
                 else
                     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -41,14 +43,29 @@ namespace sgl
         }
         
         m_sceneManager.update(dt);
+
+        ++m_time;
+        if (m_time >= 3600)
+            m_time = 0;
     }
 
     inline void Application::render()
     {
-        if (m_showDebug)
-            ImGui::SFML::Render(m_screen);
+        m_screen.clear();
 
+        // first the content
         m_sceneManager.render(m_screen);
+
+        // then the debug interface on top of it
+        if (m_showDebug)
+        {
+            if (m_wireframe)
+                glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+            ImGui::SFML::Render(m_screen);
+            if (m_wireframe)
+                glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        }
+
         m_screen.display();
     }
 }

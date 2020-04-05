@@ -99,6 +99,14 @@ namespace sgl
         Application& setDebug(bool state);
 
         /**
+         * @brief Set the Current Scene
+         * 
+         * @param id 
+         * @return Application& 
+         */
+        Application& setCurrentScene(int id);
+
+        /**
          * @brief Add a scene to the application
          * @details Create the scene in place, and return its identifier to refer to it later.
          * 
@@ -123,8 +131,13 @@ namespace sgl
         sf::RenderWindow m_screen;
         sf::Clock m_clock;
         SceneManager m_sceneManager;
+
+        // debug related attributes
         bool m_showDebug;
         const int m_debugKey = sf::Keyboard::F4;
+        bool m_wireframe = false;
+        int m_sampleRate = 15;
+        int m_time = 0;
 
         /**
          * @brief Handling basic events (closing window, triggering debug mode), and passing the events to the active scene

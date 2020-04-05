@@ -107,7 +107,7 @@ namespace sgl
         template <typename S, typename... Args>
         int add(Args&&... args)
         {
-            m_scenes.push_back(std::make_unique<S>(m_scenes.size(), std::forward<Args>(args)...));
+            m_scenes.push_back(std::make_unique<S>(static_cast<int>(m_scenes.size()), std::forward<Args>(args)...));
             return static_cast<int>(m_scenes.size()) - 1;
         }
     

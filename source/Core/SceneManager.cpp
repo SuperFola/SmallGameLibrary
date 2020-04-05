@@ -36,7 +36,8 @@ namespace sgl
     {
         if (0 <= id && id < static_cast<int>(m_scenes.size()))
         {
-            m_scenes[m_current]->setState(State::Stopped);
+            if (m_current != -1)
+                m_scenes[m_current]->setState(State::Stopped);
             m_current = id;
             m_scenes[m_current]->setState(State::Running);
         }

@@ -92,6 +92,8 @@ namespace ImGui
     IMGUI_SFML_API void DrawLine(const sf::Vector2f& a, const sf::Vector2f& b, const sf::Color& col, float thickness = 1.0f);
     IMGUI_SFML_API void DrawRect(const sf::FloatRect& rect, const sf::Color& color, float rounding = 0.0f, int rounding_corners = 0x0F, float thickness = 1.0f);
     IMGUI_SFML_API void DrawRectFilled(const sf::FloatRect& rect, const sf::Color& color, float rounding = 0.0f, int rounding_corners = 0x0F);
+
+    IMGUI_SFML_API void PlotVariable(const char* label, float value);
 }
 
 #endif //# IMGUI_SFML_H

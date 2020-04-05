@@ -8,6 +8,10 @@ A C++17 small game library relying on SFML 2.5.x.
 * C++17 compiler
 * SFML >= 2.5
 
+# Examples
+
+Examples are provided in the `examples/` folder, and can be built right there, they automatically add the SmallGameLibrary as a dependency.
+
 # Build instructions
 
 ```shell
