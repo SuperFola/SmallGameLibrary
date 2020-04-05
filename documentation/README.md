@@ -1,1 +1,0 @@
-# SmallGameLibrary documentation
