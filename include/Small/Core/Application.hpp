@@ -19,6 +19,7 @@
 #include <imgui/imgui.h>
 #include <imgui/imgui-SFML.h>
 #include <SFML/OpenGL.hpp>
+#include <Small/Core/SceneManager.hpp>
 
 namespace sgl
 {
@@ -123,7 +124,7 @@ namespace sgl
         sf::Clock m_clock;
         SceneManager m_sceneManager;
         bool m_showDebug;
-        const sf::Key m_debugKey = sf::Key::F4;
+        const int m_debugKey = sf::Keyboard::F4;
 
         /**
          * @brief Handling basic events (closing window, triggering debug mode), and passing the events to the active scene

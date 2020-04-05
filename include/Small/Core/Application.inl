@@ -25,9 +25,9 @@ namespace sgl
 
             ImGui::SFML::Update(m_screen, dt);
 
-            ImGui::Begin();
+            ImGui::Begin("Debug");
             ImGui::Text("dt: %d ms", dt.asMilliseconds());
-            ImGui::PlotVariable("Frame time: ", dt.asMilliseconds());
+//            ImGui::PlotVariable("Frame time: ", dt.asMilliseconds());
 
             if (ImGui::Checkbox("Wireframe", &wireframe))
             {
@@ -49,6 +49,6 @@ namespace sgl
             ImGui::SFML::Render(m_screen);
 
         m_sceneManager.render(m_screen);
-        m_window.display();
+        m_screen.display();
     }
 }

@@ -2,15 +2,14 @@
 
 namespace sgl
 {
-    Application::Application(const Settings& settings)
-    {
-        m_screen = sf::RenderWindow(
+    Application::Application(const Settings& settings) :
+        m_screen(
             sf::VideoMode(settings.width, settings.height, settings.bitsPerPixel),
             "SmallGameLibray default application",
             settings.style,
             sf::ContextSettings(settings.depth, settings.stencil, settings.antiAliasing)
-        );
-
+        )
+    {
         ImGui::SFML::Init(m_screen);
         m_screen.resetGLStates();
     }
@@ -50,7 +49,7 @@ namespace sgl
         {
             auto dt = m_clock.restart();
 
-            handleEvent();
+            handleEvents();
             update(dt);
             render();
         }

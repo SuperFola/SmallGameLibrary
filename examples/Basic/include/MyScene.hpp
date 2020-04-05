@@ -10,7 +10,7 @@ public:
     MyScene(int id, int test_argument);
 
     void handleEvent(const sf::Event& event);
-    void update(const sf::Time dt);
+    void update(const sf::Time dt, sgl::SceneManager& scm);
     void render(sf::RenderTarget& screen);
 
 private:

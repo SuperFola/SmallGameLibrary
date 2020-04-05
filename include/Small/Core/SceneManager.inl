@@ -5,7 +5,7 @@ namespace sgl
         return m_current;
     }
 
-    inline Scene* SceneManager::operator(int id)
+    inline Scene* SceneManager::operator[](int id)
     {
         return m_scenes[id].get();
     }

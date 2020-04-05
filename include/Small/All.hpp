@@ -12,6 +12,6 @@
 #ifndef sgl_small_all
 #define sgl_small_all
 
-#include <sgl/Core/Application.hpp>
+#include <Small/Core/Application.hpp>
 
 #endif

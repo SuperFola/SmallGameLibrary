@@ -88,6 +88,13 @@ namespace sgl
          */
         inline const int getId() const;
 
+        /**
+         * @brief Get the State of the scene
+         * 
+         * @return const State 
+         */
+        inline const State getState() const;
+
         friend class SceneManager;
     
     protected:
