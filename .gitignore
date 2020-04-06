@@ -12,3 +12,5 @@ linux/
 imgui.ini
 # tests files
 *.dll
+# doxygen log
+warnings.log

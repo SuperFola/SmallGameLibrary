@@ -64,6 +64,7 @@ namespace sgl
          * @brief Scene updating method, will need to be implemented in your own Scenes
          * 
          * @param dt 
+         * @param scm The scene manager itself, to be able to change the current scene
          */
         virtual void update(const sf::Time dt, SceneManager& scm) = 0;
 
