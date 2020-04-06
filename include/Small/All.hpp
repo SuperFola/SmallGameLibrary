@@ -14,5 +14,6 @@
 
 #include <Small/Core/Application.hpp>
 #include <Small/SharedLibrary.hpp>
+#include <Small/Graphics/Tilemap.hpp>
 
 #endif
