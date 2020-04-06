@@ -7,6 +7,7 @@
 - adding platform identifier
 
 ### Changed
+- updating `include/Small/All.hpp` to include the shared library loader
 
 ### Removed
 
