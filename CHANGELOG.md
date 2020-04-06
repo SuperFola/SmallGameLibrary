@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.0.2
+### Added
+- scenes can be put in a specified state using the `scm` argument in the `onUpdate` method of scenes, by doing a `scm[scene_id]->setState(State::Idle)
+- adding cross platform shared library loader
+- adding platform identifier
+
+### Changed
+
+### Removed
+
 ## 0.0.1
 ### Added
 - adding `include/Small/All.hpp`, including all the files needed to start a project
@@ -10,7 +20,3 @@
 - adding IMGUI SFML
 - adding an example in examples/Basic
 - adding a Doxyfile
-
-### Changed
-
-### Removed
