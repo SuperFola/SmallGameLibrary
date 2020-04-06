@@ -6,6 +6,7 @@
 - adding cross platform shared library loader
 - adding platform identifier
 - adding [imgui_widget_flamegraph](https://github.com/bwrsandman/imgui-flame-graph) and its profiler
+- adding a tile map renderer
 
 ### Changed
 - updating `include/Small/All.hpp` to include the shared library loader
