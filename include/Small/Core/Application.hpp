@@ -76,6 +76,7 @@ namespace sgl
 
         /**
          * @brief Set the Virtual Synchronization ON or OFF
+         * @details Settings the Virtual Synchronization ON will limit the FPS to 60
          * 
          * @param state 
          * @return Application& 
@@ -92,6 +93,7 @@ namespace sgl
 
         /**
          * @brief Set the Debug mode
+         * @details If the Debug mode is ON, ImGui tools will be displayed
          * 
          * @param state 
          * @return Application& 
@@ -100,6 +102,7 @@ namespace sgl
 
         /**
          * @brief Set the Current Scene
+         * @details By default, no scene is selected, thus nothing will be rendered
          * 
          * @param id 
          * @return Application& 
@@ -123,6 +126,8 @@ namespace sgl
 
         /**
          * @brief Run the application until an error occurs or until the quit condition is met
+         * @details The builtin quit condition is when the click on the close button,
+         *          this will call the method `onQuit` of each scene.
          * 
          */
         void run();
@@ -143,20 +148,20 @@ namespace sgl
          * @brief Handling basic events (closing window, triggering debug mode), and passing the events to the active scene
          * 
          */
-        inline void handleEvents();
+        inline void onEvents();
 
         /**
          * @brief Update the current scene by giving it the time passed since the last update
          * 
          * @param dt 
          */
-        inline void update(const sf::Time dt);
+        inline void onUpdate(const sf::Time dt);
 
         /**
          * @brief Rendering debug interface if requested, as well as the current scene
          * 
          */
-        inline void render();
+        inline void onRender();
     };
 }
 

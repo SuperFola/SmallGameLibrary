@@ -44,44 +44,52 @@ namespace sgl
         return *this;
     }
 
-    SceneManager& SceneManager::handleEvent(const sf::Event& event)
+    SceneManager& SceneManager::onEvent(const sf::Event& event)
     {
         if (m_current != -1)
-            m_scenes[m_current]->handleEvent(event);
+            m_scenes[m_current]->onEvent(event);
         
         for (std::size_t i = 0, size = m_scenes.size(); i < size; ++i)
         {
             if (m_scenes[i]->getState() == State::Idle)
-                m_scenes[i]->handleEvent(event);
+                m_scenes[i]->onEvent(event);
         }
 
         return *this;
     }
 
-    SceneManager& SceneManager::update(const sf::Time dt)
+    SceneManager& SceneManager::onUpdate(const sf::Time dt)
     {
         if (m_current != -1)
-            m_scenes[m_current]->update(dt, *this);
+            m_scenes[m_current]->onUpdate(dt, *this);
         
         for (std::size_t i = 0, size = m_scenes.size(); i < size; ++i)
         {
             if (m_scenes[i]->getState() == State::Idle)
-                m_scenes[i]->update(dt, *this);
+                m_scenes[i]->onUpdate(dt, *this);
         }
 
         return *this;
     }
 
-    SceneManager& SceneManager::render(sf::RenderTarget& screen)
+    SceneManager& SceneManager::onRender(sf::RenderTarget& screen)
     {
         if (m_current != -1)
-            m_scenes[m_current]->render(screen);
+            m_scenes[m_current]->onRender(screen);
         
         for (std::size_t i = 0, size = m_scenes.size(); i < size; ++i)
         {
             if (m_scenes[i]->getState() == State::Idle)
-                m_scenes[i]->render(screen);
+                m_scenes[i]->onRender(screen);
         }
+
+        return *this;
+    }
+
+    SceneManager& SceneManager::onQuit()
+    {
+        for (std::size_t i = 0, size = m_scenes.size(); i < size; ++i)
+            m_scenes[i]->onQuit();
 
         return *this;
     }

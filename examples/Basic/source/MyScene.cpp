@@ -12,16 +12,13 @@ MyScene::MyScene(int id, int test_argument) :
     m_octagon.setPosition(100, 100);
 }
 
-void MyScene::handleEvent(const sf::Event& event)
+void MyScene::onEvent(const sf::Event& event)
 {
     if (event.type == sf::Event::KeyPressed)
         std::cout << "key pressed" << std::endl;
 }
 
-void MyScene::update(const sf::Time dt, sgl::SceneManager& scm)
-{}
-
-void MyScene::render(sf::RenderTarget& screen)
+void MyScene::onRender(sf::RenderTarget& screen)
 {
     screen.draw(m_octagon);
 }

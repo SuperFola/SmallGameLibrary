@@ -1,6 +1,6 @@
 namespace sgl
 {
-    inline void Application::handleEvents()
+    inline void Application::onEvents()
     {
         sf::Event event;
         while (m_screen.pollEvent(event))
@@ -13,11 +13,11 @@ namespace sgl
             if (m_showDebug)
                 ImGui::SFML::ProcessEvent(event);
             
-            m_sceneManager.handleEvent(event);
+            m_sceneManager.onEvent(event);
         }
     }
 
-    inline void Application::update(const sf::Time dt)
+    inline void Application::onUpdate(const sf::Time dt)
     {
         if (m_showDebug)
         {
@@ -42,19 +42,19 @@ namespace sgl
             ImGui::End();
         }
         
-        m_sceneManager.update(dt);
+        m_sceneManager.onUpdate(dt);
 
         ++m_time;
         if (m_time >= 3600)
             m_time = 0;
     }
 
-    inline void Application::render()
+    inline void Application::onRender()
     {
         m_screen.clear();
 
         // first the content
-        m_sceneManager.render(m_screen);
+        m_sceneManager.onRender(m_screen);
 
         // then the debug interface on top of it
         if (m_showDebug)

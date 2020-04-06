@@ -35,7 +35,7 @@ namespace sgl
         SceneManager();
 
         /**
-         * @brief Destroy the Scene Manager object
+         * @brief Destroy the Scene Manager object, setting all the scenes state to stopped
          * 
          */
         ~SceneManager();
@@ -78,7 +78,7 @@ namespace sgl
          * @param event 
          * @return SceneManager& 
          */
-        SceneManager& handleEvent(const sf::Event& event);
+        SceneManager& onEvent(const sf::Event& event);
 
         /**
          * @brief Update the active scenes
@@ -86,7 +86,7 @@ namespace sgl
          * @param dt 
          * @return SceneManager& 
          */
-        SceneManager& update(const sf::Time dt);
+        SceneManager& onUpdate(const sf::Time dt);
 
         /**
          * @brief Render the active scenes
@@ -94,7 +94,14 @@ namespace sgl
          * @param screen 
          * @return SceneManager& 
          */
-        SceneManager& render(sf::RenderTarget& screen);
+        SceneManager& onRender(sf::RenderTarget& screen);
+
+        /**
+         * @brief Quit all the scenes
+         * 
+         * @return SceneManager& 
+         */
+        SceneManager& onQuit();
 
         /**
          * @brief Register a scene and return its identifier

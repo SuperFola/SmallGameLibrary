@@ -9,9 +9,8 @@ class MyScene : public sgl::Scene
 public:
     MyScene(int id, int test_argument);
 
-    void handleEvent(const sf::Event& event);
-    void update(const sf::Time dt, sgl::SceneManager& scm);
-    void render(sf::RenderTarget& screen);
+    void onEvent(const sf::Event& event);
+    void onRender(sf::RenderTarget& screen);
 
 private:
     int m_argument;

@@ -51,29 +51,35 @@ namespace sgl
          * @brief Destroy the Scene object
          * 
          */
-        virtual ~Scene() {}
+        virtual ~Scene();
 
         /**
-         * @brief Event handling method, will need to be implemented in your own Scenes
+         * @brief Event handling method
          * 
          * @param event 
          */
-        virtual void handleEvent(const sf::Event& event) = 0;
+        virtual void onEvent(const sf::Event& event);
 
         /**
-         * @brief Scene updating method, will need to be implemented in your own Scenes
+         * @brief Scene updating method, called after having handled the events
          * 
          * @param dt 
          * @param scm The scene manager itself, to be able to change the current scene
          */
-        virtual void update(const sf::Time dt, SceneManager& scm) = 0;
+        virtual void onUpdate(const sf::Time dt, SceneManager& scm);
 
         /**
-         * @brief Rendering method, will need to be implemented in your own Scenes
+         * @brief Rendering method, called after having updated the scene
          * 
          * @param screen 
          */
-        virtual void render(sf::RenderTarget& screen) = 0;
+        virtual void onRender(sf::RenderTarget& screen);
+
+        /**
+         * @brief Method called when the application is closing
+         * 
+         */
+        virtual void onQuit();
 
         /**
          * @brief Set the State object
@@ -99,8 +105,8 @@ namespace sgl
         friend class SceneManager;
     
     protected:
-        State m_state;
-        const int m_id;
+        State m_state;   //< The state of the scene (running, idle, stopped)
+        const int m_id;  //< The unique identifier of the scene
     };
 }
 

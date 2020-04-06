@@ -9,6 +9,7 @@
 - adding [termcolor](https://github.com/ikalnytskyi/termcolor)
 - adding IMGUI SFML
 - adding an example in examples/Basic
+- adding a Doxyfile
 
 ### Changed
 

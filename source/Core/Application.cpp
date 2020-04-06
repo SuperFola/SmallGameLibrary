@@ -55,9 +55,9 @@ namespace sgl
         {
             auto dt = m_clock.restart();
 
-            handleEvents();
-            update(dt);
-            render();
+            onEvents();
+            onUpdate(dt);
+            onRender();
         }
     }
 }
