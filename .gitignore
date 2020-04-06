@@ -12,5 +12,7 @@ linux/
 imgui.ini
 # tests files
 *.dll
-# doxygen log
+# doxygen
+documentation/
+*.tmp
 warnings.log
