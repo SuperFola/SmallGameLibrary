@@ -20,14 +20,15 @@
 #include <imgui/imgui-SFML.h>
 #include <SFML/OpenGL.hpp>
 #include <Small/Core/SceneManager.hpp>
+#include <Small/Debug/Profiler.hpp>
 
 namespace sgl
 {
     namespace Style
     {
-        constexpr unsigned Titlebar  = sf::Style::Titlebar;  //< The window will have a titlebar
-        constexpr unsigned Resizable = sf::Style::Resize;  //< The window will be resizable
-        constexpr unsigned Close     = sf::Style::Close;  //< The window will have a close button
+        constexpr unsigned Titlebar   = sf::Style::Titlebar;  //< The window will have a titlebar
+        constexpr unsigned Resizable  = sf::Style::Resize;  //< The window will be resizable
+        constexpr unsigned Close      = sf::Style::Close;  //< The window will have a close button
         constexpr unsigned Fullscreen = sf::Style::Fullscreen;  //< The window will be in fullscren, can not be combined with others
     }
 
@@ -138,11 +139,10 @@ namespace sgl
         SceneManager m_sceneManager;
 
         // debug related attributes
+        internal::Profiler m_profiler;
         bool m_showDebug;
         const int m_debugKey = sf::Keyboard::F4;
         bool m_wireframe = false;
-        int m_sampleRate = 15;
-        int m_time = 0;
 
         /**
          * @brief Handling basic events (closing window, triggering debug mode), and passing the events to the active scene

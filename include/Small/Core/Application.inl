@@ -2,6 +2,8 @@ namespace sgl
 {
     inline void Application::onEvents()
     {
+        m_profiler.Begin(internal::Profiler::Stage::Input);
+
         sf::Event event;
         while (m_screen.pollEvent(event))
         {
@@ -15,42 +17,69 @@ namespace sgl
             
             m_sceneManager.onEvent(event);
         }
+
+        m_profiler.End(internal::Profiler::Stage::Input);
     }
 
     inline void Application::onUpdate(const sf::Time dt)
     {
+        m_profiler.Begin(internal::Profiler::Stage::Update);
+
         if (m_showDebug)
         {
+            m_profiler.Begin(internal::Profiler::Stage::Plot);
+
+            m_profiler.Begin(internal::Profiler::Stage::NewFrame);
             ImGui::SFML::Update(m_screen, dt);
+            m_profiler.End(internal::Profiler::Stage::NewFrame);
 
-            ImGui::Begin("Debug");
-
-            if (m_time % m_sampleRate == 0)
-                ImGui::PlotVariable("Frame time: ", dt.asSeconds() * 1000.0f);
-            else
-                ImGui::PlotVariable("Frame Time: ", FLT_MAX);
-            ImGui::SliderInt("Debug Sample Rate", &m_sampleRate, 1, 60);
-
-            if (ImGui::Checkbox("Wireframe", &m_wireframe))
+            // Debug window
             {
-                if (m_wireframe)
-                    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-                else
-                    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+                m_profiler.Begin(internal::Profiler::Stage::DebugWindow);
+                ImGui::Begin("Debug");
+
+                ImGui::PlotVariable("Frame time: ", dt.asSeconds() * 1000.0f);
+
+                if (ImGui::Checkbox("Wireframe", &m_wireframe))
+                {
+                    if (m_wireframe)
+                        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+                    else
+                        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+                }
+
+                ImGui::End();
+                m_profiler.End(internal::Profiler::Stage::DebugWindow);
             }
 
-            ImGui::End();
+            // Profiler window
+            {
+                m_profiler.Begin(internal::Profiler::Stage::ProfilerWindow);
+                ImGui::Begin("Profiler Window");
+
+                auto& entry = m_profiler._entries[m_profiler.GetCurrentEntryIndex()];
+                ImGuiWidgetFlameGraph::PlotFlame(
+                    "CPU", &internal::ProfilerValueGetter, &entry, internal::Profiler::_StageCount,
+                    0, "Main Thread", FLT_MAX, FLT_MAX, ImVec2(400, 0)
+                );
+
+                ImGui::End();
+                m_profiler.End(internal::Profiler::Stage::ProfilerWindow);
+            }
+
+            m_profiler.End(internal::Profiler::Stage::Plot);
         }
-        
+
         m_sceneManager.onUpdate(dt);
 
-        ++m_time;
-        if (m_time >= 3600)
-            m_time = 0;
+        m_profiler.End(internal::Profiler::Stage::Update);
     }
 
     inline void Application::onRender()
     {
+        m_profiler.Begin(internal::Profiler::Stage::Rendering);
+        m_profiler.Begin(internal::Profiler::Stage::SFML);
+
         m_screen.clear();
 
         // first the content
@@ -59,13 +88,22 @@ namespace sgl
         // then the debug interface on top of it
         if (m_showDebug)
         {
+            m_profiler.Begin(internal::Profiler::Stage::ImGuiRender);
+
             if (m_wireframe)
                 glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
             ImGui::SFML::Render(m_screen);
             if (m_wireframe)
                 glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+            m_profiler.End(internal::Profiler::Stage::ImGuiRender);
         }
 
+        m_profiler.Begin(internal::Profiler::Stage::SwapWindow);
         m_screen.display();
+        m_profiler.End(internal::Profiler::Stage::SwapWindow);
+        m_profiler.End(internal::Profiler::Stage::SFML);
+
+        m_profiler.End(internal::Profiler::Stage::Rendering);
     }
 }

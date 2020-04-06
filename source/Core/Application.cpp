@@ -53,6 +53,8 @@ namespace sgl
     {
         while (m_screen.isOpen())
         {
+            m_profiler.Frame();
+
             auto dt = m_clock.restart();
 
             onEvents();
