@@ -63,6 +63,21 @@ namespace sgl
                     0, "Main Thread", FLT_MAX, FLT_MAX, ImVec2(400, 0)
                 );
 
+                std::chrono::duration<float, std::milli> frameDuration = entry._frameEnd - entry._frameStart;
+                ImGui::Text("Full Frame: %0.3f", frameDuration.count());
+                auto cursorX = ImGui::GetCursorPosX();
+                auto indentSize = ImGui::CalcTextSize("    ").x;
+
+                for (uint8_t i = 0; i < static_cast<uint8_t>(internal::Profiler::Stage::_StageCount); ++i)
+                {
+                    std::chrono::duration<float, std::milli> duration = entry._stages[i]._end - entry._stages[i]._start;
+                    ImGui::SetCursorPosX(cursorX + indentSize * entry._stages[i]._level);
+                    ImGui::Text("    %s: %0.3f", internal::stageNames[i], duration.count());
+                    if (entry._stages[i]._level == 0)
+                        frameDuration -= duration;
+                }
+                ImGui::Text("    Unaccounted: %0.3f", frameDuration.count());
+
                 ImGui::End();
                 m_profiler.End(internal::Profiler::Stage::ProfilerWindow);
             }

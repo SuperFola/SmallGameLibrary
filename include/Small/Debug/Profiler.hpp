@@ -2,7 +2,7 @@
  * @file Profiler.hpp
  * @author bwrsandman, Alexandre Plateau (lexplt.dev@gmail.com)
  * @brief Profiler from https://github.com/bwrsandman/imgui-flame-graph/ (example/main.cpp), updated for the project needs
- * @version 0.1
+ * @version 0.2
  * @date 2020-04-06
  * 
  * @copyright Copyright (c) 2020
