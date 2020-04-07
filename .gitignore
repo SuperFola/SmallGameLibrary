@@ -11,6 +11,7 @@ linux/
 # imgui config
 imgui.ini
 # tests files
+bin/
 *.dll
 # doxygen
 documentation/
