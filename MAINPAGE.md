@@ -6,6 +6,8 @@ A C++17 small game library relying on [SFML](https://www.sfml-dev.org) 2.5.x, tr
 
 An `Application` will handle the window and scenes (through the `SceneManager`).
 
+## Creating a Scene
+
 User scenes must inherit from `sgl::Scene`, as in the following example:
 
 ~~~~{.cpp}
@@ -62,3 +64,32 @@ Each scene has a `State` handled by the `SceneManager`, default state is `Stoppe
 
 Only one scene at a time can be in `Running` state, it will be the first one to be rendered and updated, then the `Idle` scenes will be rendered and updated. This is useful to implement a widgets layer for example.  
 Scenes can be manually stopped (if you don't want to run your inventory and your fighting system at the same time, since both will receive events).
+
+## Creating and customizing an Application
+
+~~~~{.cpp}
+#include <Small/All.hpp>
+
+#include <MyScene.hpp>
+#include <iostream>
+
+int main(int argc, char** argv)
+{
+    const sgl::Settings settings = {};
+    sgl::Application app(settings);
+
+    app.setTitle("Hello world!")
+        .setVSync(false)
+        .setFPSLimit(60)
+        .setDebug(true);
+
+    int id = app.add<MyScene>(12);
+    app.setCurrentScene(id);
+
+    app.run();
+
+    return 0;
+}
+~~~~
+
+The sgl::Settings can be modified to change the `width` and `height` of the window, as well as its `style` (presence of titlebar, close button...). Some other settings can be modified but are linked to the backend, OpenGL, so modify them only if you know what you are doing.
