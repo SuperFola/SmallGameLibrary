@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.3
+### Added
+
+### Changed
+- the tilemap has been updated to no longer hold the texture, and be able to modify the vertex array when needed
+
+### Removed
+
 ## 0.0.2
 ### Added
 - scenes can be put in a specified state using the `scm` argument in the `onUpdate` method of scenes, by doing a `scm[scene_id]->setState(State::Idle)
@@ -12,8 +20,6 @@
 ### Changed
 - updating `include/Small/All.hpp` to include the shared library loader
 - updating `include/Small/All.hpp` to include the tilemap renderer
-
-### Removed
 
 ## 0.0.1
 ### Added

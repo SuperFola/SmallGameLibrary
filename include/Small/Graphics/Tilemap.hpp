@@ -2,7 +2,7 @@
  * @file Tilemap.hpp
  * @author Alexandre Plateau (lexplt.dev@gmail.com)
  * @brief A tilemap wrapper, to render a lot of sprites in a single draw call
- * @version 0.1
+ * @version 0.2
  * @date 2020-04-06
  * 
  * @copyright Copyright (c) 2020
@@ -25,21 +25,34 @@ namespace sgl::Graphics
     {
     public:
         /**
-         * @brief Loading a tileset and building a vertex array
+         * @brief Construct a new Tilemap object
          * 
-         * @param tileset Path to the tileset
-         * @param tileSize Size of a single (squared) tile
-         * @param tiles The indices of the tiles
-         * @param width The width of the tilemap (in tiles)
-         * @param height The height of the tilemap (in tiles)
-         * @return true If the vertex array was successfully built
-         * @return false If not
+         * @param width Size of the tilemap (in tiles)
+         * @param tileSize Size of a tile in the tileset (in pixels)
+         * @param texture Pointer to a sf::Texture
          */
-        bool load(const std::string& tileset, sf::Vector2u tileSize, const int* tiles, unsigned int width, unsigned int height);
+        Tilemap(const sf::Vector2u& mapSize, const sf::Vector2u& tileSize, sf::Texture* texture);
+
+        /**
+         * @brief Build the vertex array from the tileset and
+         * 
+         * @param tiles 
+         */
+        void build(const int* tiles);
+
+        /**
+         * @brief Update a tile in the vertex array
+         * 
+         * @param tilePos The position of the tile (in tiles) to update
+         * @param new_tile New tile id for the tile
+         */
+        inline void update(const sf::Vector2u& tilePos, int new_tile);
 
     private:
+        sf::Vector2u m_mapSize;
+        sf::Vector2u m_tileSize;
         sf::VertexArray m_vertices;
-        sf::Texture m_tileset;
+        sf::Texture* m_tileset;
 
         /**
          * @brief Function in charge of drawing our vertex array, using the SFML API
@@ -50,5 +63,7 @@ namespace sgl::Graphics
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     };
 }
+
+#include "Tilemap.inl"
 
 #endif

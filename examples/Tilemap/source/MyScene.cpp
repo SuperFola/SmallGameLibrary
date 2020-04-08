@@ -4,8 +4,12 @@
 #include <iostream>
 
 MyScene::MyScene(int id) :
-    sgl::Scene(id)
+    sgl::Scene(id),
+    m_tilemap(sf::Vector2u(10, 7), sf::Vector2u(64, 64), &m_tileset)
 {
+    if (!m_tileset.loadFromFile("assets/tile_atlas.png"))
+        std::cout << "couldn't load the tile atlas" << std::endl;
+
     const int level[] = {
          0,  1,  1,  1,  1,  1,  1,  1,  1,  2,
          7,  8,  8,  8,  8,  8,  8,  8,  8,  9,
@@ -16,8 +20,7 @@ MyScene::MyScene(int id) :
         14, 15, 15, 15, 15, 15, 15, 15, 15, 16
     };
 
-    if (!m_tilemap.load("assets/tile_atlas.png", sf::Vector2u(64, 64), level, 10, 7))
-        std::cout << "couldn't load the tile atlas" << std::endl;
+    m_tilemap.build(level);
 }
 
 void MyScene::onRender(sf::RenderTarget& screen)

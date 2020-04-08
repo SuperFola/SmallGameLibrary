@@ -3,6 +3,7 @@
 
 #include <Small/Core/Scene.hpp>
 #include <Small/Graphics/Tilemap.hpp>
+#include <SFML/Graphics.hpp>
 
 class MyScene : public sgl::Scene
 {
@@ -13,6 +14,7 @@ public:
 
 private:
     sgl::Graphics::Tilemap m_tilemap;
+    sf::Texture m_tileset;
 };
 
 #endif
