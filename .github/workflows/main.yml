@@ -28,8 +28,8 @@ jobs:
         tar -xzf sfml.tar.gz -C sfml
         path_sfml=`pwd`
         path_sfml+='sfml/lib/cmake/SFML'
-        echo `path_sfml`
-        ls `path_sfml`
+        echo $path_sfml
+        ls $path_sfml
 
     - name: Build CMake
       uses: ashutoshvarma/action-cmake-build@v1
@@ -53,7 +53,7 @@ jobs:
         # Update git submodules
         submodule-update: true
         # Misc Options to pass to CMake while configuring project
-        configure-options: -DSFML_ROOT=`path_sfml`
+        configure-options: -DSFML_ROOT=$path_sfml
         # Misc Options to pass to CMake while building project using cmake --build
         #build-options: # optional
         # Misc Options to pass to CMake while installing project using cmake --install
