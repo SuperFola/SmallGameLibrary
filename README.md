@@ -1,5 +1,7 @@
 # SmallGameLibrary
 
+![CI](https://github.com/SuperFola/SmallGameLibrary/workflows/CI/badge.svg)
+
 A C++17 small game library relying on SFML 2.5.x.
 
 # Dependencies

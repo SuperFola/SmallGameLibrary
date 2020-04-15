@@ -4,6 +4,7 @@
 ### Added
 - added `Small/Core.hpp`, `Small/Graphics.hpp` and `Small/System.hpp` to include all the files from the specific folders
 - the tilemap can be passed a new texture using `void Tilemap::use(sf::Texture*)`
+- adding github actions to build the project after each commit/pull request
 
 ### Changed
 - the tilemap has been updated to no longer hold the texture, and be able to modify the vertex array when needed
@@ -13,7 +14,7 @@
 
 ## 0.0.2
 ### Added
-- scenes can be put in a specified state using the `scm` argument in the `onUpdate` method of scenes, by doing a `scm[scene_id]->setState(State::Idle)
+- scenes can be put in a specified state using the `scm` argument in the `onUpdate` method of scenes, by doing a `scm[scene_id]->setState(State::Idle)`
 - adding cross platform shared library loader
 - adding platform identifier
 - adding [imgui_widget_flamegraph](https://github.com/bwrsandman/imgui-flame-graph) and its profiler
