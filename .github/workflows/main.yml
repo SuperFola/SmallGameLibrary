@@ -26,7 +26,7 @@ jobs:
         wget -O sfml.tar.gz https://www.sfml-dev.org/files/SFML-2.5.1-linux-gcc-64-bit.tar.gz
         mkdir -p sfml
         tar -xzf sfml.tar.gz -C sfml
-        apt-get -y install freeglut3-dev
+        sudo apt-get -y install freeglut3-dev
 
     - name: Build CMake
       uses: ashutoshvarma/action-cmake-build@v1
