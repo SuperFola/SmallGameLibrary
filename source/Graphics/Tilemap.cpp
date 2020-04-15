@@ -23,6 +23,11 @@ namespace sgl::Graphics
         }
     }
 
+    void Tilemap::use(sf::Texture* newTexture)
+    {
+        m_tileset = newTexture;
+    }
+
     void Tilemap::draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
         // apply the transform

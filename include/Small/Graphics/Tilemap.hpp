@@ -34,11 +34,22 @@ namespace sgl::Graphics
         Tilemap(const sf::Vector2u& mapSize, const sf::Vector2u& tileSize, sf::Texture* texture);
 
         /**
-         * @brief Build the vertex array from the tileset and
+         * @brief Build the vertex array from the tileset
+         * @details Can be called multiple times to rebuild the tilemap without problems, but
+         *          the map size, and the tile size shouldn't change.
          * 
          * @param tiles 
          */
         void build(const int* tiles);
+
+        /**
+         * @brief Use a new texture
+         * @details Remove the old texture pointer without deleting it and replace it
+         *          with the provided one.
+         * 
+         * @param newTexture 
+         */
+        void use(sf::Texture* newTexture);
 
         /**
          * @brief Update a tile in the vertex array
