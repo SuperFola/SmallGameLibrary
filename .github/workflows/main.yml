@@ -27,7 +27,7 @@ jobs:
         mkdir -p sfml
         tar -xzf sfml.tar.gz -C sfml
         path_sfml=`pwd`
-        path_sfml+='sfml/lib/cmake/SFML'
+        path_sfml+='/sfml/lib/cmake/SFML'
         echo $path_sfml
         ls $path_sfml
 
