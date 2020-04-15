@@ -21,16 +21,12 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
   
-    - name: SFML install
+    - name: OpenGL / SFML install
       run: |
         wget -O sfml.tar.gz https://www.sfml-dev.org/files/SFML-2.5.1-linux-gcc-64-bit.tar.gz
         mkdir -p sfml
         tar -xzf sfml.tar.gz -C sfml
-        path_sfml=`pwd`
-        path_sfml+='/sfml/'
-        path_sfml+=`ls sfml`
-        path_sfml+='/lib/cmake/SFML'
-        echo $path_sfml
+        apt-get -y install freeglut3-dev
 
     - name: Build CMake
       uses: ashutoshvarma/action-cmake-build@v1
