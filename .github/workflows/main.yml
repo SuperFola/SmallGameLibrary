@@ -29,6 +29,7 @@ jobs:
         path_sfml=`pwd`
         path_sfml+='/sfml/lib/cmake/SFML'
         echo $path_sfml
+        ls sfml
         ls $path_sfml
 
     - name: Build CMake
