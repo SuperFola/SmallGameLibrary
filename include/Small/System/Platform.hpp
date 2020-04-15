@@ -1,5 +1,16 @@
-#ifndef sgl_platform
-#define sgl_platform
+/**
+ * @file Platform.hpp
+ * @author Alexandre Plateau (lexplt.dev@gmail.com)
+ * @brief Defines to identify the running operating system
+ * @version 0.1
+ * @date 2020-04-15
+ * 
+ * @copyright Copyright (c) 2020
+ * 
+ */
+
+#ifndef sgl_system_platform
+#define sgl_system_platform
 
 #if defined(_WIN32) && !defined(_WIN64)
     #define SGL_SYS_WIN32

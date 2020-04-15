@@ -12,8 +12,7 @@
 #ifndef sgl_small_all
 #define sgl_small_all
 
-#include <Small/Core/Application.hpp>
-#include <Small/SharedLibrary.hpp>
-#include <Small/Graphics/Tilemap.hpp>
+#include <Small/Core.hpp>
+#include <Small/Graphics.hpp>
 
 #endif

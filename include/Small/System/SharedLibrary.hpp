@@ -12,7 +12,7 @@
 #ifndef sgl_sharedlibrary
 #define sgl_sharedlibrary
 
-#include <Small/Platform.hpp>
+#include <Small/System/Platform.hpp>
 
 #if defined(SGL_SYS_WINDOWS)
     #include <Windows.h>

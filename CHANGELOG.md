@@ -2,9 +2,11 @@
 
 ## 0.0.3
 ### Added
+- added `Small/Core.hpp`, `Small/Graphics.hpp` and `Small/System.hpp` to include all the files from the specific folders
 
 ### Changed
 - the tilemap has been updated to no longer hold the texture, and be able to modify the vertex array when needed
+- the platform and sharedlibrary files have been moved the `Small/System/`
 
 ### Removed
 

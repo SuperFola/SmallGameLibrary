@@ -1,4 +1,4 @@
-#include <Small/SharedLibrary.hpp>
+#include <Small/System/SharedLibrary.hpp>
 
 #include <sstream>
 #include <iomanip>
