@@ -31,34 +31,15 @@ jobs:
         path_sfml+=`ls sfml`
         path_sfml+='/lib/cmake/SFML'
         echo $path_sfml
-        ls $path_sfml
 
     - name: Build CMake
       uses: ashutoshvarma/action-cmake-build@v1
       with:
-        # Build directory where build files will be generated
-        build-dir: ${{ runner.workspace }}/build # default is ${{ runner.workspace }}/build
-        # CMake build type (Release, Debug, MinSizeRel, RelWithDebInfo)
-        build-type: Debug # default is Release
-        # C Compiler for toolchain
-        #cc: # optional
-        # C++ Compiler for toolchain
-        #cxx: # optional
-        # CMake build target
-        #target: # optional
-        # Number of concurrent jobs for build and test
-        #parallel: # optional, default is 4
-        # Run CTest or not
-        #run-test: # optional, default is false
-        # Run 'cmake --install' or not
-        #install-build: # optional, default is false
-        # Update git submodules
+        build-dir: ${{ runner.workspace }}/build
+        build-type: Debug
         submodule-update: true
-        # Misc Options to pass to CMake while configuring project
-        configure-options: -DSFML_ROOT=$path_sfml
-        # Misc Options to pass to CMake while building project using cmake --build
-        #build-options: # optional
-        # Misc Options to pass to CMake while installing project using cmake --install
-        #install-options: # optional
-        # Misc Options to pass to CTest
-        #ctest-options: # optional
+        configure-options: -DSFML_ROOT=sfml/SFML-2.5.1/lib/cmake/SFML
+        #cc: # optional
+        #cxx: # optional
+        #target: # optional
+        #build-options: # Misc Options to pass to CMake while building project using cmake --build, optional
