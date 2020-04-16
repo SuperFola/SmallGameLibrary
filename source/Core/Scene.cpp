@@ -14,7 +14,7 @@ namespace sgl
     void Scene::onEvent(const sf::Event& event)
     {}
 
-    void Scene::onUpdate(const sf::Time dt, SceneManager& scm)
+    void Scene::onUpdate(const sf::Time dt)
     {}
 
     void Scene::onRender(sf::RenderTarget& screen)

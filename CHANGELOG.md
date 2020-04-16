@@ -16,6 +16,7 @@
 - disabling warning when converting float to int, int to float in the tilemap/tileview
 
 ### Removed
+- removed the argument `sgl::SceneManager&` from the scene, now using an internal pointer to the scene manager, in the scene itself
 
 ## 0.0.2
 ### Added

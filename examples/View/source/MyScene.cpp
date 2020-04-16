@@ -1,6 +1,5 @@
 #include <MyScene.hpp>
 
-#include <Small/Core/SceneManager.hpp>
 #include <iostream>
 #include <cmath>
 
@@ -66,7 +65,7 @@ void MyScene::onEvent(const sf::Event& event)
     }
 }
 
-void MyScene::onUpdate(const sf::Time dt, sgl::SceneManager& scm)
+void MyScene::onUpdate(const sf::Time dt)
 {
     // move view
     sf::Vector2i newZone = getCurrentZone();

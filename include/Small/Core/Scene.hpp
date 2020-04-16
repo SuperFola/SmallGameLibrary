@@ -64,9 +64,8 @@ namespace sgl
          * @brief Scene updating method, called after having handled the events
          * 
          * @param dt 
-         * @param scm The scene manager itself, to be able to change the current scene
          */
-        virtual void onUpdate(const sf::Time dt, SceneManager& scm);
+        virtual void onUpdate(const sf::Time dt);
 
         /**
          * @brief Rendering method, called after having updated the scene
@@ -103,10 +102,11 @@ namespace sgl
         inline const State getState() const;
 
         friend class SceneManager;
-    
+
     protected:
         State m_state;   //< The state of the scene (running, idle, stopped)
         const int m_id;  //< The unique identifier of the scene
+        SceneManager* m_sceneManager;  //< The SceneManager to be able to change active scene
     };
 }
 

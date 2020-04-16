@@ -115,6 +115,9 @@ namespace sgl
         int add(Args&&... args)
         {
             m_scenes.push_back(std::make_unique<S>(static_cast<int>(m_scenes.size()), std::forward<Args>(args)...));
+            // register the scene manger in the newly created scene
+            m_scenes.back().get()->m_sceneManager = this;
+            // return the identifier of the scene
             return static_cast<int>(m_scenes.size()) - 1;
         }
     

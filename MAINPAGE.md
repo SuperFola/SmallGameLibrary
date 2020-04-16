@@ -31,7 +31,7 @@ public:
             std::cout << "key pressed" << std::endl;
     }
 
-    void onUpdate(const sf::Time, sgl::SceneManager& scm)
+    void onUpdate(const sf::Time dt)
     {}
 
     void onRender(sf::RenderTarget& screen)

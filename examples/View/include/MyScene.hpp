@@ -14,7 +14,7 @@ public:
     MyScene(int id);
 
     void onEvent(const sf::Event& event);
-    void onUpdate(const sf::Time dt, sgl::SceneManager& scm);
+    void onUpdate(const sf::Time dt);
     void onRender(sf::RenderTarget& screen);
 
 private:

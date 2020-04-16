@@ -66,7 +66,7 @@ namespace sgl
         for (std::size_t i = 0, size = m_scenes.size(); i < size; ++i)
         {
             if (m_scenes[i]->getState() == State::Idle)
-                m_scenes[i]->onUpdate(dt, *this);
+                m_scenes[i]->onUpdate(dt);
         }
 
         return *this;
