@@ -14,5 +14,7 @@
 
 #include <Small/Core.hpp>
 #include <Small/Graphics.hpp>
+#include <Small/System.hpp>
+#include <Small/Scenes.hpp>
 
 #endif

@@ -73,8 +73,8 @@ namespace sgl::Scenes
         bool makeZoneTransition(const sf::Vector2f& pos, const sf::Time dt, int transitionSpeed=32);
 
     private:
-        int m_viewMovedByPx;
-        int m_lastQuantityNeededToStopTransition;
+        float m_viewMovedByPx;
+        float m_lastQuantityNeededToStopTransition;
     };
 }
 

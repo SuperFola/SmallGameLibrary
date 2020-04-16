@@ -8,6 +8,7 @@
 - added a `sgl::Graphics::TileView` to use tiles coordinates to place a view
 - added an example of how to use `sgl::Graphics::TileView`
 - adding a sgl::Scenes::Zone to handle zone transitions on a map
+- added `Small/System.hpp` and `Small/Scenes.hpp` to `Small/All.hpp`
 
 ### Changed
 - the tilemap has been updated to no longer hold the texture, and be able to modify the vertex array when needed

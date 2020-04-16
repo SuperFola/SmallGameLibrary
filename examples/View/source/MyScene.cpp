@@ -8,7 +8,7 @@
 MyScene::MyScene(int id) :
     sgl::Scene(id),
     //        map size (tiles)     tile size (px)
-    m_tilemap(sf::Vector2u(16, 16), sf::Vector2u(16, 16)),
+    m_tilemap(sf::Vector2i(16, 16), 16),
     m_playerShape(sf::Vector2f(16, 16)), m_viewMovedPx(0),
     m_canMove(true)
 {
@@ -76,7 +76,7 @@ void MyScene::onUpdate(const sf::Time dt)
         // block player movements
         m_canMove = false;
         // scrolling speed
-        const int tiles_per_second = m_view.getTileSize().x * 5;
+        const int tiles_per_second = 16 * 5;
         // movement to do
         float dx = tiles_per_second * dt.asSeconds() * diff.x;
         float dy = tiles_per_second * dt.asSeconds() * diff.y;
@@ -84,6 +84,8 @@ void MyScene::onUpdate(const sf::Time dt)
         m_view.movePx(dx, dy);
         // update moved quantity
         m_viewMovedPx += std::abs(dx) + std::abs(dy);
+
+        std::cout << m_viewMovedPx << "\n";
 
         if (m_viewMovedPx >= 16 * 8)
         {

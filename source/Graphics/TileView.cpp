@@ -8,7 +8,7 @@
 namespace sgl::Graphics
 {
     TileView::TileView() :
-        m_tileSize(16, 16)
+        m_tileSize(16)
     {}
 
     TileView::TileView(const sf::Vector2i& center, const sf::Vector2i& size, int tileSize) :
