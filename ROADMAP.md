@@ -8,7 +8,7 @@
 - [x] Better tilemaps
 - [ ] Basic widgets
 - [ ] Collisions maps for tilemaps
-- [ ] View example
+- [x] View example
 
 ## 0.0.2
 - [x] Profiler (runtime rendering and logic)
