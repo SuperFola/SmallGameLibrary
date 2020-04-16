@@ -36,9 +36,9 @@ namespace sgl::Graphics
          * 
          * @param center The center of the view, in tiles
          * @param size The size of the view, in tiles
-         * @param tileSize The size of a tile, in pixels
+         * @param tileSize The size of a (squared) tile, in pixels
          */
-        TileView(const sf::Vector2i& center, const sf::Vector2i& size, const sf::Vector2i& tileSize);
+        TileView(const sf::Vector2i& center, const sf::Vector2i& size, int tileSize);
 
         /**
          * @brief Activate the view
@@ -53,7 +53,7 @@ namespace sgl::Graphics
          * 
          * @param tileSize 
          */
-        void setTileSize(const sf::Vector2i& tileSize);
+        void setTileSize(int tileSize);
 
         /**
          * @brief Set the center of the view
@@ -162,13 +162,13 @@ namespace sgl::Graphics
         /**
          * @brief Get the size of a tile
          * 
-         * @return const sf::Vector2i& 
+         * @return int 
          */
-        const sf::Vector2i& getTileSize() const;
+        int getTileSize() const;
     
     private:
         sf::View m_view;
-        sf::Vector2i m_tileSize;
+        int m_tileSize;
     };
 }
 

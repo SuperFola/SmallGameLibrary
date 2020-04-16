@@ -11,10 +11,10 @@ namespace sgl::Graphics
         m_tileSize(16, 16)
     {}
 
-    TileView::TileView(const sf::Vector2i& center, const sf::Vector2i& size, const sf::Vector2i& tileSize) :
+    TileView::TileView(const sf::Vector2i& center, const sf::Vector2i& size, int tileSize) :
         m_view(
-            sf::Vector2f(tileSize.x * center.x, tileSize.y * center.y),
-            sf::Vector2f(tileSize.x * size.x, tileSize.x * size.y)
+            sf::Vector2f(tileSize * center.x, tileSize * center.y),
+            sf::Vector2f(tileSize * size.x, tileSize * size.y)
         ),
         m_tileSize(tileSize)
     {}
@@ -24,14 +24,14 @@ namespace sgl::Graphics
         window.setView(m_view);
     }
 
-    void TileView::setTileSize(const sf::Vector2i& tileSize)
+    void TileView::setTileSize(int tileSize)
     {
         m_tileSize = tileSize;
     }
 
     void TileView::setCenter(unsigned x, unsigned y)
     {
-        setCenterPx(m_tileSize.x * x, m_tileSize.y * y);
+        setCenterPx(m_tileSize * x, m_tileSize * y);
     }
 
     void TileView::setCenterPx(float x, float y)
@@ -41,7 +41,7 @@ namespace sgl::Graphics
 
     void TileView::setSize(unsigned width, unsigned height)
     {
-        setSizePx(m_tileSize.x * width, m_tileSize.y * height);
+        setSizePx(m_tileSize * width, m_tileSize * height);
     }
 
     void TileView::setSizePx(float width, float height)
@@ -56,7 +56,7 @@ namespace sgl::Graphics
 
     void TileView::move(unsigned dx, unsigned dy)
     {
-        movePx(m_tileSize.x * dx, m_tileSize.y * dy);
+        movePx(m_tileSize * dx, m_tileSize * dy);
     }
 
     void TileView::movePx(float dx, float dy)
@@ -81,7 +81,7 @@ namespace sgl::Graphics
 
     sf::Vector2i TileView::getCenter() const
     {
-        return sf::Vector2i(m_view.getCenter().x / m_tileSize.x, m_view.getCenter().y / m_tileSize.y);
+        return sf::Vector2i(m_view.getCenter().x / m_tileSize, m_view.getCenter().y / m_tileSize);
     }
 
     const sf::Vector2f& TileView::getCenterPx() const
@@ -91,7 +91,7 @@ namespace sgl::Graphics
 
     sf::Vector2i TileView::getSize() const
     {
-        return sf::Vector2i(m_view.getSize().x / m_tileSize.x, m_view.getSize().y / m_tileSize.y);
+        return sf::Vector2i(m_view.getSize().x / m_tileSize, m_view.getSize().y / m_tileSize);
     }
 
     const sf::Vector2f& TileView::getSizePx() const
@@ -99,7 +99,7 @@ namespace sgl::Graphics
         return m_view.getSize();
     }
 
-    const sf::Vector2i& TileView::getTileSize() const
+    int TileView::getTileSize() const
     {
         return m_tileSize;
     }
