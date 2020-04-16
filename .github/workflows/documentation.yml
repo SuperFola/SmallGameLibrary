@@ -3,7 +3,7 @@ name: Doxygen
 on:
   push:
     tags:
-      - '*
+      - '*'
 
 jobs:
   build:
