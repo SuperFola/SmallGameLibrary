@@ -13,6 +13,7 @@
 #define sgl_small_graphics_tileview
 
 #include <SFML/Graphics/View.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
 
 namespace sgl::Graphics
 {
@@ -135,7 +136,7 @@ namespace sgl::Graphics
          * 
          * @return sf::Vector2u center of the view in tiles
          */
-        sf::Vector2u getCenter() const;
+        sf::Vector2i getCenter() const;
 
         /**
          * @brief Get the center of the view
@@ -149,7 +150,7 @@ namespace sgl::Graphics
          * 
          * @return sf::Vector2u size of the view in tiles
          */
-        sf::Vector2u getSize() const;
+        sf::Vector2i getSize() const;
 
         /**
          * @brief Get the sizee of the view
@@ -163,11 +164,11 @@ namespace sgl::Graphics
          * 
          * @return const sf::Vector2u& 
          */
-        const sf::Vector2u& getTileSize() const;
+        const sf::Vector2i& getTileSize() const;
     
     private:
         sf::View m_view;
-        sf::Vector2u m_tileSize;
+        sf::Vector2i m_tileSize;
     };
 }
 

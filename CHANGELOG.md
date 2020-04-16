@@ -12,6 +12,7 @@
 - the platform and sharedlibrary files have been moved the `Small/System/`
 - by default, the debug mode is now turned off when creating the application
 - the texture pointer of a tilemap is now sent only using `.use` method
+- disabling warning when converting float to int, int to float in the tilemap/tileview
 
 ### Removed
 

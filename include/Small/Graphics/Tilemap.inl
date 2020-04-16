@@ -1,3 +1,8 @@
+#ifdef _MSC_VER
+    #pragma warning(push)
+    #pragma warning(disable:4244)
+#endif
+
 namespace sgl::Graphics
 {
     inline void Tilemap::update(const sf::Vector2u& tilePos, int new_tile)
@@ -25,3 +30,7 @@ namespace sgl::Graphics
         quad[3].texCoords = sf::Vector2f( tu      * m_tileSize.x, (tv + 1) * m_tileSize.y);
     }
 }
+
+#ifdef _MSC_VER
+    #pragma warning(pop)
+#endif

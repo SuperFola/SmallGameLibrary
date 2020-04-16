@@ -1,5 +1,10 @@
 #include <Small/Graphics/TileView.hpp>
 
+#ifdef _MSC_VER
+    #pragma warning(push)
+    #pragma warning(disable:4244)
+#endif
+
 namespace sgl::Graphics
 {
     TileView::TileView() :
@@ -21,7 +26,8 @@ namespace sgl::Graphics
 
     void TileView::setTileSize(const sf::Vector2u& tileSize)
     {
-        m_tileSize = tileSize;
+        m_tileSize.x = tileSize.x;
+        m_tileSize.y = tileSize.y;
     }
 
     void TileView::setCenter(unsigned x, unsigned y)
@@ -74,9 +80,9 @@ namespace sgl::Graphics
         return m_view.getRotation();
     }
 
-    sf::Vector2u TileView::getCenter() const
+    sf::Vector2i TileView::getCenter() const
     {
-        return sf::Vector2u(m_view.getCenter().x / m_tileSize.x, m_view.getCenter().y / m_tileSize.y);
+        return sf::Vector2i(m_view.getCenter().x / m_tileSize.x, m_view.getCenter().y / m_tileSize.y);
     }
 
     const sf::Vector2f& TileView::getCenterPx() const
@@ -84,9 +90,9 @@ namespace sgl::Graphics
         return m_view.getCenter();
     }
 
-    sf::Vector2u TileView::getSize() const
+    sf::Vector2i TileView::getSize() const
     {
-        return sf::Vector2u(m_view.getSize().x / m_tileSize.x, m_view.getSize().y / m_tileSize.y);
+        return sf::Vector2i(m_view.getSize().x / m_tileSize.x, m_view.getSize().y / m_tileSize.y);
     }
 
     const sf::Vector2f& TileView::getSizePx() const
@@ -94,8 +100,12 @@ namespace sgl::Graphics
         return m_view.getSize();
     }
 
-    const sf::Vector2u& TileView::getTileSize() const
+    const sf::Vector2i& TileView::getTileSize() const
     {
         return m_tileSize;
     }
 }
+
+#ifdef _MSC_VER
+    #pragma warning(pop)
+#endif
