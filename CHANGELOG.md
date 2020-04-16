@@ -6,6 +6,7 @@
 - the tilemap can be passed a new texture using `void Tilemap::use(sf::Texture*)`
 - adding github actions to build the project after each commit/pull request
 - added a `sgl::Graphics::TileView` to use tiles coordinates to place a view
+- added an example of how to use `sgl::Graphics::TileView`
 
 ### Changed
 - the tilemap has been updated to no longer hold the texture, and be able to modify the vertex array when needed
