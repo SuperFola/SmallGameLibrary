@@ -2,7 +2,7 @@
 
 namespace sgl::Graphics
 {
-    Tilemap::Tilemap(const sf::Vector2u& mapSize, const sf::Vector2u& tileSize) :
+    Tilemap::Tilemap(const sf::Vector2i& mapSize, int tileSize) :
         m_mapSize(mapSize), m_tileSize(tileSize)
     {
         m_vertices.setPrimitiveType(sf::Quads);
@@ -18,7 +18,7 @@ namespace sgl::Graphics
             {
                 // get the current tile number
                 int tileNumber = tiles[i + j * m_mapSize.x];
-                update(sf::Vector2u(i, j), tileNumber);
+                update(sf::Vector2i(i, j), tileNumber);
             }
         }
     }

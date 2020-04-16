@@ -28,9 +28,9 @@ namespace sgl::Graphics
          * @brief Construct a new Tilemap object
          * 
          * @param width Size of the tilemap (in tiles)
-         * @param tileSize Size of a tile in the tileset (in pixels)
+         * @param tileSize Size of a (squared) tile in the tileset (in pixels)
          */
-        Tilemap(const sf::Vector2u& mapSize, const sf::Vector2u& tileSize);
+        Tilemap(const sf::Vector2i& mapSize, int tileSize);
 
         /**
          * @brief Build the vertex array from the tileset
@@ -56,11 +56,11 @@ namespace sgl::Graphics
          * @param tilePos The position of the tile (in tiles) to update
          * @param new_tile New tile id for the tile
          */
-        inline void update(const sf::Vector2u& tilePos, int new_tile);
+        inline void update(const sf::Vector2i& tilePos, int new_tile);
 
     private:
-        sf::Vector2u m_mapSize;
-        sf::Vector2u m_tileSize;
+        sf::Vector2i m_mapSize;
+        int m_tileSize;
         sf::VertexArray m_vertices;
         sf::Texture* m_tileset;
 
