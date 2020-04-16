@@ -13,5 +13,6 @@
 #define sgl_small_graphics
 
 #include <Small/Graphics/Tilemap.hpp>
+#include <Small/Graphics/TileView.hpp>
 
 #endif

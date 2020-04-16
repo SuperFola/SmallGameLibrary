@@ -5,7 +5,7 @@
 - [ ] Shaders
 
 ## 0.0.3
-- [ ] Better tilemaps
+- [x] Better tilemaps
 - [ ] Basic widgets
 - [ ] Collisions maps for tilemaps
 - [ ] View example
