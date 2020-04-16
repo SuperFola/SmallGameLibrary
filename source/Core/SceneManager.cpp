@@ -61,7 +61,7 @@ namespace sgl
     SceneManager& SceneManager::onUpdate(const sf::Time dt)
     {
         if (m_current != -1)
-            m_scenes[m_current]->onUpdate(dt, *this);
+            m_scenes[m_current]->onUpdate(dt);
         
         for (std::size_t i = 0, size = m_scenes.size(); i < size; ++i)
         {
