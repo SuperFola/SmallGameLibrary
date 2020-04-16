@@ -56,6 +56,7 @@ namespace sgl
     public:
         /**
          * @brief Construct a new Application object
+         * @details Debug mode is OFF by default.
          * 
          * @param settings The settings for the application (size of the window, style, additional settings for the underlying opengl context)
          */

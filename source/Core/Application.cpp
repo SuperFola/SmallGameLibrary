@@ -8,7 +8,8 @@ namespace sgl
             "SmallGameLibray default application",
             settings.style,
             sf::ContextSettings(settings.depth, settings.stencil, settings.antiAliasing)
-        )
+        ),
+        m_showDebug(false)
     {
         ImGui::SFML::Init(m_screen);
         m_screen.resetGLStates();
