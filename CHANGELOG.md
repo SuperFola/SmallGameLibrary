@@ -11,6 +11,7 @@
 - the tilemap has been updated to no longer hold the texture, and be able to modify the vertex array when needed
 - the platform and sharedlibrary files have been moved the `Small/System/`
 - by default, the debug mode is now turned off when creating the application
+- the texture pointer of a tilemap is now sent only using `.use` method
 
 ### Removed
 

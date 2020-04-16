@@ -2,8 +2,8 @@
 
 namespace sgl::Graphics
 {
-    Tilemap::Tilemap(const sf::Vector2u& mapSize, const sf::Vector2u& tileSize, sf::Texture* texture) :
-        m_mapSize(mapSize), m_tileSize(tileSize), m_tileset(texture)
+    Tilemap::Tilemap(const sf::Vector2u& mapSize, const sf::Vector2u& tileSize) :
+        m_mapSize(mapSize), m_tileSize(tileSize)
     {
         m_vertices.setPrimitiveType(sf::Quads);
         m_vertices.resize(m_mapSize.x * m_mapSize.y * 4);

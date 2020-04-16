@@ -29,9 +29,8 @@ namespace sgl::Graphics
          * 
          * @param width Size of the tilemap (in tiles)
          * @param tileSize Size of a tile in the tileset (in pixels)
-         * @param texture Pointer to a sf::Texture
          */
-        Tilemap(const sf::Vector2u& mapSize, const sf::Vector2u& tileSize, sf::Texture* texture);
+        Tilemap(const sf::Vector2u& mapSize, const sf::Vector2u& tileSize);
 
         /**
          * @brief Build the vertex array from the tileset
