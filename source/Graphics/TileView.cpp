@@ -11,7 +11,7 @@ namespace sgl::Graphics
         m_tileSize(16, 16)
     {}
 
-    TileView::TileView(const sf::Vector2u& center, const sf::Vector2u& size, const sf::Vector2u& tileSize) :
+    TileView::TileView(const sf::Vector2i& center, const sf::Vector2i& size, const sf::Vector2i& tileSize) :
         m_view(
             sf::Vector2f(tileSize.x * center.x, tileSize.y * center.y),
             sf::Vector2f(tileSize.x * size.x, tileSize.x * size.y)
@@ -24,10 +24,9 @@ namespace sgl::Graphics
         window.setView(m_view);
     }
 
-    void TileView::setTileSize(const sf::Vector2u& tileSize)
+    void TileView::setTileSize(const sf::Vector2i& tileSize)
     {
-        m_tileSize.x = tileSize.x;
-        m_tileSize.y = tileSize.y;
+        m_tileSize = tileSize;
     }
 
     void TileView::setCenter(unsigned x, unsigned y)
