@@ -1,0 +1,33 @@
+name: Doxygen
+
+on:
+  push:
+    tags:
+      - '*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup
+      run: |
+        mkdir -p documentation
+    
+    - name: Doxygen Action
+      uses: mattnotmitt/doxygen-action@v1.1.0
+      with:
+        doxyfile-path: ../Doxyfile
+        working-directory: ./documentation
+    
+    - name: Push to Github
+      uses: x-actions/gh-pages@release/v1
+      env:
+        GITHUB_EMAIL: "lexplt.dev@gmail.com"
+        GITHUB_USERNAME: "SuperFola"
+        PUBLISH_REPO: https://${{ secrets.GitHub_PAT }}@github.com/SuperFola/sgl-doc.git
+        PUBLISH_BRANCH: master
+        PUBLISH_DIR: ./documentation
+        # DEPLOY_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
