@@ -21,6 +21,7 @@
 - all the sizes in the tileview are now using `sf::Vector2i`
 - all the sizes in the tilemap are now using `sf::Vector2i`
 - using integer to store the size of a tile in the tile view
+- updated namespaces descriptions
 
 ### Removed
 - removed the argument `sgl::SceneManager&` from the scene, now using an internal pointer to the scene manager, in the scene itself

@@ -12,6 +12,12 @@
 #ifndef sgl_small_all
 #define sgl_small_all
 
+/**
+ * @brief Base namespace for the library.
+ * 
+ */
+namespace sgl {}
+
 #include <Small/Core.hpp>
 #include <Small/Graphics.hpp>
 #include <Small/System.hpp>
