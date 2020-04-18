@@ -3,7 +3,7 @@
 namespace sgl::Widgets
 {
     Button::Button(int id, Base::Ptr parent, const sf::IntRect& bounds) :
-        Base(id, parent, bounds), m_shape(sf::Vector2f(bounds.width, bounds.height)),
+        Base(id, parent, bounds), m_shape(sf::Vector2f(static_cast<float>(bounds.width), static_cast<float>(bounds.height))),
         m_click(false), m_callback(nullptr)
     {}
 
@@ -30,6 +30,26 @@ namespace sgl::Widgets
         return m_shape;
     }
 
+    void Button::onRender(sf::RenderTarget& screen, const sf::Transform& transform)
+    {
+        switch (getStyle())
+        {
+        case Style::Text:
+            screen.draw(m_shape, transform);
+            screen.draw(m_text, transform);
+            break;
+
+        case Style::Sprite:
+            screen.draw(m_sprite, transform);
+            break;
+
+        case Style::Both:
+            screen.draw(m_sprite, transform);
+            screen.draw(m_text, transform);
+            break;
+        }
+    }
+
     void Button::onMouseButtonPressed(int button, int x, int y)
     {
         m_click = true;
@@ -41,27 +61,5 @@ namespace sgl::Widgets
             m_callback();
 
         m_click = false;
-    }
-
-    void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const
-    {
-        states.transform *= getTransform();
-
-        switch (getStyle())
-        {
-        case Style::Text:
-            target.draw(m_shape, states);
-            target.draw(m_text, states);
-            break;
-
-        case Style::Sprite:
-            target.draw(m_sprite, states);
-            break;
-
-        case Style::Both:
-            target.draw(m_sprite, states);
-            target.draw(m_text, states);
-            break;
-        }
     }
 }

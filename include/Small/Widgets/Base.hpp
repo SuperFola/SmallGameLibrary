@@ -2,7 +2,7 @@
  * @file Base.hpp
  * @author Alexandre Plateau (lexplt.dev@gmail.com)
  * @brief Contain base classes to create interoperable SFML widgets
- * @version 0.6
+ * @version 0.7
  * @date 2020-04-18
  * 
  * @copyright Copyright (c) 2020
@@ -12,14 +12,11 @@
 #ifndef sgl_small_widgets_base
 #define sgl_small_widgets_base
 
-#include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Transformable.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/System/Time.hpp>
 #include <SFML/Window/Event.hpp>
-
-#include <memory>
 
 namespace sgl::Widgets
 {
@@ -40,10 +37,10 @@ namespace sgl::Widgets
      *          rendering, transformations. Position is **always** relative to the parent.
      * 
      */
-    class Base : public sf::Drawable, public sf::Transformable
+    class Base : public sf::Transformable
     {
     public:
-        using Ptr = std::shared_ptr<Base>;
+        using Ptr = Base*;
 
         /**
          * @brief Construct a new Base widget object
@@ -66,6 +63,14 @@ namespace sgl::Widgets
          * @param dt Delta of time since last update
          */
         virtual void onUpdate(const sf::Time dt);
+
+        /**
+         * @brief Render the widget on screen
+         * 
+         * @param screen 
+         * @param transform Given by parent automatically
+         */
+        virtual void onRender(sf::RenderTarget& screen, const sf::Transform& transform);
 
         /**
          * @brief Called when an event is received, calling the subfunctions corresponding to the event type
@@ -182,7 +187,18 @@ namespace sgl::Widgets
          * @param x 
          * @param y 
          */
-        void setPosition(int x, int y) final;
+        virtual void setPosition(int x, int y) final;
+
+        /**
+         * @brief Function in charge of drawing our widget
+         * @details This method shouldn't be modified unless you need to do specific 
+                    things like playing with transformations, otherwise implement your 
+                    rendering methods in onRender
+         * 
+         * @param target 
+         * @param parentTransform 
+         */
+        virtual void draw_(sf::RenderTarget& target, const sf::Transform& parentTransform);
 
     protected:
         const int m_id;  //< Unique identifier for the widget
@@ -191,18 +207,6 @@ namespace sgl::Widgets
         sf::IntRect m_rect;  //< Rectangle in which the widget is
         Ptr m_parent;  //< Pointer to the parent widget
         Style m_style;
-
-        /**
-         * @brief Function in charge of drawing our widget, using the SFML API
-         * @details The inheriting widget must implement this method to be drawn using:
-         * @code
-         * screen.draw(my_widget);
-         * @endcode
-         * 
-         * @param target 
-         * @param states 
-         */
-        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const = 0;
     };
 }
 

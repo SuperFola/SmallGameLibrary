@@ -74,6 +74,14 @@ namespace sgl::Widgets
         sf::RectangleShape& shape();
 
         /**
+         * @brief Render the widget on screen
+         * 
+         * @param screen 
+         * @param transform Given by parent automatically
+         */
+        void onRender(sf::RenderTarget& screen, const sf::Transform& transform);
+
+        /**
          * @brief Called when a mouse button is pressed, on focus
          * @details Focus is handled before calling the method
          * 
@@ -101,14 +109,6 @@ namespace sgl::Widgets
         };
         bool m_click;                    //< Is the button being clicked on?
         Callback_t m_callback;           //< Function to call when we click on the button
-
-        /**
-         * @brief Function in charge of drawing our widget, using the SFML API
-         * 
-         * @param target 
-         * @param states 
-         */
-        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     };
 }
 

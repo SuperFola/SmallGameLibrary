@@ -36,7 +36,7 @@ namespace sgl::Scenes
             {
                 int qx = diff.x * m_zoneSize.x * m_tileSize;
                 int qy = diff.y * m_zoneSize.y * m_tileSize;
-                m_lastQuantityNeededToStopTransition = std::abs(qx) + std::abs(qy);
+                m_lastQuantityNeededToStopTransition = static_cast<float>(std::abs(qx) + std::abs(qy));
             }
             // movement to do
             float dx = transitionSpeed * dt.asSeconds() * diff.x;

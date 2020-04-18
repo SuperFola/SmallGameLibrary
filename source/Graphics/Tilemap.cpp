@@ -12,9 +12,9 @@ namespace sgl::Graphics
     void Tilemap::build(const int* tiles)
     {
         // populate the vertex array, with one quad per tile
-        for (unsigned int i = 0; i < m_mapSize.x; ++i)
+        for (int i = 0; i < m_mapSize.x; ++i)
         {
-            for (unsigned int j = 0; j < m_mapSize.y; ++j)
+            for (int j = 0; j < m_mapSize.y; ++j)
             {
                 // get the current tile number
                 int tileNumber = tiles[i + j * m_mapSize.x];

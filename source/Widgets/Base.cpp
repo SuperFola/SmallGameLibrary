@@ -5,12 +5,17 @@ namespace sgl::Widgets
     Base::Base(int id, Base::Ptr parent, const sf::IntRect& bounds) :
         m_id(id), m_listening(true), m_rect(bounds), m_parent(parent),
         m_style(Style::Text)
-    {}
+    {
+        setPosition(bounds.left, bounds.top);
+    }
 
     Base::~Base()
     {}
 
     void Base::onUpdate(const sf::Time dt)
+    {}
+
+    void Base::onRender(sf::RenderTarget& screen, const sf::Transform& transform)
     {}
 
     void Base::onEvent(const sf::Event& event)
@@ -38,7 +43,7 @@ namespace sgl::Widgets
             break;
 
         case sf::Event::MouseButtonPressed:
-            if (getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
+            if (getGlobalBounds().contains(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)))
                 m_focused = true;
             else
                 m_focused = false;
@@ -48,7 +53,7 @@ namespace sgl::Widgets
             break;
 
         case sf::Event::MouseButtonReleased:
-            if (getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
+            if (getGlobalBounds().contains(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)))
                 m_focused = true;
             else
                 m_focused = false;
@@ -125,10 +130,15 @@ namespace sgl::Widgets
 
     void Base::setPosition(int x, int y)
     {
-        sf::FloatRect bounds = getGlobalBounds();
-        float fx = static_cast<float>(x) + bounds.left;
-        float fy = static_cast<float>(y) + bounds.top;
+        float fx = static_cast<float>(x);
+        float fy = static_cast<float>(y);
 
         sf::Transformable::setPosition(fx, fy);
+    }
+
+    void Base::draw_(sf::RenderTarget& target, const sf::Transform& parentTransform)
+    {
+        sf::Transform combinedTransform = parentTransform * getTransform();
+        onRender(target, combinedTransform);
     }
 }

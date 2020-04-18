@@ -17,9 +17,8 @@ namespace sgl::Widgets
         return m_text;
     }
 
-    void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const
+    void Label::onRender(sf::RenderTarget& screen, const sf::Transform& transform)
     {
-        states.transform *= getTransform();
-        target.draw(m_text, states);
+        screen.draw(m_text, transform);
     }
 }

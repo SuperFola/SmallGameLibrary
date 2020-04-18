@@ -48,16 +48,16 @@ namespace sgl::Widgets
          */
         sf::Text& text();
 
+        /**
+         * @brief Render the widget on screen
+         * 
+         * @param screen 
+         * @param transform Given by parent automatically
+         */
+        void onRender(sf::RenderTarget& screen, const sf::Transform& transform);
+
     protected:
         sf::Text m_text;  //< Text of the label
-
-        /**
-         * @brief Function in charge of drawing our widget, using the SFML API
-         * 
-         * @param target 
-         * @param states 
-         */
-        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     };
 }
 

@@ -1,8 +1,10 @@
 #include <Small/Widgets/Layout.hpp>
 
+#include <SFML/Graphics.hpp>
+
 namespace sgl::Widgets
 {
-    Layout::Layout(int id, Layout::Ptr parent, const sf::IntRect& bounds) :
+    Layout::Layout(int id, Base::Ptr parent, const sf::IntRect& bounds) :
         Base(id, parent, bounds)
     {}
 
@@ -34,14 +36,25 @@ namespace sgl::Widgets
 
     Base* Layout::operator[](int i) const
     {
-        return m_children[i]->get();
+        return m_children[i].get();
+    }
+
+    void Layout::draw_(sf::RenderTarget& target, const sf::Transform& parentTransform)
+    {
+        static sf::RectangleShape r(sf::Vector2f(m_rect.width, m_rect.height));
+        r.setFillColor(sf::Color::Red);
+
+        sf::Transform combinedTransform = parentTransform * getTransform();
+
+        target.draw(r, combinedTransform);
+
+        onRender(target, combinedTransform);
+        for (std::size_t i=0, size=m_children.size(); i < size; ++i)
+            m_children[i]->draw_(target, combinedTransform);
     }
 
     void Layout::draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
-        for (std::size_t i=0, size=m_children.size(); i < size; ++i)
-        {
-            target.draw(*m_children[i].get(), states);
-        }
+        const_cast<Layout*>(this)->draw_(target, states.transform);
     }
 }
