@@ -2,7 +2,7 @@
  * @file Tilemap.hpp
  * @author Alexandre Plateau (lexplt.dev@gmail.com)
  * @brief A tilemap wrapper, to render a lot of sprites in a single draw call
- * @version 0.2
+ * @version 0.3
  * @date 2020-04-06
  * 
  * @copyright Copyright (c) 2020
@@ -16,6 +16,7 @@
 #include <SFML/Graphics/Transformable.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/VertexArray.hpp>
 
 namespace sgl::Graphics
 {
