@@ -27,7 +27,7 @@ jobs:
       env:
         GITHUB_EMAIL: "lexplt.dev@gmail.com"
         GITHUB_USERNAME: "SuperFola"
-        PUBLISH_REPO: https://${{ secrets.GitHub_PAT }}@github.com/SuperFola/sgl-doc.git
+        PUBLISH_REPO: https://github.com/SuperFola/sgl-doc.git
         PUBLISH_BRANCH: master
         PUBLISH_DIR: ./documentation
         # DEPLOY_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
