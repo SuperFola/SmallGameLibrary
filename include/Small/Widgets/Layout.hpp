@@ -22,6 +22,8 @@ namespace sgl::Widgets
 {
     /**
      * @brief A collection of widgets working together, graphically united
+     * @details This class **must** be used to create, host, and render the widgets ;
+     *          other widget can not and shouldn't live alone.
      * 
      */
     class Layout : public Base, public sf::Drawable
