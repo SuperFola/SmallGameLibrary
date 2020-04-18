@@ -2,7 +2,7 @@
  * @file Base.hpp
  * @author Alexandre Plateau (lexplt.dev@gmail.com)
  * @brief Contain base classes to create interoperable SFML widgets
- * @version 0.2
+ * @version 0.4
  * @date 2020-04-18
  * 
  * @copyright Copyright (c) 2020
@@ -23,6 +23,17 @@
 
 namespace sgl::Widgets
 {
+    /**
+     * @brief Styling options for widgets
+     * 
+     */
+    enum class Style
+    {
+        Text,    //< Display text only, if available (default)
+        Sprite,  //< Display sprite only, if available
+        Both     //< Display both, first the sprite, then the text over it
+    };
+
     /**
      * @brief Base class for all widgets. This class can not be used as is.
      * @details Providing base features like: focus management, update on event,
@@ -151,12 +162,27 @@ namespace sgl::Widgets
          */
         virtual bool hasFocus() const final;
 
+        /**
+         * @brief Set the style of the object
+         * 
+         * @param style a Style enumeration value
+         */
+        virtual void setStyle(Style style) final;
+
+        /**
+         * @brief Get the style of the widget
+         * 
+         * @return Style 
+         */
+        virtual Style getStyle() const final;
+
     protected:
         const int m_id;  //< Unique identifier for the widget
         bool m_focused;  //< Tell if the widget is being focused or not
         bool m_listening;  //< Tell if a widget can receive events
         sf::IntRect m_rect;  //< Rectangle in which the widget is
         Ptr m_parent;  //< Pointer to the parent widget
+        Style m_style;
 
         /**
          * @brief Function in charge of drawing our widget, using the SFML API

@@ -12,6 +12,7 @@
 - [x] Better tilemaps
 - [ ] Basic widgets
 - [x] View example
+- [ ] Tilemap loader (from files)
 
 ## 0.0.2
 - [x] Profiler (runtime rendering and logic)

@@ -3,7 +3,8 @@
 namespace sgl::Widgets
 {
     Base::Base(int id, Base::Ptr parent, const sf::IntRect& bounds) :
-        m_id(id), m_listening(true), m_rect(bounds), m_parent(parent)
+        m_id(id), m_listening(true), m_rect(bounds), m_parent(parent),
+        m_style(Style::Text)
     {}
 
     Base::~Base()
@@ -104,5 +105,15 @@ namespace sgl::Widgets
     bool Base::hasFocus() const final
     {
         return m_focused;
+    }
+
+    void Base::setStyle(Style style) final
+    {
+        m_style = style;
+    }
+
+    Style Base::getStyle() const final
+    {
+        return m_style;
     }
 }

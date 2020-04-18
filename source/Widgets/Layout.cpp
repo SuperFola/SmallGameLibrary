@@ -36,4 +36,12 @@ namespace sgl::Widgets
     {
         return m_children[i]->get();
     }
+
+    void Layout::draw(sf::RenderTarget& target, sf::RenderStates states) const
+    {
+        for (std::size_t i=0, size=m_children.size(); i < size; ++i)
+        {
+            target.draw(*m_children[i].get(), states);
+        }
+    }
 }

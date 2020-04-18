@@ -1,8 +1,8 @@
 /**
  * @file Layout.hpp
  * @author Alexandre Plateau (lexplt.dev@gmail.com)
- * @brief 
- * @version 0.1
+ * @brief A widget acting as a collection of widgets
+ * @version 0.2
  * @date 2020-04-18
  * 
  * @copyright Copyright (c) 2020
@@ -82,6 +82,14 @@ namespace sgl::Widgets
 
     protected:
         std::vector<Base::Ptr> m_children;
+
+        /**
+         * @brief Function in charge of drawing our widget, using the SFML API
+         * 
+         * @param target 
+         * @param states 
+         */
+        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
     };
 }
 
