@@ -12,6 +12,7 @@
 - adding a base widget to be completed
 - adding a layout widget to hold many widgets
 - adding a button widget
+- adding basic example of how to use the widgets
 
 ### Changed
 - the tilemap has been updated to no longer hold the texture, and be able to modify the vertex array when needed
@@ -23,6 +24,7 @@
 - all the sizes in the tilemap are now using `sf::Vector2i`
 - using integer to store the size of a tile in the tile view
 - updated namespaces descriptions
+- global bounds of a widget must be relative to its parent position
 
 ### Removed
 - removed the argument `sgl::SceneManager&` from the scene, now using an internal pointer to the scene manager, in the scene itself
