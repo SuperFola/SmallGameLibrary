@@ -45,6 +45,8 @@ namespace sgl::Widgets
 
     void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const
     {
+        states.transform *= getTransform();
+
         switch (getStyle())
         {
         case Style::Text:

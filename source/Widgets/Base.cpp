@@ -125,6 +125,10 @@ namespace sgl::Widgets
 
     void Base::setPosition(int x, int y)
     {
-        sf::Transformable::setPosition(static_cast<float>(x), static_cast<float>(y));
+        sf::FloatRect bounds = getGlobalBounds();
+        float fx = static_cast<float>(x) + bounds.left;
+        float fy = static_cast<float>(y) + bounds.top;
+
+        sf::Transformable::setPosition(fx, fy);
     }
 }
