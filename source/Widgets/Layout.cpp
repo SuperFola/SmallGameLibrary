@@ -32,7 +32,7 @@ namespace sgl::Widgets
         }
     }
 
-    Base* Layout::operator[](int i) const final
+    Base* Layout::operator[](int i) const
     {
         return m_children[i]->get();
     }

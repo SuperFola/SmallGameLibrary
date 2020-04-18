@@ -80,39 +80,39 @@ namespace sgl::Widgets
     void Base::onMouseButtonReleased(int button, int x, int y)
     {}
 
-    sf::FloatRect Base::getLocalBounds() const final
+    sf::FloatRect Base::getLocalBounds() const
     {
         float width = static_cast<float>(std::abs(m_rect.width));
         float height = static_cast<float>(std::abs(m_rect.height));
         return sf::FloatRect(0.f, 0.f, width, height);
     }
 
-    sf::FloatRect Base::getGlobalBounds() const final
+    sf::FloatRect Base::getGlobalBounds() const
     {
         return getTransform().transformRect(getLocalBounds());
     }
 
-    void Base::setListenToEvents(bool value) final
+    void Base::setListenToEvents(bool value)
     {
         m_listening = value;
     }
 
-    bool Base::isListeningToEvents() const final
+    bool Base::isListeningToEvents() const
     {
         return m_listening;
     }
 
-    bool Base::hasFocus() const final
+    bool Base::hasFocus() const
     {
         return m_focused;
     }
 
-    void Base::setStyle(Style style) final
+    void Base::setStyle(Style style)
     {
         m_style = style;
     }
 
-    Style Base::getStyle() const final
+    Style Base::getStyle() const
     {
         return m_style;
     }
