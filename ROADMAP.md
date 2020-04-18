@@ -1,13 +1,16 @@
 # Roadmap
 
+## 0.0.5
+- [ ] integrate an ECS (through EnTT)
+
 ## 0.0.4
 - [ ] ArkScript-ing
 - [ ] Shaders
+- [ ] Resource management
 
 ## 0.0.3
 - [x] Better tilemaps
 - [ ] Basic widgets
-- [ ] Collisions maps for tilemaps
 - [x] View example
 
 ## 0.0.2

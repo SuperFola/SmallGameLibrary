@@ -12,13 +12,15 @@
 #ifndef sgl_graphics_tilemap
 #define sgl_graphics_tilemap
 
-#include <SFML/Graphics.hpp>
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/Transformable.hpp>
+#include <SFML/Graphics/Texture.hpp>
+#include <SFML/Graphics/RenderTarget.hpp>
 
 namespace sgl::Graphics
 {
     /**
      * @brief A tilemap wrapper
-     * @details The texture is loaded and kept in the class
      * 
      */
     class Tilemap : public sf::Drawable, public sf::Transformable
