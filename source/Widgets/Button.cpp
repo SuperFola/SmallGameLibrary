@@ -53,7 +53,7 @@ namespace sgl::Widgets
             break;
 
         case Style::Sprite:
-            target.draw(m_sprite, states):
+            target.draw(m_sprite, states);
             break;
 
         case Style::Both:
