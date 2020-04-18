@@ -2,7 +2,7 @@
  * @file Base.hpp
  * @author Alexandre Plateau (lexplt.dev@gmail.com)
  * @brief Contain base classes to create interoperable SFML widgets
- * @version 0.4
+ * @version 0.5
  * @date 2020-04-18
  * 
  * @copyright Copyright (c) 2020
@@ -37,7 +37,7 @@ namespace sgl::Widgets
     /**
      * @brief Base class for all widgets. This class can not be used as is.
      * @details Providing base features like: focus management, update on event,
-     *          rendering, transformations.
+     *          rendering, transformations. Position is **always** relative to the parent.
      * 
      */
     class Base : public sf::Drawable, public sf::Transformable

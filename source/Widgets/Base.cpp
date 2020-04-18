@@ -89,7 +89,13 @@ namespace sgl::Widgets
 
     sf::FloatRect Base::getGlobalBounds() const
     {
-        return getTransform().transformRect(getLocalBounds());
+        sf::FloatRect bounds = getTransform().transformRect(getLocalBounds());
+        if (m_parent)
+        {
+            bounds.left += m_parent->getGlobalBounds().left;
+            bounds.top  += m_parent->getGlobalBounds().top;
+        }
+        return bounds;
     }
 
     void Base::setListenToEvents(bool value)
