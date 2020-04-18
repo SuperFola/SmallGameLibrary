@@ -2,8 +2,8 @@
 
 namespace sgl::Widgets
 {
-    Base::Base(int id) :
-        m_id(id)
+    Base::Base(int id, Base::Ptr parent, const sf::IntRect& bounds) :
+        m_id(id), m_listening(true), m_rect(bounds), m_parent(parent)
     {}
 
     Base::~Base()
@@ -37,11 +37,21 @@ namespace sgl::Widgets
             break;
 
         case sf::Event::MouseButtonPressed:
+            if (getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
+                m_focused = true;
+            else
+                m_focused = false;
+
             if (m_focused)
                 onMouseButtonPressed(event.mouseButton.button, event.mouseButton.x, event.mouseButton.y);
             break;
 
         case sf::Event::MouseButtonReleased:
+            if (getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
+                m_focused = true;
+            else
+                m_focused = false;
+
             if (m_focused)
                 onMouseButtonReleased(event.mouseButton.button, event.mouseButton.x, event.mouseButton.y);
             break;
@@ -69,15 +79,30 @@ namespace sgl::Widgets
     void Base::onMouseButtonReleased(int button, int x, int y)
     {}
 
-    sf::FloatRect Base::getLocalBounds() const
+    sf::FloatRect Base::getLocalBounds() const final
     {
         float width = static_cast<float>(std::abs(m_rect.width));
         float height = static_cast<float>(std::abs(m_rect.height));
         return sf::FloatRect(0.f, 0.f, width, height);
     }
 
-    sf::FloatRect Base::getGlobalBounds() const
+    sf::FloatRect Base::getGlobalBounds() const final
     {
         return getTransform().transformRect(getLocalBounds());
+    }
+
+    void Base::setListenToEvents(bool value) final
+    {
+        m_listening = value;
+    }
+
+    bool Base::isListeningToEvents() const final
+    {
+        return m_listening;
+    }
+
+    bool Base::hasFocus() const final
+    {
+        return m_focused;
     }
 }

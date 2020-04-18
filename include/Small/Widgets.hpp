@@ -12,4 +12,7 @@
 #ifndef sgl_small_widgets
 #define sgl_small_widgets
 
+#include <Small/Widgets/Base.hpp>
+#include <Small/Widgets/Layout.hpp>
+
 #endif

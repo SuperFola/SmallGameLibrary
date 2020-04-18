@@ -23,7 +23,7 @@ namespace sgl
     void Scene::onQuit()
     {}
 
-    void Scene::setState(State state)
+    void Scene::setState(State state) final
     {
         m_state = state;
     }

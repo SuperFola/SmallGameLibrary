@@ -2,7 +2,7 @@
  * @file Base.hpp
  * @author Alexandre Plateau (lexplt.dev@gmail.com)
  * @brief Contain base classes to create interoperable SFML widgets
- * @version 0.1
+ * @version 0.2
  * @date 2020-04-18
  * 
  * @copyright Copyright (c) 2020
@@ -19,10 +19,12 @@
 #include <SFML/System/Time.hpp>
 #include <SFML/Window/Event.hpp>
 
+#include <memory>
+
 namespace sgl::Widgets
 {
     /**
-     * @brief Base class for all widgets
+     * @brief Base class for all widgets. This class can not be used as is.
      * @details Providing base features like: focus management, update on event,
      *          rendering, transformations.
      * 
@@ -30,12 +32,16 @@ namespace sgl::Widgets
     class Base : public sf::Drawable, public sf::Transformable
     {
     public:
+        using Ptr = std::shared_ptr<Base>;
+
         /**
          * @brief Construct a new Base widget object
          * 
-         * @param id Unique identifier for the widget
+         * @param id Unique identifier for the widget (automatically set)
+         * @param parent Pointer to the parent widget (automatically set)
+         * @param bounds Local bounds of the widget
          */
-        Base(int id);
+        Base(int id, Ptr parent, const sf::IntRect& bounds);
 
         /**
          * @brief Destroy the Base widget object
@@ -55,7 +61,7 @@ namespace sgl::Widgets
          * 
          * @param event 
          */
-        void onEvent(const sf::Event& event);
+        virtual void onEvent(const sf::Event& event);
 
         /**
          * @brief Called when a text entered event is produced, on focus
@@ -105,13 +111,52 @@ namespace sgl::Widgets
          */
         virtual void onMouseButtonReleased(int button, int x, int y);
 
-        sf::FloatRect getLocalBounds() const;
-        sf::FloatRect getGlobalBounds() const;
+        /**
+         * @brief Get the local bounding rectangle of the entity
+         * @details The returned rectangle is in local coordinates, ignoring transformations.
+         * 
+         * @return sf::FloatRect 
+         */
+        virtual sf::FloatRect getLocalBounds() const final;
+
+        /**
+         * @brief Get the global bounding rectangle of the entity
+         * @details The returned rectangle is in global coordinates, taking into account
+         *          transformations.
+         * 
+         * @return sf::FloatRect 
+         */
+        virtual sf::FloatRect getGlobalBounds() const final;
+
+        /**
+         * @brief Activate a widget event listener or not
+         * 
+         * @param value 
+         */
+        virtual void setListenToEvents(bool value) final;
+
+        /**
+         * @brief Return a boolean telling if the widget is listening to events
+         * 
+         * @return true If the widget can receive events
+         * @return false Otherwise
+         */
+        virtual bool isListeningToEvents() const final;
+
+        /**
+         * @brief Tell if the widget is being focused or not
+         * 
+         * @return true If the widget has the focus
+         * @return false Otherwise
+         */
+        virtual bool hasFocus() const final;
 
     protected:
         const int m_id;  //< Unique identifier for the widget
         bool m_focused;  //< Tell if the widget is being focused or not
+        bool m_listening;  //< Tell if a widget can receive events
         sf::IntRect m_rect;  //< Rectangle in which the widget is
+        Ptr m_parent;  //< Pointer to the parent widget
 
         /**
          * @brief Function in charge of drawing our widget, using the SFML API

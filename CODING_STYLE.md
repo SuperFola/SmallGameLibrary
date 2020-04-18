@@ -18,6 +18,10 @@ The top namespace is named `sgl`. Every other sub-namespace should be named foll
 
 Prefer using `sf::Vector2i` when possible, instead of `sf::Vector2u`, to avoid a lot of casts.
 
+## inheritance
+
+If a method of a given class should be public, but the class can be derived from, and this method is a getter / setter for all the children, then it should be marked as `final`.
+
 # Documentation
 
 Every class, method, function and constant must be documented following doxygen convention.

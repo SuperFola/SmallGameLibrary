@@ -10,6 +10,7 @@
 - adding a sgl::Scenes::Zone to handle zone transitions on a map
 - added `Small/System.hpp` and `Small/Scenes.hpp` to `Small/All.hpp`
 - adding a base widget to be completed
+- adding a layout widget to hold many widgets
 
 ### Changed
 - the tilemap has been updated to no longer hold the texture, and be able to modify the vertex array when needed

@@ -2,7 +2,7 @@
  * @file Scene.hpp
  * @author Alexandre Plateau (lexplt.dev@gmail.com)
  * @brief The base scene class and the scene states are defined here
- * @version 0.1
+ * @version 0.2
  * @date 2020-04-05
  * 
  * @copyright Copyright (c) 2020
@@ -85,21 +85,21 @@ namespace sgl
          * 
          * @param state 
          */
-        virtual void setState(State state);
+        virtual void setState(State state) final;
 
         /**
          * @brief Get the Id of the scene
          * 
          * @return const int 
          */
-        inline const int getId() const;
+        inline virtual const int getId() const final;
 
         /**
          * @brief Get the State of the scene
          * 
          * @return const State 
          */
-        inline const State getState() const;
+        inline virtual const State getState() const final;
 
         friend class SceneManager;
 
