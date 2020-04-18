@@ -122,4 +122,9 @@ namespace sgl::Widgets
     {
         return m_style;
     }
+
+    void Base::setPosition(int x, int y)
+    {
+        sf::Transformable::setPosition(static_cast<float>(x), static_cast<float>(y));
+    }
 }

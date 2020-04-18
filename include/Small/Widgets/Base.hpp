@@ -2,7 +2,7 @@
  * @file Base.hpp
  * @author Alexandre Plateau (lexplt.dev@gmail.com)
  * @brief Contain base classes to create interoperable SFML widgets
- * @version 0.5
+ * @version 0.6
  * @date 2020-04-18
  * 
  * @copyright Copyright (c) 2020
@@ -175,6 +175,14 @@ namespace sgl::Widgets
          * @return Style 
          */
         virtual Style getStyle() const final;
+
+        /**
+         * @brief Set the relative position of the widget
+         * 
+         * @param x 
+         * @param y 
+         */
+        void setPosition(int x, int y) final;
 
     protected:
         const int m_id;  //< Unique identifier for the widget
