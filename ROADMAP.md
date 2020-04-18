@@ -2,17 +2,18 @@
 
 ## 0.0.5
 - [ ] integrate an ECS (through EnTT)
+- document every class with a complete example
 
 ## 0.0.4
 - [ ] ArkScript-ing
 - [ ] Shaders
 - [ ] Resource management
+- [ ] Tilemap loader (from files)
 
 ## 0.0.3
 - [x] Better tilemaps
-- [ ] Basic widgets
+- [x] Basic widgets
 - [x] View example
-- [ ] Tilemap loader (from files)
 
 ## 0.0.2
 - [x] Profiler (runtime rendering and logic)
