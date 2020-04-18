@@ -18,6 +18,13 @@
  */
 namespace sgl {}
 
+/**
+ * @brief Contain internal code, which shouldn't be directly used by the end user
+ * @details Documented for contributors only
+ * 
+ */
+namespace sgl::internal {}
+
 #include <Small/Core.hpp>
 #include <Small/Graphics.hpp>
 #include <Small/System.hpp>

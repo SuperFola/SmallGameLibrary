@@ -24,6 +24,10 @@
 
 namespace sgl
 {
+    /**
+     * @brief Contain constants related to the window style
+     * 
+     */
     namespace Style
     {
         constexpr unsigned Titlebar   = sf::Style::Titlebar;  //< The window will have a titlebar
