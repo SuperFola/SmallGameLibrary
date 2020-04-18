@@ -33,7 +33,7 @@ namespace sgl
     };
 
     /**
-     * @brief 
+     * @brief Base class which every user scene must derive from
      * 
      */
     class Scene
