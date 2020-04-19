@@ -1,5 +1,7 @@
 #include <Small/Scripting/ArkScene.hpp>
 
+#include <Small/Scripting/SFMLtoArk.hpp>
+
 namespace sgl::Scripting
 {
     ArkScene::ArkScene(int id, const Ark::Value& eventFunc, const Ark::Value& updateFunc, const Ark::Value& renderFunc, const Ark::Value& quitFunc) :
@@ -10,13 +12,19 @@ namespace sgl::Scripting
     {}
 
     void ArkScene::onEvent(const sf::Event& event)
-    {}
+    {
+        m_eventFunc.resolve(sfEventToArk(event));
+    }
 
     void ArkScene::onUpdate(const sf::Time dt)
-    {}
+    {
+        m_updateFunc.resolve(sfTimeToArk(dt));
+    }
 
     void ArkScene::onRender(sf::RenderTarget& screen)
-    {}
+    {
+        m_renderFunc.resolve(Ark::UserType(&screen));
+    }
 
     void ArkScene::onQuit()
     {

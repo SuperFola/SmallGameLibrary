@@ -1,7 +1,7 @@
 #include <Small/Scripting/Bindings.hpp>
 
+#include <Small/Core/Application.hpp>
 #include <Small/Scripting/ArkScene.hpp>
-#include <Small/Scripting/SFMLtoArk.hpp>
 
 #define ARK_AWAIT(func, argc)                                                 \
     if (args.size() != argc) {                                                \
@@ -85,6 +85,8 @@ namespace sgl::Scripting
 
     void bindGraphics(Ark::State* state)
     {
+        // sf::RenderTarget
+
         state->loadFunction("sglGraphics", [](std::vector<Ark::Value>& args) {
 
         });

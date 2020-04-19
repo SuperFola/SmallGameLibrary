@@ -14,8 +14,15 @@ namespace sgl
 
             if (m_showDebug)
                 ImGui::SFML::ProcessEvent(event);
-            
+
             m_sceneManager.onEvent(event);
+
+            if (m_scriptingEnabled)
+            {
+                m_profiler.Begin(internal::Profiler::State::ArkEvent);
+                m_vm.call("onEvent", Scripting::sfEventToArk(event));
+                m_profiler.End(internal::Profiler::State::ArkEvent);
+            }
         }
 
         m_profiler.End(internal::Profiler::Stage::Input);
@@ -87,6 +94,13 @@ namespace sgl
 
         m_sceneManager.onUpdate(dt);
 
+        if (m_scriptingEnabled)
+        {
+            m_profiler.Begin(internal::Profiler::State::ArkUpdate);
+            m_vm.call("onUpdate", Scripting::sfTimeToArk(dt));
+            m_profiler.End(internal::Profiler::State::ArkUpdate);
+        }
+
         m_profiler.End(internal::Profiler::Stage::Update);
     }
 
@@ -112,6 +126,12 @@ namespace sgl
                 glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
             m_profiler.End(internal::Profiler::Stage::ImGuiRender);
+        }
+
+        if (m_scriptingEnabled)
+        {
+            m_profiler.Begin(internal::Profiler::State::ArkRender);
+            m_profiler.Begin(internal::Profiler::State::ArkRender);
         }
 
         m_profiler.Begin(internal::Profiler::Stage::SwapWindow);

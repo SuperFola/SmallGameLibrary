@@ -2,7 +2,7 @@
  * @file Application.hpp
  * @author Alexandre Plateau (lexplt.dev@gmail.com)
  * @brief Define the application hosting the scenes for the game
- * @version 0.1
+ * @version 0.2
  * @date 2020-04-05
  * 
  * @copyright Copyright (c) 2020
@@ -15,12 +15,21 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/System/Clock.hpp>
+
 #include <string>
+
 #include <imgui.h>
 #include <imgui-SFML.h>
 #include <SFML/OpenGL.hpp>
+
 #include <Small/Core/SceneManager.hpp>
 #include <Small/Debug/Profiler.hpp>
+
+#include <Ark/Ark.hpp>
+
+#include <Small/Scripting/Engine.hpp>
+#include <Small/Scripting/Bindings.hpp>
+#include <Small/Scripting/SFMLtoArk.hpp>
 
 namespace sgl
 {
@@ -53,14 +62,27 @@ namespace sgl
 
     /**
      * @brief The main component of the library, handling the scenes and running the app
-     * 
+     * @details Debug mode is showing an imgui debug interface, with a profiler to know
+                what took time to execute. When scripting is turned on, it's expecting
+                to find at least one script defining those functions:
+     * @code
+     * (let onEvent (fun (event) {
+     *      # handling the event here
+     * }))
+     * (let onUpdate (fun (dt) {
+     *      # handling update here
+     * }))
+     * (let onRender (fun (screen) {
+     *      # rendering stuff
+     * }))
+     * @endcode
      */
     class Application
     {
     public:
         /**
          * @brief Construct a new Application object
-         * @details Debug mode is OFF by default.
+         * @details Debug mode is OFF by default, as well as the scripting engine
          * 
          * @param settings The settings for the application (size of the window, style, additional settings for the underlying opengl context)
          */
@@ -116,6 +138,25 @@ namespace sgl
         Application& setCurrentScene(int id);
 
         /**
+         * @brief Enable or disable scripting
+         * @details By default, scripting is turned off
+         * 
+         * @param value 
+         * @return Application& 
+         */
+        Application& setScripting(bool value);
+
+        /**
+         * @brief Configure the scripting engine (doesn't turn on the scripting)
+         * @details Compile all the scripts automatically, and give them to the VM
+         *          to register them. Bind the small game library in ArkScript.
+         * 
+         * @param config 
+         * @return Application& 
+         */
+        Application& configureScriptingEngine(const Scripting::Config& config);
+
+        /**
          * @brief Add a scene to the application
          * @details Create the scene in place, and return its identifier to refer to it later.
          * 
@@ -137,11 +178,17 @@ namespace sgl
          * 
          */
         void run();
-    
+
     private:
         sf::RenderWindow m_screen;
         sf::Clock m_clock;
         SceneManager m_sceneManager;
+
+        // scripting related attributes
+        bool m_scriptingEnabled;
+        Scripting::Config m_scriptingConfig;
+        Ark::State m_state;
+        Ark::VM m_vm;
 
         // debug related attributes
         internal::Profiler m_profiler;

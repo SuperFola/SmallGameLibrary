@@ -12,12 +12,43 @@
 #ifndef sgl_small_scripting_sfmltoark
 #define sgl_small_scripting_sfmltoark
 
-#include <Ark/VM/Value.hpp>
-#include <SFML/Graphics.hpp>
+#include <Ark/Ark.hpp>
+#include <SFML/Window/Event.hpp>
+#include <SFML/System/Time.hpp>
+#include <SFML/System/Utf.hpp>
 
 namespace sgl::Scripting
 {
+    /**
+     * @brief Enumeration of SFML event types, needed when binding events in ArkScript
+     * 
+     */
+    enum class sfEventType
+    {
+        TextEntered = 0,
+        KeyPressed,
+        KeyReleased,
+        MouseWheelScrolled,
+        MouseButtonPressed,
+        MouseButtonReleased
+    };
 
+    /**
+     * @brief Convert a sf::Event to an ArkScript value
+     * 
+     * @param event 
+     * @return Ark::Value 
+     */
+    Ark::Value sfEventToArk(const sf::Event& event);
+
+    /**
+     * @brief Convert a sf::time to an ArkScript value
+     * @details Return the time as seconds
+     * 
+     * @param dt
+     * @return Ark::Value 
+     */
+    Ark::Value sfTimeToArk(const sf::Time dt);
 }
 
 #endif

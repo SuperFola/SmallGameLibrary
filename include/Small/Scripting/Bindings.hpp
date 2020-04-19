@@ -14,6 +14,11 @@
 
 #include <Ark/VM/State.hpp>
 
+namespace sgl::Core
+{
+    class Application;
+}
+
 namespace sgl::Scripting
 {
     /**
