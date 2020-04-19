@@ -5,6 +5,7 @@
 - adding ArkScript and EnTT as submodules
 - added image widget
 - adding `Small/Scripting/` and starting to develop solutions to ease the use of ArkScript for the library
+- adding file system utilities
 
 ### Changed
 - `thirdparty/` is now a cmake subdirectory
