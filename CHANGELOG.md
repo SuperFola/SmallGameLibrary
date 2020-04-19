@@ -7,6 +7,7 @@
 - adding `Small/Scripting/` and starting to develop solutions to ease the use of ArkScript for the library
 - adding file system utilities
 - adding a list of bindings from the small game library to ArkScript
+- making use of the scripting engine in the application
 
 ### Changed
 - `thirdparty/` is now a cmake subdirectory
