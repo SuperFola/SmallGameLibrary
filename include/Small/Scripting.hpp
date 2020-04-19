@@ -2,7 +2,7 @@
  * @file Scripting.hpp
  * @author Alexandre Plateau (lexplt.dev@gmail.com)
  * @brief Include all the files from the Scripting folder
- * @version 0.1
+ * @version 0.2
  * @date 2020-04-15
  * 
  * @copyright Copyright (c) 2020
@@ -17,5 +17,8 @@
  * 
  */
 namespace sgl::Scripting {}
+
+#include <Small/Scripting/Engine.hpp>
+#include <Small/Scripting/Bindings.hpp>
 
 #endif

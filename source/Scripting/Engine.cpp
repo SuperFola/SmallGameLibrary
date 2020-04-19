@@ -1,13 +1,14 @@
 #include <Small/Scripting/Engine.hpp>
 
+#include <Small/System/FileSystem.hpp>
 #include <fstream>
 #include <sstream>
 
 namespace sgl::Scripting
 {
-    bool compileScript(const std::string& file, const std::string& output)
+    bool compileScript(const std::string& file, const std::string& output, const std::string& arkscriptLibDir)
     {
-        Compiler compiler(/* debug level */ 0, ArkScriptLibDir, options);
+        Compiler compiler(/* debug level */ 0, arkscriptLibDir, options);
 
         std::ifstream fileStream(file);
         std::stringstream buffer;
@@ -36,5 +37,26 @@ namespace sgl::Scripting
         }
 
         return true;
+    }
+
+    int compileAllScriptsIn(const std::string& path, const std::string& outputDir, const std::string& arkscriptLibDir)
+    {
+        std::vector<std::string> files = System::listDir(path);
+        // remove files aren't ArkScript files
+        files.erase(std::remove_if(
+            files.begin(), files.end(),
+            [](const std::string& entry) {
+                return entry.substr(file.find_last_of('.')) == ".ark";
+            }));
+
+        int size = static_cast<int>(files.size());
+        int count = 0;
+
+        for (const auto& file : files)
+        {
+            if (compileScript(file, outputDir, arkscriptLibDir))
+                count++;
+        }
+        return count;
     }
 }
