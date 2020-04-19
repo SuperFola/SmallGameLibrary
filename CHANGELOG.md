@@ -3,6 +3,7 @@
 ## 0.0.4
 ### Added
 - adding ArkScript and EnTT as submodules
+- added image widget
 
 ### Changed
 - `thirdparty/` is now a cmake subdirectory

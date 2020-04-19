@@ -23,6 +23,8 @@ namespace sgl::Widgets
 {
     /**
      * @brief Basic button widget
+     * @details The widget must be used inside a sgl::Widgets::Layout to be rendered
+     *          properly on screen.
      * 
      */
     class Button : public Base

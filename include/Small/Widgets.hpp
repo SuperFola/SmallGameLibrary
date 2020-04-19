@@ -24,5 +24,6 @@ namespace sgl::Widgets {}
 #include <Small/Widgets/CheckBox.hpp>
 #include <Small/Widgets/TextBox.hpp>
 #include <Small/Widgets/Label.hpp>
+#include <Small/Widgets/Image.hpp>
 
 #endif
