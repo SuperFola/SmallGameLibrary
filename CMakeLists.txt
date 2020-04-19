@@ -16,19 +16,21 @@ find_package(SFML 2.5 COMPONENTS system graphics window audio network REQUIRED)
 find_package(Threads REQUIRED)
 find_package(OpenGL REQUIRED)
 
+# add thirdparties
+add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty)
+
 # search for source files
-file(GLOB_RECURSE SOURCE_FILES
-    ${PROJECT_SOURCE_DIR}/source/*.cpp
-    ${PROJECT_SOURCE_DIR}/thirdparty/*.c
-    ${PROJECT_SOURCE_DIR}/thirdparty/*.cpp
-)
+file(GLOB_RECURSE SOURCE_FILES ${PROJECT_SOURCE_DIR}/source/*.cpp)
+
+message(STATUS ${THIRDPARTY_INCLUDES})
 
 # building the library
-add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES})
+add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES} ${THIRDPARTY_SOURCES})
 
 # link libraries
 target_link_libraries(${PROJECT_NAME} PUBLIC
     sfml-system sfml-graphics sfml-window sfml-audio sfml-network
+    ${THIRDPARTY_LIBS}
     ${CMAKE_THREAD_LIBS_INIT}
     ${OPENGL_LIBRARIES}
 )
@@ -36,7 +38,7 @@ target_link_libraries(${PROJECT_NAME} PUBLIC
 # include headers
 target_include_directories(${PROJECT_NAME} PUBLIC
     ${PROJECT_SOURCE_DIR}/include
-    ${PROJECT_SOURCE_DIR}/thirdparty
+    ${THIRDPARTY_INCLUDES}
     ${OPENGL_INCLUDE_DIRS}
 )
 

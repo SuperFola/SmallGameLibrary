@@ -16,8 +16,8 @@
 #include <SFML/Window/Event.hpp>
 #include <SFML/System/Clock.hpp>
 #include <string>
-#include <imgui/imgui.h>
-#include <imgui/imgui-SFML.h>
+#include <imgui.h>
+#include <imgui-SFML.h>
 #include <SFML/OpenGL.hpp>
 #include <Small/Core/SceneManager.hpp>
 #include <Small/Debug/Profiler.hpp>

@@ -20,7 +20,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-#include <imgui/imgui_widget_flamegraph.hpp>
+#include "imgui_widget_flamegraph.hpp"
 
 #include "imgui.h"
 #ifndef IMGUI_DEFINE_MATH_OPERATORS

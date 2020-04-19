@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.0.4
+### Added
+- adding ArkScript and EnTT as submodules
+
+### Changed
+- `thirdparty/` is now a cmake subdirectory
+
+### Removed
+
 ## 0.0.3
 ### Added
 - added `Small/Core.hpp`, `Small/Graphics.hpp` and `Small/System.hpp` to include all the files from the specific folders

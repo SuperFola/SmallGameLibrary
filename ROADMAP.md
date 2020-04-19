@@ -1,12 +1,12 @@
 # Roadmap
 
 ## 0.0.5
-- [ ] integrate an ECS (through EnTT)
-- document every class with a complete example
+- [ ] Shaders
+- [ ] document every class with a complete example
 
 ## 0.0.4
 - [ ] ArkScript-ing
-- [ ] Shaders
+- [ ] integrate an ECS (through EnTT)
 - [ ] Resource management
 - [ ] Tilemap loader (from files)
 

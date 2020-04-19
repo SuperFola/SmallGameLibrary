@@ -14,7 +14,7 @@
 
 #include <array>
 #include <chrono>
-#include <imgui/imgui_widget_flamegraph.hpp>
+#include <imgui_widget_flamegraph.hpp>
 
 namespace sgl::internal
 {
