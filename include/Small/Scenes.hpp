@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_system
-#define sgl_small_system
+#ifndef sgl_small_scenes
+#define sgl_small_scenes
 
 /**
  * @brief Contain specialized scenes to simplify the developer work
