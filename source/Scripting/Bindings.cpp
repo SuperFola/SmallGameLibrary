@@ -3,22 +3,22 @@
 #include <Small/Core/Application.hpp>
 #include <Small/Scripting/ArkScene.hpp>
 
-#define ARK_AWAIT(func, argc)                                                 \
-    if (args.size() != argc) {                                                \
-        throw std::runtime_error("'" + func + "' needs " #argc " arguments"); \
+#define ARK_AWAIT(func, argc)                                             \
+    if (args.size() != argc) {                                            \
+        throw std::runtime_error("'" func "' needs " #argc " arguments"); \
     }
-#define ARK_CHECK_ARG(func, n, type)                                                \
-    if (args[n].valueType() != Ark::ValueType::type) {                              \
-        throw Ark::TypeError("'" + func + "' argument no " #n " must be a " #type); \
+#define ARK_CHECK_ARG(func, n, type)                                            \
+    if (args[n].valueType() != Ark::ValueType::type) {                          \
+        throw Ark::TypeError("'" func "' argument no " #n " must be a " #type); \
     }
-#define ARK_CHECK_BOOL(func, n)                                                   \
-    if (args[n].valueType() != Ark::ValueType::True &&                            \
-        args[n].valueType() != Ark::ValueType::False) {                           \
-        throw Ark::TypeError("'" + func + "' argument no " #n " must be a Bool"); \
+#define ARK_CHECK_BOOL(func, n)                                               \
+    if (args[n].valueType() != Ark::ValueType::True &&                        \
+        args[n].valueType() != Ark::ValueType::False) {                       \
+        throw Ark::TypeError("'" func "' argument no " #n " must be a Bool"); \
     }
-#define ARK_CHECK_FUNC(func, n)                                                       \
-    if (!args[n].isFunction()) {                                                      \
-        throw Ark::TypeError("'" + func + "' argument no " #n " must be a Function"); \
+#define ARK_CHECK_FUNC(func, n)                                                   \
+    if (!args[n].isFunction()) {                                                  \
+        throw Ark::TypeError("'" func "' argument no " #n " must be a Function"); \
     }
 
 namespace sgl::Scripting
@@ -88,28 +88,28 @@ namespace sgl::Scripting
         // sf::RenderTarget
 
         state->loadFunction("sglGraphics", [](std::vector<Ark::Value>& args) {
-
+            return Ark::Nil;
         });
     }
 
     void bindScenes(Ark::State* state)
     {
         state->loadFunction("sglScenes", [](std::vector<Ark::Value>& args) {
-
+            return Ark::Nil;
         });
     }
 
     void bindSystem(Ark::State* state)
     {
         state->loadFunction("sglSystem", [](std::vector<Ark::Value>& args) {
-
+            return Ark::Nil;
         });
     }
 
     void bindWidgets(Ark::State* state)
     {
         state->loadFunction("sglWidgets", [](std::vector<Ark::Value>& args) {
-
+            return Ark::Nil;
         });
     }
 }

@@ -19,9 +19,9 @@ namespace sgl
 
             if (m_scriptingEnabled)
             {
-                m_profiler.Begin(internal::Profiler::State::ArkEvent);
+                m_profiler.Begin(internal::Profiler::Stage::ArkEvent);
                 m_vm.call("onEvent", Scripting::sfEventToArk(event));
-                m_profiler.End(internal::Profiler::State::ArkEvent);
+                m_profiler.End(internal::Profiler::Stage::ArkEvent);
             }
         }
 
@@ -96,9 +96,9 @@ namespace sgl
 
         if (m_scriptingEnabled)
         {
-            m_profiler.Begin(internal::Profiler::State::ArkUpdate);
+            m_profiler.Begin(internal::Profiler::Stage::ArkUpdate);
             m_vm.call("onUpdate", Scripting::sfTimeToArk(dt));
-            m_profiler.End(internal::Profiler::State::ArkUpdate);
+            m_profiler.End(internal::Profiler::Stage::ArkUpdate);
         }
 
         m_profiler.End(internal::Profiler::Stage::Update);
@@ -130,8 +130,9 @@ namespace sgl
 
         if (m_scriptingEnabled)
         {
-            m_profiler.Begin(internal::Profiler::State::ArkRender);
-            m_profiler.Begin(internal::Profiler::State::ArkRender);
+            m_profiler.Begin(internal::Profiler::Stage::ArkRender);
+            // TODO
+            m_profiler.End(internal::Profiler::Stage::ArkRender);
         }
 
         m_profiler.Begin(internal::Profiler::Stage::SwapWindow);

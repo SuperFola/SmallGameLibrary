@@ -11,6 +11,7 @@ namespace sgl
             settings.style,
             sf::ContextSettings(settings.depth, settings.stencil, settings.antiAliasing)
         ),
+        m_vm(&m_state),
         m_showDebug(false), m_scriptingEnabled(false)
     {
         ImGui::SFML::Init(m_screen);
@@ -63,11 +64,14 @@ namespace sgl
         m_scriptingConfig = config;
 
         // compile scripts
-        Scripting::compileAllScriptsIn(
+        int compiled = Scripting::compileAllScriptsIn(
             m_scriptingConfig.scriptsDirectory,
             m_scriptingConfig.compiledScriptsDir,
             m_scriptingConfig.arkscriptLibDir
         );
+
+        std::cout << compiled << "\n";
+        // TODO add logger
 
         // perform bindings before feeding
         Scripting::bindCore(&m_state, this);
@@ -76,11 +80,9 @@ namespace sgl
         Scripting::bindSystem(&m_state);
         Scripting::bindWidgets(&m_state);
 
-        for (const std::string& file : System::listDir(m_scriptingConfig.compiledScriptsDir))
-        {
-            // feed precompiled bytecode file
-            m_state.feed(file);
-        }
+        std::cout << "this far" << std::endl;
+
+        m_state.feed(m_scriptingConfig.compiledScriptsDir + "/main.arkc");
         // register all the functions and constants
         m_vm.run();
 
@@ -89,6 +91,12 @@ namespace sgl
 
     void Application::run()
     {
+        /**
+         * TODO scripting:
+         * add onLoad() to execute code when loading
+         * 
+         */
+
         // game loop
         while (m_screen.isOpen())
         {

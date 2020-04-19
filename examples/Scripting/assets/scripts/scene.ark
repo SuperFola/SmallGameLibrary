@@ -1,0 +1,10 @@
+{
+    (let eventFunc (fun (event) (print "hello event")))
+    (let updateFunc (fun (dt) (print "hello update")))
+    (let renderFunc (fun (screen) (print "hello render")))
+    (let quitFunc (fun () (print "goodbye world")))
+
+    (let arkScene (sglCoreSceneCreate eventFunc updateFunc renderFunc quitFunc))
+
+    (sglCoreAppSetCurrentScene arkScene)
+}

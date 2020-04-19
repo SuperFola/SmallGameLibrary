@@ -8,7 +8,7 @@ namespace sgl::Scripting
 {
     bool compileScript(const std::string& file, const std::string& output, const std::string& arkscriptLibDir)
     {
-        Compiler compiler(/* debug level */ 0, arkscriptLibDir, options);
+        Ark::Compiler compiler(/* debug level */ 0, arkscriptLibDir);
 
         std::ifstream fileStream(file);
         std::stringstream buffer;
@@ -19,11 +19,7 @@ namespace sgl::Scripting
         {
             compiler.feed(buffer.str(), file);
             compiler.compile();
-
-            if (output != "")
-                compiler.saveTo(output);
-            else
-                compiler.saveTo(file.substr(0, file.find_last_of('.')) + ".arkc");
+            compiler.saveTo(output + "/" + std::filesystem::path(file.substr(0, file.find_last_of('.')) + ".arkc").filename().string());
         }
         catch (const std::exception& e)
         {
@@ -42,18 +38,16 @@ namespace sgl::Scripting
     int compileAllScriptsIn(const std::string& path, const std::string& outputDir, const std::string& arkscriptLibDir)
     {
         std::vector<std::string> files = System::listDir(path);
-        // remove files aren't ArkScript files
-        files.erase(std::remove_if(
-            files.begin(), files.end(),
-            [](const std::string& entry) {
-                return entry.substr(file.find_last_of('.')) == ".ark";
-            }));
 
         int size = static_cast<int>(files.size());
         int count = 0;
 
         for (const auto& file : files)
         {
+            // only keep arkscript files
+            if (file.substr(file.find_last_of('.')) != ".ark")
+                continue;
+
             if (compileScript(file, outputDir, arkscriptLibDir))
                 count++;
         }

@@ -10,10 +10,14 @@ set(ARK_BUILD_MODULES   OFF)
 set(ARK_ENABLE_SYSTEM   OFF)
 add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/arkscript)
 
-file(GLOB_RECURSE THIRDPARTY_SOURCES
+file(GLOB_RECURSE all_sources
     # imgui
     ${CMAKE_CURRENT_LIST_DIR}/imgui/*.c
     ${CMAKE_CURRENT_LIST_DIR}/imgui/*.cpp
+)
+
+set(THIRDPARTY_SOURCES
+    ${all_sources}
 
     PARENT_SCOPE
 )
@@ -22,6 +26,7 @@ set(THIRDPARTY_INCLUDES
     ${CMAKE_CURRENT_LIST_DIR}/imgui
     ${CMAKE_CURRENT_LIST_DIR}/termcolor
     ${CMAKE_CURRENT_LIST_DIR}/entt/src
+    ${CMAKE_CURRENT_LIST_DIR}/arkscript/include
 
     PARENT_SCOPE
 )

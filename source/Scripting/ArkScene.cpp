@@ -23,7 +23,7 @@ namespace sgl::Scripting
 
     void ArkScene::onRender(sf::RenderTarget& screen)
     {
-        m_renderFunc.resolve(Ark::UserType(&screen));
+//        m_renderFunc.resolve(Ark::UserType(&screen));
     }
 
     void ArkScene::onQuit()

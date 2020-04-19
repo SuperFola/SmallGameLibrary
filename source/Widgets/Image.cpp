@@ -3,7 +3,7 @@
 namespace sgl::Widgets
 {
     Image::Image(int id, Base::Ptr parent, const sf::IntRect& bound) :
-        Base(id, parent, bounds)
+        Base(id, parent, bound)
     {}
 
     Image::~Image()

@@ -14,7 +14,7 @@
 
 #include <Ark/VM/State.hpp>
 
-namespace sgl::Core
+namespace sgl
 {
     class Application;
 }
