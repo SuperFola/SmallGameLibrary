@@ -1,14 +1,7 @@
 {
-    (let onEvent (fun (event)
-        (print event)))
+    (let onLoad (fun ()
+        (sglCoreAppSetTitle "new title set from arkscript!")))
 
-    (let onUpdate (fun (dt)
-        (print "fps: " (/ 1 dt))))
-
-    (let onRender (fun (screen)
-        ()))
-
-    (sglCoreAppSetTitle "new title set from arkscript!")
-
-    #(import "scene.ark")
+    (let onQuit (fun ()
+        (print "quitting")))
 }

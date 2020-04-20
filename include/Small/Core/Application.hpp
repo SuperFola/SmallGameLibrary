@@ -66,14 +66,11 @@ namespace sgl
                 what took time to execute. When scripting is turned on, it's expecting
                 to find at least one script defining those functions:
      * @code
-     * (let onEvent (fun (event) {
-     *      # handling the event here
+     * (let onLoad (fun () {
+     *      # code executed during loading
      * }))
-     * (let onUpdate (fun (dt) {
-     *      # handling update here
-     * }))
-     * (let onRender (fun (screen) {
-     *      # rendering stuff
+     * (let onQuit (fun () {
+     *      # code executed when closing
      * }))
      * @endcode
      */

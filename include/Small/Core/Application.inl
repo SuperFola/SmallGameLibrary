@@ -16,13 +16,6 @@ namespace sgl
                 ImGui::SFML::ProcessEvent(event);
 
             m_sceneManager.onEvent(event);
-
-            if (m_scriptingEnabled)
-            {
-                m_profiler.Begin(internal::Profiler::Stage::ArkEvent);
-                m_vm.call("onEvent", Scripting::sfEventToArk(event));
-                m_profiler.End(internal::Profiler::Stage::ArkEvent);
-            }
         }
 
         m_profiler.End(internal::Profiler::Stage::Input);
@@ -67,7 +60,7 @@ namespace sgl
                 auto& entry = m_profiler._entries[m_profiler.GetCurrentEntryIndex()];
                 ImGuiWidgetFlameGraph::PlotFlame(
                     "CPU", &internal::ProfilerValueGetter, &entry, internal::Profiler::_StageCount,
-                    0, "Main Thread", FLT_MAX, FLT_MAX, ImVec2(400, 0)
+                    0, "Main Thread", FLT_MAX, FLT_MAX, ImVec2(600, 200)
                 );
 
                 std::chrono::duration<float, std::milli> frameDuration = entry._frameEnd - entry._frameStart;
@@ -94,13 +87,6 @@ namespace sgl
 
         m_sceneManager.onUpdate(dt);
 
-        if (m_scriptingEnabled)
-        {
-            m_profiler.Begin(internal::Profiler::Stage::ArkUpdate);
-            m_vm.call("onUpdate", Scripting::sfTimeToArk(dt));
-            m_profiler.End(internal::Profiler::Stage::ArkUpdate);
-        }
-
         m_profiler.End(internal::Profiler::Stage::Update);
     }
 
@@ -126,13 +112,6 @@ namespace sgl
                 glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
             m_profiler.End(internal::Profiler::Stage::ImGuiRender);
-        }
-
-        if (m_scriptingEnabled)
-        {
-            m_profiler.Begin(internal::Profiler::Stage::ArkRender);
-            // TODO
-            m_profiler.End(internal::Profiler::Stage::ArkRender);
         }
 
         m_profiler.Begin(internal::Profiler::Stage::SwapWindow);

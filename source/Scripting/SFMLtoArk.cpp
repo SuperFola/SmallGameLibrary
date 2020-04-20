@@ -10,7 +10,7 @@ namespace sgl::Scripting
         {
         case sf::Event::TextEntered:
             e.push_back(static_cast<int>(sfEventType::TextEntered));
-            // TODO FIXME
+            // TODO
             // e.push_back(sf::Utf<8>::decode<std::string>(event.text.unicode));
             break;
 

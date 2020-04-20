@@ -12,7 +12,6 @@
 
 ### Changed
 - `thirdparty/` is now a cmake subdirectory
-- updated profiler to profile scripting engine runtime
 
 ### Removed
 

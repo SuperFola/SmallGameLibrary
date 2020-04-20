@@ -63,24 +63,19 @@ namespace sgl
     {
         m_scriptingConfig = config;
 
-        // compile scripts
-        int compiled = Scripting::compileAllScriptsIn(
-            m_scriptingConfig.scriptsDirectory,
-            m_scriptingConfig.compiledScriptsDir,
-            m_scriptingConfig.arkscriptLibDir
-        );
-
-        std::cout << compiled << "\n";
-        // TODO add logger
-
-        // perform bindings before feeding
+        // perform bindings before compiling
         Scripting::bindCore(&m_state, this);
         Scripting::bindGraphics(&m_state);
         Scripting::bindScenes(&m_state);
         Scripting::bindSystem(&m_state);
         Scripting::bindWidgets(&m_state);
 
-        std::cout << "this far" << std::endl;
+        // compile scripts
+        int compiled = Scripting::compileAllScriptsIn(
+            m_scriptingConfig.scriptsDirectory,
+            m_scriptingConfig.compiledScriptsDir,
+            m_scriptingConfig.arkscriptLibDir
+        );
 
         m_state.feed(m_scriptingConfig.compiledScriptsDir + "/main.arkc");
         // register all the functions and constants
@@ -91,11 +86,8 @@ namespace sgl
 
     void Application::run()
     {
-        /**
-         * TODO scripting:
-         * add onLoad() to execute code when loading
-         * 
-         */
+        if (m_scriptingEnabled)
+            m_vm.call("onLoad");
 
         // game loop
         while (m_screen.isOpen())

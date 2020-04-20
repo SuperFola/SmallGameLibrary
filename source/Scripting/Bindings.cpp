@@ -1,7 +1,6 @@
 #include <Small/Scripting/Bindings.hpp>
 
 #include <Small/Core/Application.hpp>
-#include <Small/Scripting/ArkScene.hpp>
 
 #define ARK_AWAIT(func, argc)                                             \
     if (args.size() != argc) {                                            \
@@ -25,7 +24,7 @@ namespace sgl::Scripting
 {
     void bindCore(Ark::State* state, Application* app)
     {
-        state->loadFunction("sglCoreAppSetTitle", [&app](std::vector<Ark::Value>& args) {
+        state->loadFunction("sglCoreAppSetTitle", [=](std::vector<Ark::Value>& args) {
             ARK_AWAIT("sglCoreAppSetTitle", 1);
             ARK_CHECK_ARG("sglCoreAppSetTitle", 0, String);
 
@@ -34,7 +33,7 @@ namespace sgl::Scripting
             return Ark::Nil;
         });
 
-        state->loadFunction("sglCoreAppSetVSync", [&app](std::vector<Ark::Value>& args) {
+        state->loadFunction("sglCoreAppSetVSync", [=](std::vector<Ark::Value>& args) {
             ARK_AWAIT("sglCoreAppSetVSync", 1);
             ARK_CHECK_BOOL("sglCoreAppSetVSync", 0);
 
@@ -43,7 +42,7 @@ namespace sgl::Scripting
             return Ark::Nil;
         });
 
-        state->loadFunction("sglCoreAppSetFPSLimit", [&app](std::vector<Ark::Value>& args) {
+        state->loadFunction("sglCoreAppSetFPSLimit", [=](std::vector<Ark::Value>& args) {
             ARK_AWAIT("sglCoreAppSetFPSLimit", 1);
             ARK_CHECK_ARG("sglCoreAppSetFPSLimit", 0, Number);
 
@@ -52,7 +51,7 @@ namespace sgl::Scripting
             return Ark::Nil;
         });
 
-        state->loadFunction("sglCoreAppSetDebug", [&app](std::vector<Ark::Value>& args) {
+        state->loadFunction("sglCoreAppSetDebug", [=](std::vector<Ark::Value>& args) {
             ARK_AWAIT("sglCoreAppSetDebug", 1);
             ARK_CHECK_BOOL("sglCoreAppSetDebug", 0);
 
@@ -61,25 +60,13 @@ namespace sgl::Scripting
             return Ark::Nil;
         });
 
-        state->loadFunction("sglCoreAppSetCurrentScene", [&app](std::vector<Ark::Value>& args) {
+        state->loadFunction("sglCoreAppSetCurrentScene", [=](std::vector<Ark::Value>& args) {
             ARK_AWAIT("sglCoreAppSetCurrentScene", 1);
             ARK_CHECK_ARG("sglCoreAppSetCurrentScene", 0, Number);
 
             app->setCurrentScene(static_cast<int>(args[0].number()));
 
             return Ark::Nil;
-        });
-
-        state->loadFunction("sglCoreSceneCreate", [&app](std::vector<Ark::Value>& args) {
-            ARK_AWAIT("sglCoreSceneCreate", 4);
-            ARK_CHECK_FUNC("sglCoreSceneCreate", 0);
-            ARK_CHECK_FUNC("sglCoreSceneCreate", 1);
-            ARK_CHECK_FUNC("sglCoreSceneCreate", 2);
-            ARK_CHECK_FUNC("sglCoreSceneCreate", 3);
-
-            int id = app->add<ArkScene>(args[0], args[1], args[2], args[3]);
-
-            return Ark::Value(id);
         });
     }
 

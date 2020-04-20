@@ -37,9 +37,6 @@ namespace sgl::internal
             SFML,
             SwapWindow,
             Rendering,
-            ArkUpdate,
-            ArkEvent,
-            ArkRender,
 
             _StageCount,
         };
@@ -114,10 +111,7 @@ namespace sgl::internal
         "ImGui::Render",
         "SFML",
         "SwapWindow",
-        "Rendering",
-        "ArkUpdate",
-        "ArkEvent",
-        "ArkRender"
+        "Rendering"
     };
 
     static void ProfilerValueGetter(float* startTimestamp, float* endTimestamp, unsigned char* level, const char** caption, const void* data, int idx)
