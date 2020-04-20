@@ -18,6 +18,7 @@
 #include <SFML/System/Clock.hpp>
 #include <SFML/Window/Event.hpp>
 #include <Small/Core/Scene.hpp>
+#include <Small/Scripting/Config.hpp>
 
 namespace sgl
 {
@@ -71,6 +72,14 @@ namespace sgl
          * @return SceneManager& 
          */
         SceneManager& setCurrent(int id);
+
+        /**
+         * @brief Initialize needed scenes with scripting informations
+         * 
+         * @param config 
+         * @return SceneManager& 
+         */
+        SceneManager& init(const Scripting::Config& config);
 
         /**
          * @brief Dispatch the event to the active scenes

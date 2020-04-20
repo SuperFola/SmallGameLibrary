@@ -11,6 +11,9 @@ namespace sgl
     Scene::~Scene()
     {}
 
+    void Scene::init(const Scripting::Config& config)
+    {}
+
     void Scene::onEvent(const sf::Event& event)
     {}
 

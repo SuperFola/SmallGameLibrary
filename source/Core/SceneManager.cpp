@@ -1,5 +1,6 @@
 #include <Small/Core/SceneManager.hpp>
 
+#include <Small/Scripting/Bindings.hpp>
 #include <algorithm>
 
 namespace sgl
@@ -41,6 +42,13 @@ namespace sgl
             m_current = id;
             m_scenes[m_current]->setState(State::Running);
         }
+        return *this;
+    }
+
+    SceneManager& SceneManager::init(const Scripting::Config& config)
+    {
+        for (std::size_t i = 0, size = m_scenes.size(); i < size; ++i)
+            m_scenes[i]->init(config);
         return *this;
     }
 

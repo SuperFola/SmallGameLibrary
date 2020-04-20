@@ -1,5 +1,7 @@
 #include <Small/Core/Application.hpp>
 
+#include <Small/Scripting/Engine.hpp>
+#include <Small/Scripting/Bindings.hpp>
 #include <Small/System/FileSystem.hpp>
 
 namespace sgl
@@ -62,6 +64,7 @@ namespace sgl
     Application& Application::configureScriptingEngine(const Scripting::Config& config)
     {
         m_scriptingConfig = config;
+        m_state.setLibDir(config.arkscriptLibDir);
 
         // perform bindings before compiling
         Scripting::bindCore(&m_state, this);
@@ -86,8 +89,10 @@ namespace sgl
 
     void Application::run()
     {
+        // scripting related
         if (m_scriptingEnabled)
             m_vm.call("onLoad");
+        m_sceneManager.init(m_scriptingConfig);
 
         // game loop
         while (m_screen.isOpen())
@@ -100,5 +105,8 @@ namespace sgl
             onUpdate(dt);
             onRender();
         }
+
+        if (m_scriptingEnabled)
+            m_vm.call("onQuit");
     }
 }

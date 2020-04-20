@@ -15,20 +15,14 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/System/Clock.hpp>
-
 #include <string>
-
 #include <imgui.h>
 #include <imgui-SFML.h>
 #include <SFML/OpenGL.hpp>
-
 #include <Small/Core/SceneManager.hpp>
 #include <Small/Debug/Profiler.hpp>
-
 #include <Ark/Ark.hpp>
-
-#include <Small/Scripting/Engine.hpp>
-#include <Small/Scripting/Bindings.hpp>
+#include <Small/Scripting/Config.hpp>
 #include <Small/Scripting/SFMLtoArk.hpp>
 
 namespace sgl
@@ -64,7 +58,7 @@ namespace sgl
      * @brief The main component of the library, handling the scenes and running the app
      * @details Debug mode is showing an imgui debug interface, with a profiler to know
                 what took time to execute. When scripting is turned on, it's expecting
-                to find at least one script defining those functions:
+                to find a main script named "main.ark" defining those functions:
      * @code
      * (let onLoad (fun () {
      *      # code executed during loading

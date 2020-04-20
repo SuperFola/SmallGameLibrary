@@ -5,7 +5,7 @@
 - [ ] document every class with a complete example
 
 ## 0.0.4
-- [ ] ArkScript-ing
+- [x] ArkScript-ing
 - [ ] integrate an ECS (through EnTT)
 - [ ] Resource management
 - [ ] Tilemap loader (from files)

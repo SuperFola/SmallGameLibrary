@@ -19,17 +19,6 @@
 namespace sgl::Scripting
 {
     /**
-     * @brief Host the scripting engine configuration
-     * 
-     */
-    struct Config
-    {
-        std::string scriptsDirectory;    //< Game scripts directory
-        std::string compiledScriptsDir;  //< Directory where the compiled scripts should be put
-        std::string arkscriptLibDir;     //< Path to the ArkScript standard library
-    };
-
-    /**
      * @brief Compile an ArkScript file to ArkScript bytecode
      * 
      * @param file Path to the ArkScript file to compile

@@ -16,6 +16,7 @@
 #include <SFML/System/Clock.hpp>
 #include <SFML/Window/Event.hpp>
 #include <string>
+#include <Small/Scripting/Config.hpp>
 
 namespace sgl
 {
@@ -52,6 +53,13 @@ namespace sgl
          * 
          */
         virtual ~Scene();
+
+        /**
+         * @brief Initialize scripting data if needed
+         * 
+         * @param config 
+         */
+        virtual void init(const Scripting::Config& config);
 
         /**
          * @brief Event handling method
