@@ -40,7 +40,8 @@ namespace sgl::Scenes
 
     void ArkScene::onRender(sf::RenderTarget& screen)
     {
-        m_vm.call("onRender", Ark::UserType(&screen));
+        auto a = Ark::Value(Ark::UserType(&screen));
+        m_vm.call("onRender", a);
     }
 
     void ArkScene::onQuit()
