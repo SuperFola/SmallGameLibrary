@@ -2,7 +2,7 @@
  * @file Graphics.hpp
  * @author Alexandre Plateau (lexplt.dev@gmail.com)
  * @brief Include all the files from the Graphics folder
- * @version 0.2
+ * @version 0.3
  * @date 2020-04-15
  * 
  * @copyright Copyright (c) 2020
@@ -20,5 +20,6 @@ namespace sgl::Graphics {}
 
 #include <Small/Graphics/Tilemap.hpp>
 #include <Small/Graphics/TileView.hpp>
+#include <Small/Graphics/Animation.hpp>
 
 #endif

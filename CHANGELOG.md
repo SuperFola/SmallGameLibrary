@@ -9,11 +9,13 @@
 - adding a list of bindings from the small game library to ArkScript
 - making use of the scripting engine in the application
 - adding an example of how to use the scripting engine with the library
+- adding animation and animated sprite
 
 ### Changed
 - `thirdparty/` is now a cmake subdirectory
 
 ### Removed
+- entt
 
 ## 0.0.3
 ### Added
