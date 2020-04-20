@@ -26,9 +26,19 @@ namespace sgl::Graphics
         return m_frames.size();
     }
 
+    void Animation::invertX()
+    {
+        m_invertX = !m_invertX;
+    }
+
     const sf::IntRect& Animation::operator[](std::size_t n) const
     {
         return m_frames[n];
+    }
+
+    bool Animation::isXInverted() const
+    {
+        return m_invertX;
     }
 
     ///////////////////////////////////////////////////////////////
@@ -128,18 +138,27 @@ namespace sgl::Graphics
     {
         if (m_animation)
         {
-            //calculate new vertex positions and texture coordiantes
+            // calculate new vertex positions and texture coordiantes
             sf::IntRect rect = (*m_animation)[newFrame];
+            sf::FloatRect rectf = sf::FloatRect(rect);
 
             m_vertices[0].position = sf::Vector2f(0.f, 0.f);
-            m_vertices[1].position = sf::Vector2f(0.f, static_cast<float>(rect.height));
-            m_vertices[2].position = sf::Vector2f(static_cast<float>(rect.width), static_cast<float>(rect.height));
-            m_vertices[3].position = sf::Vector2f(static_cast<float>(rect.width), 0.f);
+            m_vertices[1].position = sf::Vector2f(0.f, rectf.height);
+            m_vertices[2].position = sf::Vector2f(rectf.width, rectf.height);
+            m_vertices[3].position = sf::Vector2f(rectf.width, 0.f);
 
-            float left = static_cast<float>(rect.left) + 0.0001f;
-            float right = left + static_cast<float>(rect.width);
-            float top = static_cast<float>(rect.top);
-            float bottom = top + static_cast<float>(rect.height);
+            float left = rectf.left + 0.0001f;
+            float right = left + rectf.width;
+            float top = rectf.top;
+            float bottom = top + rectf.height;
+
+            if (m_animation->isXInverted())
+            {
+                left = rectf.left + rectf.width;
+                right = rectf.left;
+                top = rectf.top;
+                bottom = top + rectf.height;
+            }
 
             m_vertices[0].texCoords = sf::Vector2f(left, top);
             m_vertices[1].texCoords = sf::Vector2f(left, bottom);
@@ -166,7 +185,7 @@ namespace sgl::Graphics
                 m_currentTime = sf::microseconds(m_currentTime.asMicroseconds() % m_frameTime.asMicroseconds());
 
                 // get next Frame index
-                if (m_currentFrame + 1 < m_animation->getSize())
+                if (m_currentFrame + 1 < m_animation->size())
                     m_currentFrame++;
                 else
                 {

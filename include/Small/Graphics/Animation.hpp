@@ -65,6 +65,12 @@ namespace sgl::Graphics
         std::size_t size() const;
 
         /**
+         * @brief Invert frames on the x axis
+         * 
+         */
+        void invertX();
+
+        /**
          * @brief Return a given frame of the animation
          * 
          * @param n 
@@ -72,9 +78,12 @@ namespace sgl::Graphics
          */
         const sf::IntRect& operator[](std::size_t n) const;
 
+        bool isXInverted() const;
+
     private:
         std::vector<sf::IntRect> m_frames;
         const sf::Texture* m_texture;
+        bool m_invertX = false;
     };
 
     /**
