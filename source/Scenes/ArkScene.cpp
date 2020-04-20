@@ -22,7 +22,7 @@ namespace sgl::Scenes
         Scripting::bindSystem(&m_state);
         Scripting::bindWidgets(&m_state);
 
-        m_state.feed(config.compiledScriptsDir + "/" + m_scriptName);
+        m_state.feed(config.compiledScriptsDir + "/" + m_scriptName + "c");
         m_vm.run();
 
         m_vm.call("onLoad");

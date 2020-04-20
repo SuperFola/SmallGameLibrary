@@ -1,13 +1,12 @@
 #ifndef examples_scripting_myscene
 #define examples_scripting_myscene
 
-#include <Small/Core/Scene.hpp>
+#include <Small/Scenes/ArkScene.hpp>
 
-class MyScene : public sgl::Scene
+class MyScene : public sgl::Scenes::ArkScene
 {
 public:
-    MyScene(int id);
-    void onEvent(const sf::Event& event);
+    MyScene(int id, const std::string& scriptName);
 };
 
 #endif

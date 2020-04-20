@@ -1,0 +1,13 @@
+{
+    (let onLoad   (fun ()
+        (print "loading")))
+
+    (let onEvent  (fun (event) ()))
+
+    (let onUpdate (fun (dt) ()))
+
+    (let onRender (fun (screen) ()))
+
+    (let onQuit   (fun () 
+        (print "quitting")))
+}

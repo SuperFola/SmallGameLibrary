@@ -2,12 +2,10 @@
 
 #include <iostream>
 
-MyScene::MyScene(int id) :
-    sgl::Scene(id)
-{}
-
-void MyScene::onEvent(const sf::Event& event)
+MyScene::MyScene(int id, const std::string& scriptName) :
+    sgl::Scenes::ArkScene(id, scriptName)
 {
-    if (event.type == sf::Event::KeyPressed)
-        std::cout << "key pressed" << std::endl;
+    m_state.loadFunction("helloScene", [](std::vector<Ark::Value>&) {
+        return Ark::True;
+    });
 }

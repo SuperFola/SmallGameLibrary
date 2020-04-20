@@ -19,8 +19,8 @@ int main(int argc, char** argv)
             "assets/lib"
         });
 
-    int id = app.add<MyScene>();
-    // app.setCurrentScene(id);
+    int id = app.add<MyScene>("scene.ark");
+    app.setCurrentScene(id);
 
     app.run();
 
