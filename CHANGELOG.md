@@ -10,6 +10,7 @@
 - making use of the scripting engine in the application
 - adding an example of how to use the scripting engine with the library
 - adding animation and animated sprite
+- added [tomlplusplus](https://github.com/marzer/tomlplusplus), a TOML configuration file loader
 
 ### Changed
 - `thirdparty/` is now a cmake subdirectory

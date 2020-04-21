@@ -27,6 +27,7 @@ set(THIRDPARTY_INCLUDES
     ${CMAKE_CURRENT_LIST_DIR}/termcolor
     ${CMAKE_CURRENT_LIST_DIR}/entt/src
     ${CMAKE_CURRENT_LIST_DIR}/arkscript/include
+    ${CMAKE_CURRENT_LIST_DIR}/toml++
 
     PARENT_SCOPE
 )
