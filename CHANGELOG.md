@@ -10,8 +10,8 @@
 - making use of the scripting engine in the application
 - adding an example of how to use the scripting engine with the library
 - adding animation and animated sprite
-- added [tomlplusplus](https://github.com/marzer/tomlplusplus), a TOML configuration file loader
-- adding TOMLplusplus loader in `Small/System/TOML.hpp`
+- added [tinytoml](https://github.com/mayah/tinytoml), a TOML configuration file loader
+- added an animation loader from toml files
 
 ### Changed
 - `thirdparty/` is now a cmake subdirectory

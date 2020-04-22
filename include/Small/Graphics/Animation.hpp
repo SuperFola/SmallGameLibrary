@@ -20,6 +20,9 @@
 #include <SFML/Graphics/Transformable.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <vector>
+#include <toml.hpp>
+#include <string>
+#include <unordered_map>
 
 namespace sgl::Graphics
 {
@@ -231,6 +234,71 @@ namespace sgl::Graphics
          * @param states 
          */
         virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+    };
+
+    /**
+     * @brief Load an animated sprite and its animation from a TOML configuration file
+     * @details An animation sprite configuration file should look this:
+     * @code
+     * [data]
+     * spriteSheet="path to your spritesheet"
+     * steps=["idleRight", "idleLeft", "runRight", ...]
+     * frameTime=0.2
+     * 
+     * [idleRight]
+     * framesCount=3
+     *     [idleRight.frame0]
+     *     left=0
+     *     top=0
+     *     width=15
+     *     height=15
+     * ...
+     * 
+     * [idleLeft]
+     * copy="idleRight"
+     * invertX=true
+     * 
+     * ...
+     * @endcode
+     */
+    class AnimationLoader
+    {
+    public:
+        /**
+         * @brief Construct a new Animation Loader object
+         * 
+         */
+        AnimationLoader();
+
+        /**
+         * @brief Load the data from the TOML configuration file
+         * 
+         * @param configFile 
+         * @return true If loading was successful
+         * @return false Otherwise
+         */
+        bool load(const std::string& configFile);
+
+        /**
+         * @brief Return a reference to an animation by its name
+         * 
+         * @param key Name of the wanted animation
+         * @return Animation& 
+         */
+        Animation& operator[](const std::string& key);
+
+        /**
+         * @brief Return a reference to the underlying animated sprite
+         * 
+         * @return AnimatedSprite& 
+         */
+        AnimatedSprite& sprite();
+
+    private:
+        toml::Value m_config;
+        std::unordered_map<std::string, Animation> m_animations;
+        sf::Texture m_texture;
+        AnimatedSprite m_sprite;
     };
 }
 

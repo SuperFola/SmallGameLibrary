@@ -21,6 +21,5 @@ namespace sgl::System {}
 #include <Small/System/Platform.hpp>
 #include <Small/System/SharedLibrary.hpp>
 #include <Small/System/FileSystem.hpp>
-#include <Small/System/TOML.hpp>
 
 #endif
