@@ -1,6 +1,11 @@
 #ifndef TINYTOML_H_
 #define TINYTOML_H_
 
+#ifdef _MSC_VER
+    #pragma warning(push)
+    #pragma warning(disable:4996)
+#endif
+
 #include <algorithm>
 #include <cassert>
 #include <cctype>
@@ -2046,5 +2051,9 @@ inline bool Parser::parseInlineTable(Value* value)
 
 } // namespace internal
 } // namespace toml
+
+#ifdef _MSC_VER
+    #pragma warning(pop)
+#endif
 
 #endif // TINYTOML_H_
