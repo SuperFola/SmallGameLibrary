@@ -12,6 +12,7 @@
 - adding animation and animated sprite
 - added [tinytoml](https://github.com/mayah/tinytoml), a TOML configuration file loader
 - added an animation loader from toml files
+- added a end field to frames of animation, to stop the animation when needed
 
 ### Changed
 - `thirdparty/` is now a cmake subdirectory

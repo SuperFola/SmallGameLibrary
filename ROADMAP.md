@@ -6,7 +6,8 @@
 
 ## 0.0.4
 - [x] ArkScript-ing
-- [ ] integrate an ECS (through EnTT)
+- [ ] scene graph
+- [ ] actors
 - [ ] Resource management
 - [ ] Tilemap loader (from files)
 

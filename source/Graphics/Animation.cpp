@@ -45,6 +45,16 @@ namespace sgl::Graphics
         return m_invertX;
     }
 
+    void Animation::setEnd(int frame)
+    {
+        m_end = frame;
+    }
+
+    int Animation::getEnd() const
+    {
+        return m_end;
+    }
+
     ///////////////////////////////////////////////////////////////
 
     AnimatedSprite::AnimatedSprite(sf::Time frameTime, bool paused, bool looped) :
@@ -176,8 +186,8 @@ namespace sgl::Graphics
 
     void AnimatedSprite::update(sf::Time deltaTime)
     {
-        // if not paused and we have a valid animation
-        if (!m_isPaused && m_animation)
+        // if not paused and we have a valid animation and it's not the end frame
+        if (!m_isPaused && m_animation && !isEnd())
         {
             // add delta time
             m_currentTime += deltaTime;
@@ -204,6 +214,11 @@ namespace sgl::Graphics
                 setFrame(m_currentFrame, false);
             }
         }
+    }
+
+    bool AnimatedSprite::isEnd() const
+    {
+        return m_animation->getEnd() == m_currentFrame;
     }
 
     void AnimatedSprite::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -330,7 +345,14 @@ namespace sgl::Graphics
                     else
                         height = check->as<int>();
 
+                    check = m_config.find(stepsData[i] + "." + frameStr.str() + ".end");
+                    bool end = false;
+                    if (check != nullptr && check->is<bool>() && check->as<bool>())
+                        end = true;
+
                     m_animations[stepsData[i]].addFrame(sf::IntRect(left, top, width, height));
+                    if (end)
+                        m_animations[stepsData[i]].setEnd(static_cast<int>(m_animations[stepsData[i]].size()) - 1);
                 }
             }
             else
