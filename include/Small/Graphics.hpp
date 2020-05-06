@@ -21,5 +21,6 @@ namespace sgl::Graphics {}
 #include <Small/Graphics/Tilemap.hpp>
 #include <Small/Graphics/TileView.hpp>
 #include <Small/Graphics/Animation.hpp>
+#include <Small/Graphics/Node.hpp>
 
 #endif

@@ -2,7 +2,7 @@
  * @file Animation.hpp
  * @author Alexandre Plateau (lexplt.dev@gmail.com)
  * @brief Handling animated sprites
- * @version 0.1
+ * @version 0.2
  * @date 2020-04-20
  * 
  * @copyright Copyright (c) 2020
