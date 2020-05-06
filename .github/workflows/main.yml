@@ -20,6 +20,11 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+    
+    - name: Update Compilers
+      run: |
+        sudo apt-add-repository -y ppa:ubuntu-toolchain-r/test
+        sudo apt-get -yq install g++-8 gcc-8
   
     - name: OpenGL / SFML install
       run: |
@@ -35,7 +40,7 @@ jobs:
         build-type: Debug
         submodule-update: true
         configure-options: -DSFML_ROOT=sfml/SFML-2.5.1/lib/cmake/SFML
-        #cc: # optional
-        #cxx: # optional
+        cc: gcc-8
+        cxx: g++-8
         #target: # optional
         #build-options: # Misc Options to pass to CMake while building project using cmake --build, optional
