@@ -83,12 +83,12 @@ namespace sgl
     SceneManager& SceneManager::onRender(sf::RenderTarget& screen)
     {
         if (m_current != -1)
-            m_scenes[m_current]->onRender(screen);
-        
+            m_scenes[m_current]->render(screen, m_transform);  // the method onRender is automatically called by render()
+
         for (std::size_t i = 0, size = m_scenes.size(); i < size; ++i)
         {
             if (m_scenes[i]->getState() == State::Idle)
-                m_scenes[i]->onRender(screen);
+                m_scenes[i]->render(screen, m_transform);
         }
 
         return *this;

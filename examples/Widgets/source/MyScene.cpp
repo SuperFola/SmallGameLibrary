@@ -5,7 +5,7 @@ MyScene::MyScene(int id) :
 {
     m_font.loadFromFile("assets/arial.ttf");
 
-    m_labelId = m_layout.attach<sgl::Widgets::Label>(sf::IntRect(10, 20, 0, 0));
+    m_labelId = m_layout.add<sgl::Widgets::Label>(sf::IntRect(10, 20, 0, 0));
     {
         sgl::Widgets::Label* label = reinterpret_cast<sgl::Widgets::Label*>(m_layout[m_labelId]);
         label->text().setString("hello world!");
@@ -25,7 +25,7 @@ void MyScene::onUpdate(const sf::Time dt)
     m_layout.onUpdate(dt);
 }
 
-void MyScene::onRender(sf::RenderTarget& screen)
+void MyScene::onRender(sf::RenderTarget& screen, const sf::Transform& transform)
 {
-    screen.draw(m_layout);
+    m_layout.render(screen, transform);
 }

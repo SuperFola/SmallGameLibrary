@@ -21,8 +21,6 @@ namespace sgl::Widgets
 {
     /**
      * @brief Basic label widget, doesn't listen to events by default
-     * @details The widget must be used inside a sgl::Widgets::Layout to be rendered
-     *          properly on screen.
      * 
      */
     class Label : public Base

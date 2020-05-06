@@ -13,7 +13,7 @@
 #define sgl_small_graphics_node
 
 #include <SFML/Graphics/RenderTarget.hpp>
-#include <SFML/Graphics/Transformable.hpp>
+#include <SFML/Graphics/Transform.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <vector>
 #include <memory>
@@ -85,7 +85,7 @@ namespace sgl::Graphics
          * @param center coordinates of the center of rotation
          * @return Node& 
          */
-        Node& rotate(float angle, const sf::Vector2d& center);
+        Node& rotate(float angle, const sf::Vector2f& center);
 
         /**
          * @brief Combine the current transform with a scaling
@@ -129,18 +129,23 @@ namespace sgl::Graphics
         Node& scale(const sf::Vector2f& factors, const sf::Vector2f& center);
 
         /**
+         * @brief Get the Transform object
+         * 
+         * @return sf::Transform& 
+         */
+        sf::Transform& getTransform();
+
+        /**
          * @brief Attach a child node to this node
          * 
          * @tparam N 
          * @tparam Args 
          * @param args 
-         * @return int 
          */
         template <typename N, typename... Args>
-        int attach(Args&&... args)
+        void attach(Args&&... args)
         {
-            m_children.push_back(std::make_shared<N>(static_cast<int>(m_children.size()), this, std::forward<Args>(args)...));
-            return static_cast<int>(m_children.size()) - 1;
+            m_children.push_back(std::make_shared<N>(std::forward<Args>(args)...));
         }
 
         /**
@@ -160,9 +165,11 @@ namespace sgl::Graphics
          */
         virtual void onRender(sf::RenderTarget& target, const sf::Transform& transform) = 0;
 
+    protected:
+        std::vector<std::shared_ptr<Node>> m_children;
+
     private:
         sf::Transform m_transform;
-        std::vector<std::shared_ptr<Node>> m_children;
     };
 }
 

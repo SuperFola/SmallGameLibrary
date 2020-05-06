@@ -5,7 +5,7 @@
 namespace sgl
 {
     Scene::Scene(int id) :
-        m_id(id), m_state(State::Stopped)
+        Graphics::Node(), m_id(id), m_state(State::Stopped)
     {}
 
     Scene::~Scene()
@@ -20,7 +20,7 @@ namespace sgl
     void Scene::onUpdate(const sf::Time dt)
     {}
 
-    void Scene::onRender(sf::RenderTarget& screen)
+    void Scene::onRender(sf::RenderTarget& screen, const sf::Transform& transform)
     {}
 
     void Scene::onQuit()

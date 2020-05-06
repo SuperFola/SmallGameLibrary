@@ -20,8 +20,6 @@ namespace sgl::Widgets
 {
     /**
      * @brief Basic image widget
-     * @details The widget must be used inside a sgl::Widgets::Layout to be rendered
-     *          properly on screen.
      * 
      */
     class Image : public Base

@@ -17,6 +17,7 @@
 #include <SFML/Window/Event.hpp>
 #include <string>
 #include <Small/Scripting/Config.hpp>
+#include <Small/Graphics/Node.hpp>
 
 namespace sgl
 {
@@ -37,7 +38,7 @@ namespace sgl
      * @brief Base class which every user scene must derive from
      * 
      */
-    class Scene
+    class Scene : public Graphics::Node
     {
     public:
         /**
@@ -79,8 +80,12 @@ namespace sgl
          * @brief Rendering method, called after having updated the scene
          * 
          * @param screen 
+         * @param transform transformation used as a base when rendering something, eg:
+         * @code
+         * screen.draw(sprite, transform);
+         * @endcode
          */
-        virtual void onRender(sf::RenderTarget& screen);
+        virtual void onRender(sf::RenderTarget& screen, const sf::Transform& transform);
 
         /**
          * @brief Method called when the application is closing

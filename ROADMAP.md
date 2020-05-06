@@ -1,8 +1,11 @@
 # Roadmap
 
-## 0.0.5
+## 0.0.6
 - [ ] Shaders
 - [ ] document every class with a complete example
+
+## 0.0.5
+- [ ] redo the animation loader
 - [ ] actors
 - [ ] Resource management
 - [ ] Tilemap loader (from files)

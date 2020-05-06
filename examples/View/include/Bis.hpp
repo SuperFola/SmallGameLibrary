@@ -15,7 +15,7 @@ public:
 
     void onEvent(const sf::Event& event);
     void onUpdate(const sf::Time dt);
-    void onRender(sf::RenderTarget& screen);
+    void onRender(sf::RenderTarget& screen, const sf::Transform& transform);
 
 private:
     sf::Texture m_tileset;
