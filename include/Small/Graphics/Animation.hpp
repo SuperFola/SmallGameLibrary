@@ -293,6 +293,10 @@ namespace sgl::Graphics
      * 
      * ...
      * @endcode
+     * @details An animation loader is loading Animations from a TOML configuration file,
+     *          but it doesn't hold an AnimatedSprite, which should be handled separately.
+     *          You can retrieve animations from the loader by using `my_loader["animation_name"]`,
+     *          and attach them to a pre-existing AnimatedSprite.
      */
     class AnimationLoader
     {
