@@ -157,7 +157,7 @@ namespace sgl::Graphics
          * @param target Surface to render the object to
          * @param parent Parent transformation data
          */
-        void render(sf::RenderTarget& target, const sf::Transform& parent);
+        virtual void render(sf::RenderTarget& target, const sf::Transform& parent) final;
 
         /**
          * @brief Rendering method of an object, to be implemented in subclasses

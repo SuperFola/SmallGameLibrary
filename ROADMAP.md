@@ -10,6 +10,7 @@
 - [ ] actors
 - [ ] Resource management
 - [ ] Tilemap loader (from files)
+- [ ] tool: animation maker in python/pygame
 
 ## 0.0.4
 - [x] ArkScript-ing

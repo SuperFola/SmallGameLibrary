@@ -78,6 +78,8 @@ namespace sgl
 
         /**
          * @brief Rendering method, called after having updated the scene
+         * @details This method is called first, then all the children (if any) attached to it
+         *          are rendered one after another, in the order they were attached.
          * 
          * @param screen 
          * @param transform transformation used as a base when rendering something, eg:
