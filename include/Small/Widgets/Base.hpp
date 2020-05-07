@@ -201,6 +201,25 @@ namespace sgl::Widgets
         Ptr m_parent;  //< Pointer to the parent widget
         Style m_style;
     };
+
+    /**
+     * @brief Utility to create widget out of the "layout" box
+     * @details Useful when it comes to try something out without having to drop
+     *          a layout and some heavy configuration code. Example:
+     * @code
+     * auto button = sgl::Widgets::make<sgl::Widgets::Button>(sf::IntRect(12, 12, 48, 16));
+     * @endcode
+     * 
+     * @tparam W The widget typename
+     * @tparam Args 
+     * @param args Arguments for the widget, appart from the automatic ones (id and parent)
+     * @return W 
+     */
+    template <typename W, typename... Args>
+    W make(Args&&... args)
+    {
+        return W(/* id */ 0, /* parent */ nullptr, std::forward<Args>(args)...);
+    }
 }
 
 #endif

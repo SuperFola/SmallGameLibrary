@@ -2,6 +2,7 @@
 
 ## 0.0.5
 ### Added
+- added a widget maker `sgl::Widgets::make<Type>(args)`
 
 ### Changed
 - the whole widget system is now using the scene graph through the `sgl::Graphics::Node` class
