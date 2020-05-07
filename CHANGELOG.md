@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.5
+### Added
+
+### Changed
+- the whole widget system is now using the scene graph through the `sgl::Graphics::Node` class
+
+### Removed
+
 ## 0.0.4
 ### Added
 - adding ArkScript and EnTT as submodules

@@ -22,6 +22,8 @@ namespace sgl::Graphics
 {
     /**
      * @brief Abstract base class for a scene graph node
+     * @details The node is rendered first, then all its children are rendered one after another,
+     *          in the order they were attached.
      * 
      */
     class Node

@@ -3,6 +3,7 @@
 ## 0.0.6
 - [ ] Shaders
 - [ ] document every class with a complete example
+- [ ] http based debugger
 
 ## 0.0.5
 - [ ] redo the animation loader
