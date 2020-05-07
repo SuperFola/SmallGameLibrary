@@ -5,6 +5,7 @@
 
 ### Changed
 - the whole widget system is now using the scene graph through the `sgl::Graphics::Node` class
+- the animation loader no longer hold an animated sprite
 
 ### Removed
 
