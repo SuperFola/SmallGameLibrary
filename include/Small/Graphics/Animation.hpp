@@ -2,7 +2,7 @@
  * @file Animation.hpp
  * @author Alexandre Plateau (lexplt.dev@gmail.com)
  * @brief Handling animated sprites
- * @version 0.3
+ * @version 0.4
  * @date 2020-04-20
  * 
  * @copyright Copyright (c) 2020
@@ -121,7 +121,7 @@ namespace sgl::Graphics
         std::vector<sf::IntRect> m_frames;
         const sf::Texture* m_texture;
         bool m_invertX = false;
-        int m_end = -1;
+        int m_end;
         sf::Time m_frameTime;
     };
 
@@ -272,10 +272,10 @@ namespace sgl::Graphics
      * [data]
      * spriteSheet="path to your spritesheet"
      * steps=["idleRight", "idleLeft", "runRight", ...]
-     * frameTime=0.2
      * 
      * [idleRight]
      * framesCount=3
+     * frameTime=0.2
      *     [idleRight.frame0]
      *     left=0
      *     top=0

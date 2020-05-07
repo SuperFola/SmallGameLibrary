@@ -7,7 +7,7 @@
 namespace sgl::Graphics
 {
     Animation::Animation() :
-        m_texture(nullptr)
+        m_texture(nullptr), m_end(-1)
     {}
 
     void Animation::addFrame(const sf::IntRect& rect)
@@ -274,14 +274,6 @@ namespace sgl::Graphics
             return false;
         }
 
-        // search for frame duration (global, not per animation)
-        const toml::Value* frameTime = m_config.find("data.frameTime");
-        if (frameTime == nullptr || !frameTime->is<double>())
-        {
-            std::cerr << "AnimationLoader configuration: data.frameTime (double) missing" << std::endl;
-            return false;
-        }
-
         // register spritesheet
         if (!m_texture.loadFromFile(spriteSheet->as<std::string>()))
         {
@@ -302,6 +294,15 @@ namespace sgl::Graphics
                 if (framesCount == nullptr || !framesCount->is<int>())
                 {
                     std::cerr << "AnimationLoader configuration: " << stepsData[i] << ".framesCount is missing" << std::endl;
+                    return false;
+                }
+
+                // frame time
+                // search for frame duration (global, not per animation)
+                const toml::Value* frameTime = m_config.find(stepsData[i] + ".frameTime");
+                if (frameTime == nullptr || !frameTime->is<double>())
+                {
+                    std::cerr << "AnimationLoader configuration: data.frameTime (double) missing" << std::endl;
                     return false;
                 }
 
