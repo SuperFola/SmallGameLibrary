@@ -3,7 +3,7 @@
 ## 0.0.5
 ### Added
 - added a widget maker `sgl::Widgets::make<Type>(args)`
-- adding basic actors in `sgl::GameObjects::Actor`
+- adding basic actor in `sgl::GameObjects::Actor`
 
 ### Changed
 - the whole widget system is now using the scene graph through the `sgl::Graphics::Node` class
