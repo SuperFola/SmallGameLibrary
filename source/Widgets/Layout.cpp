@@ -41,12 +41,7 @@ namespace sgl::Widgets
 
     void Layout::draw_(sf::RenderTarget& target, const sf::Transform& parentTransform)
     {
-        static sf::RectangleShape r(sf::Vector2f(m_rect.width, m_rect.height));
-        r.setFillColor(sf::Color::Red);
-
         sf::Transform combinedTransform = parentTransform * getTransform();
-
-        target.draw(r, combinedTransform);
 
         onRender(target, combinedTransform);
         for (std::size_t i=0, size=m_children.size(); i < size; ++i)

@@ -2,7 +2,7 @@
  * @file Animation.hpp
  * @author Alexandre Plateau (lexplt.dev@gmail.com)
  * @brief Handling animated sprites
- * @version 0.1
+ * @version 0.2
  * @date 2020-04-20
  * 
  * @copyright Copyright (c) 2020
@@ -81,12 +81,33 @@ namespace sgl::Graphics
          */
         const sf::IntRect& operator[](std::size_t n) const;
 
+        /**
+         * @brief Check if the X axis is inverted
+         * 
+         * @return true 
+         * @return false 
+         */
         bool isXInverted() const;
+
+        /**
+         * @brief Set the end frame number
+         * 
+         * @param frame frame number
+         */
+        void setEnd(int frame);
+
+        /**
+         * @brief Get the end frame number
+         * 
+         * @return int 
+         */
+        int getEnd() const;
 
     private:
         std::vector<sf::IntRect> m_frames;
         const sf::Texture* m_texture;
         bool m_invertX = false;
+        int m_end = -1;
     };
 
     /**
@@ -217,6 +238,14 @@ namespace sgl::Graphics
          */
         void setFrame(std::size_t newFrame, bool resetTime=true);
 
+        /**
+         * @brief Check if the end frame has been reached
+         * 
+         * @return true 
+         * @return false 
+         */
+        bool isEnd() const;
+
     private:
         const Animation* m_animation;
         sf::Time m_frameTime;
@@ -252,6 +281,10 @@ namespace sgl::Graphics
      *     top=0
      *     width=15
      *     height=15
+     *     # optionnal attribute indicating that the animation shouldn't
+     *     # continue if it reach this frame, can only be specified once
+     *     # per step
+     *     end=true
      * ...
      * 
      * [idleLeft]
