@@ -2,7 +2,7 @@
  * @file All.hpp
  * @author Alexandre Plateau (lexplt.dev@gmail.com)
  * @brief Include the needed files to start a project using the library
- * @version 0.4
+ * @version 0.5
  * @date 2020-04-05
  * 
  * @copyright Copyright (c) 2020
@@ -31,5 +31,6 @@ namespace sgl::internal {}
 #include <Small/Scenes.hpp>
 #include <Small/Widgets.hpp>
 #include <Small/Scripting.hpp>
+#include <Small/GameObjects.hpp>
 
 #endif

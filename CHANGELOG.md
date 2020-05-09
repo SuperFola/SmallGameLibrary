@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.0.5
+### Added
+- added a widget maker `sgl::Widgets::make<Type>(args)`
+- adding basic actor in `sgl::GameObjects::Actor`
+- adding a templated ressource manager class in `sgl::GameObjects::Manager<T>`
+
+### Changed
+- the whole widget system is now using the scene graph through the `sgl::Graphics::Node` class
+- the animation loader no longer hold an animated sprite
+- the frameTime attribute of the animations are now per animation and not per animated sprite
+
+### Removed
+
 ## 0.0.4
 ### Added
 - adding ArkScript and EnTT as submodules

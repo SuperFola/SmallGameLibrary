@@ -63,9 +63,9 @@ void Bis::onUpdate(const sf::Time dt)
     m_canMove = !makeZoneTransition(m_playerShape.getPosition(), dt, 5 * m_tileSize);
 }
 
-void Bis::onRender(sf::RenderTarget& screen)
+void Bis::onRender(sf::RenderTarget& screen, const sf::Transform& transform)
 {
     m_view.use(screen);
-    screen.draw(m_tilemap);
-    screen.draw(m_playerShape);
+    screen.draw(m_tilemap, transform);
+    screen.draw(m_playerShape, transform);
 }

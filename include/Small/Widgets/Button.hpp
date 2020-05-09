@@ -23,8 +23,6 @@ namespace sgl::Widgets
 {
     /**
      * @brief Basic button widget
-     * @details The widget must be used inside a sgl::Widgets::Layout to be rendered
-     *          properly on screen.
      * 
      */
     class Button : public Base
@@ -62,18 +60,30 @@ namespace sgl::Widgets
         sf::Text& text();
 
         /**
-         * @brief Return a reference to the sf::Sprite held, to modify it
+         * @brief Return a pointer to the sprite to set and modify it
+         * @details Usage example:
+         * @code
+         * auto button = sgl::Widgets::make<Button>(sf::IntRect(12, 12, 32, 32));
+         * sgl::GameObjects::SpriteManager::get().add("my_sprite", my_sprite);
+         * button.sprite() = &sgl::GameObjects::SpriteManager::get().["my_sprite"];
+         * @endcode
          * 
-         * @return sf::Sprite& 
+         * @return sf::Sprite* 
          */
-        sf::Sprite& sprite();
+        sf::Sprite* sprite();
 
         /**
-         * @brief Return a reference to the sf::RectangleShape used as a background when in text-only mode
+         * @brief Return a pointer to the sprite to set and modify it
+         * @details Usage example:
+         * @code
+         * auto button = sgl::Widgets::make<Button>(sf::IntRect(12, 12, 32, 32));
+         * sgl::GameObjects::ShapeManager::get().add("my_shape", my_shape);
+         * button.shape() = &sgl::GameObjects::ShapeManager::get().["my_shape"];
+         * @endcode
          * 
-         * @return sf::RectangleShape& 
+         * @return sf::RectangleShape* 
          */
-        sf::RectangleShape& shape();
+        sf::RectangleShape* shape();
 
         /**
          * @brief Render the widget on screen
@@ -104,13 +114,13 @@ namespace sgl::Widgets
         void onMouseButtonReleased(int button, int x, int y);
 
     protected:
-        sf::Text m_text;                 //< Text for the button
+        sf::Text m_text;                 ///< Text for the button
         union {
-            sf::Sprite m_sprite;         //< Sprite for the button
-            sf::RectangleShape m_shape;  //< Background for the button in text-only mode
+            sf::Sprite* m_sprite;         ///< Sprite for the button
+            sf::RectangleShape* m_shape;  ///< Background for the button in text-only mode
         };
-        bool m_click;                    //< Is the button being clicked on?
-        Callback_t m_callback;           //< Function to call when we click on the button
+        bool m_click;                    ///< Is the button being clicked on?
+        Callback_t m_callback;           ///< Function to call when we click on the button
     };
 }
 

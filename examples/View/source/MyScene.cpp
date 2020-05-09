@@ -100,11 +100,11 @@ void MyScene::onUpdate(const sf::Time dt)
     }
 }
 
-void MyScene::onRender(sf::RenderTarget& screen)
+void MyScene::onRender(sf::RenderTarget& screen, const sf::Transform& transform)
 {
     m_view.use(screen);
-    screen.draw(m_tilemap);
-    screen.draw(m_playerShape);
+    screen.draw(m_tilemap, transform);
+    screen.draw(m_playerShape, transform);
 }
 
 sf::Vector2i MyScene::getCurrentZone(int dx, int dy)

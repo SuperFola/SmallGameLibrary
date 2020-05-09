@@ -19,6 +19,7 @@
 #include <SFML/Window/Event.hpp>
 #include <Small/Core/Scene.hpp>
 #include <Small/Scripting/Config.hpp>
+#include <SFML/Graphics/Transform.hpp>
 
 namespace sgl
 {
@@ -129,10 +130,11 @@ namespace sgl
             // return the identifier of the scene
             return static_cast<int>(m_scenes.size()) - 1;
         }
-    
+
     private:
         std::vector<std::unique_ptr<Scene>> m_scenes;
         int m_current;
+        sf::Transform m_transform;  ///< This transform never change, we just use it as a base when rendering
     };
 }
 

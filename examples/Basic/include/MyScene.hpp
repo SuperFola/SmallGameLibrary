@@ -10,7 +10,7 @@ public:
     MyScene(int id, int test_argument);
 
     void onEvent(const sf::Event& event);
-    void onRender(sf::RenderTarget& screen);
+    void onRender(sf::RenderTarget& screen, const sf::Transform& transform);
 
 private:
     int m_argument;

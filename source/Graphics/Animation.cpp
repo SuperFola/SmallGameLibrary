@@ -3,11 +3,12 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <Small/GameObjects/Manager.hpp>
 
 namespace sgl::Graphics
 {
     Animation::Animation() :
-        m_texture(nullptr)
+        m_texture(nullptr), m_end(-1)
     {}
 
     void Animation::addFrame(const sf::IntRect& rect)
@@ -55,10 +56,20 @@ namespace sgl::Graphics
         return m_end;
     }
 
+    void Animation::setFrameTime(sf::Time time)
+    {
+        m_frameTime = time;
+    }
+
+    sf::Time Animation::getFrameTime() const
+    {
+        return m_frameTime;
+    }
+
     ///////////////////////////////////////////////////////////////
 
-    AnimatedSprite::AnimatedSprite(sf::Time frameTime, bool paused, bool looped) :
-        m_animation(nullptr), m_frameTime(frameTime), m_currentFrame(0),
+    AnimatedSprite::AnimatedSprite(bool paused, bool looped) :
+        m_animation(nullptr), m_currentFrame(0),
         m_isPaused(paused), m_isLooped(looped), m_texture(nullptr)
     {}
 
@@ -68,11 +79,6 @@ namespace sgl::Graphics
         m_texture = m_animation->getSpriteSheet();
         m_currentFrame = 0;
         setFrame(m_currentFrame);
-    }
-
-    void AnimatedSprite::setFrameTime(sf::Time time)
-    {
-        m_frameTime = time;
     }
 
     void AnimatedSprite::play()
@@ -143,11 +149,6 @@ namespace sgl::Graphics
         return !m_isPaused;
     }
 
-    sf::Time AnimatedSprite::getFrameTime() const
-    {
-        return m_frameTime;
-    }
-
     void AnimatedSprite::setFrame(std::size_t newFrame, bool resetTime)
     {
         if (m_animation)
@@ -193,10 +194,10 @@ namespace sgl::Graphics
             m_currentTime += deltaTime;
 
             // if current time is bigger then the frame time advance one frame
-            if (m_currentTime >= m_frameTime)
+            if (m_currentTime >= m_animation->getFrameTime())
             {
                 // reset time, but keep the remainder
-                m_currentTime = sf::microseconds(m_currentTime.asMicroseconds() % m_frameTime.asMicroseconds());
+                m_currentTime = sf::microseconds(m_currentTime.asMicroseconds() % m_animation->getFrameTime().asMicroseconds());
 
                 // get next Frame index
                 if (m_currentFrame + 1 < m_animation->size())
@@ -242,6 +243,7 @@ namespace sgl::Graphics
         toml::ParseResult pr = toml::parse(ifs);
         ifs.close();
 
+        // check if the toml parser is in an error state or not
         if (!pr.valid())
         {
             std::cerr << "AnimationLoader configuration error: " << pr.errorReason << std::endl;
@@ -250,12 +252,14 @@ namespace sgl::Graphics
         else
             m_config = pr.value;
 
+        // search for data section
         if (m_config.find("data") == nullptr)
         {
             std::cerr << "AnimationLoader configuration needs a data section" << std::endl;
             return false;
         }
 
+        // find spritesheet
         const toml::Value* spriteSheet = m_config.find("data.spriteSheet");
         if (spriteSheet == nullptr || !spriteSheet->is<std::string>())
         {
@@ -263,6 +267,7 @@ namespace sgl::Graphics
             return false;
         }
 
+        // find steps list, used to find all the other steps of the animation
         const toml::Value* steps = m_config.find("data.steps");
         if (steps == nullptr || !steps->is<std::vector<std::string>>())
         {
@@ -270,27 +275,25 @@ namespace sgl::Graphics
             return false;
         }
 
-        const toml::Value* frameTime = m_config.find("data.frameTime");
-        if (frameTime == nullptr || !frameTime->is<double>())
-        {
-            std::cerr << "AnimationLoader configuration: data.frameTime (double) missing" << std::endl;
-            return false;
-        }
-
-        if (!m_texture.loadFromFile(spriteSheet->as<std::string>()))
+        // register spritesheet
+        sf::Texture tex;
+        if (!tex.loadFromFile(spriteSheet->as<std::string>()))
         {
             std::cerr << "AnimationLoader configuration: couldn't load spriteSheet: " << spriteSheet->as<std::string>() << std::endl;
             return false;
         }
+        m_textureID = spriteSheet->as<std::string>();
+        GameObjects::TextureManager::get().add(m_textureID, std::move(tex));
 
-        m_sprite.setFrameTime(sf::seconds(static_cast<float>(frameTime->as<double>())));
+        // iterate on the steps
         std::vector<std::string> stepsData = steps->as<std::vector<std::string>>();
-
         for (std::size_t i=0, size=stepsData.size(); i < size; ++i)
         {
+            // do we need to copy another animation?
             const toml::Value* copy = m_config.find(stepsData[i] + ".copy");
             if (copy == nullptr)
             {
+                // number of frames in the animation
                 const toml::Value* framesCount = m_config.find(stepsData[i] + ".framesCount");
                 if (framesCount == nullptr || !framesCount->is<int>())
                 {
@@ -298,15 +301,27 @@ namespace sgl::Graphics
                     return false;
                 }
 
-                m_animations[stepsData[i]] = Animation();
-                m_animations[stepsData[i]].setSpriteSheet(m_texture);
+                // frame time
+                // search for frame duration (global, not per animation)
+                const toml::Value* frameTime = m_config.find(stepsData[i] + ".frameTime");
+                if (frameTime == nullptr || !frameTime->is<double>())
+                {
+                    std::cerr << "AnimationLoader configuration: data.frameTime (double) missing" << std::endl;
+                    return false;
+                }
 
+                m_animations[stepsData[i]] = Animation();
+                m_animations[stepsData[i]].setSpriteSheet(GameObjects::TextureManager::get()[m_textureID]);
+                m_animations[stepsData[i]].setFrameTime(sf::seconds(static_cast<float>(frameTime->as<double>())));
+
+                // iterate on the frames
                 int framesCountData = framesCount->as<int>();
                 for (int frame=0; frame < framesCountData; ++frame)
                 {
                     std::stringstream frameStr;
                     frameStr << "frame" << frame;
 
+                    // find the positions for the sprite
                     int top, left, width, height;
 
                     toml::Value* check = m_config.find(stepsData[i] + "." + frameStr.str() + ".left");
@@ -364,6 +379,7 @@ namespace sgl::Graphics
                 }
                 m_animations[stepsData[i]] = m_animations[copy->as<std::string>()];
 
+                // do we need to invert the x axis of an animation?
                 const toml::Value* invertX = m_config.find(stepsData[i] + ".invertX");
                 if (invertX && invertX->is<bool>() && invertX->as<bool>())
                     m_animations[stepsData[i]].invertX();
@@ -376,10 +392,5 @@ namespace sgl::Graphics
     Animation& AnimationLoader::operator[](const std::string& key)
     {
         return m_animations[key];
-    }
-
-    AnimatedSprite& AnimationLoader::sprite()
-    {
-        return m_sprite;
     }
 }

@@ -23,7 +23,7 @@ MyScene::MyScene(int id) :
     m_tilemap.build(level);
 }
 
-void MyScene::onRender(sf::RenderTarget& screen)
+void MyScene::onRender(sf::RenderTarget& screen, const sf::Transform& transform)
 {
-    screen.draw(m_tilemap);
+    screen.draw(m_tilemap, transform);
 }

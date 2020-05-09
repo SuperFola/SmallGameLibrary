@@ -18,7 +18,7 @@ void MyScene::onEvent(const sf::Event& event)
         std::cout << "key pressed" << std::endl;
 }
 
-void MyScene::onRender(sf::RenderTarget& screen)
+void MyScene::onRender(sf::RenderTarget& screen, const sf::Transform& transform)
 {
-    screen.draw(m_octagon);
+    screen.draw(m_octagon, transform);
 }

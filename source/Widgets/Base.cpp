@@ -3,10 +3,10 @@
 namespace sgl::Widgets
 {
     Base::Base(int id, Base::Ptr parent, const sf::IntRect& bounds) :
-        m_id(id), m_listening(true), m_rect(bounds), m_parent(parent),
+        Graphics::Node(), m_id(id), m_listening(true), m_rect(bounds), m_parent(parent),
         m_style(Style::Text)
     {
-        setPosition(bounds.left, bounds.top);
+        move(sf::Vector2f(static_cast<float>(bounds.left), static_cast<float>(bounds.top)));
     }
 
     Base::~Base()
@@ -85,14 +85,14 @@ namespace sgl::Widgets
     void Base::onMouseButtonReleased(int button, int x, int y)
     {}
 
-    sf::FloatRect Base::getLocalBounds() const
+    sf::FloatRect Base::getLocalBounds()
     {
         float width = static_cast<float>(std::abs(m_rect.width));
         float height = static_cast<float>(std::abs(m_rect.height));
         return sf::FloatRect(0.f, 0.f, width, height);
     }
 
-    sf::FloatRect Base::getGlobalBounds() const
+    sf::FloatRect Base::getGlobalBounds()
     {
         sf::FloatRect bounds = getTransform().transformRect(getLocalBounds());
         if (m_parent)
@@ -126,19 +126,5 @@ namespace sgl::Widgets
     Style Base::getStyle() const
     {
         return m_style;
-    }
-
-    void Base::setPosition(int x, int y)
-    {
-        float fx = static_cast<float>(x);
-        float fy = static_cast<float>(y);
-
-        sf::Transformable::setPosition(fx, fy);
-    }
-
-    void Base::draw_(sf::RenderTarget& target, const sf::Transform& parentTransform)
-    {
-        sf::Transform combinedTransform = parentTransform * getTransform();
-        onRender(target, combinedTransform);
     }
 }

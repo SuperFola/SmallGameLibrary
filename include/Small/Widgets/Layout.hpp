@@ -14,23 +14,15 @@
 
 #include <Small/Widgets/Base.hpp>
 
-#include <SFML/Graphics/Drawable.hpp>
-#include <vector>
-#include <memory>
-
 namespace sgl::Widgets
 {
     /**
      * @brief A collection of widgets working together, graphically united
-     * @details This class **must** be used to create, host, and render the widgets ;
-     *          other widget can not and shouldn't live alone.
      * 
      */
-    class Layout : public Base, public sf::Drawable
+    class Layout : public Base
     {
     public:
-        using Ptr = std::shared_ptr<Base>;
-
         /**
          * @brief Construct a new Layout object
          * 
@@ -69,7 +61,7 @@ namespace sgl::Widgets
         virtual Base* operator[](int i) const final;
 
         /**
-         * @brief Create a new widget in place and attach it to the layout
+         * @brief Create a new widget in place and add it to the layout
          * 
          * @tparam W Class name of the widget to add
          * @tparam 
@@ -77,33 +69,21 @@ namespace sgl::Widgets
          * @return int Unique identifier for the widget
          */
         template <typename W, typename... Args>
-        int attach(Args&&... args)
+        int add(Args&&... args)
         {
-            m_children.push_back(std::make_shared<W>(static_cast<int>(m_children.size()), this, std::forward<Args>(args)...));
+            this->attach<W>(static_cast<int>(m_children.size()), this, std::forward<Args>(args)...);
             return static_cast<int>(m_children.size()) - 1;
         }
 
         /**
-         * @brief Function in charge of drawing our widget, using the SFML API
+         * @brief Render the widget on screen
+         * @details This function will be empty because all the nodes are automatically rendered
+         *          by the base class sgl::Graphics::Node, and because a layout has nothing to show.
          * 
-         * @param target 
-         * @param parentTransform 
+         * @param screen 
+         * @param transform Given by parent automatically
          */
-        void draw_(sf::RenderTarget& target, const sf::Transform& parentTransform);
-
-    protected:
-        std::vector<Layout::Ptr> m_children;
-
-        /**
-         * @brief To be able to draw the layout using the SFML API :
-         * @code
-         * screen.draw(my_layout);
-         * @endcode
-         * 
-         * @param target 
-         * @param states 
-         */
-        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+        void onRender(sf::RenderTarget& screen, const sf::Transform& transform);
     };
 }
 

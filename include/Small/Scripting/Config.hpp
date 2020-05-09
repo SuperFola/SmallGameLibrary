@@ -22,9 +22,9 @@ namespace sgl::Scripting
      */
     struct Config
     {
-        std::string scriptsDirectory;    //< Game scripts directory
-        std::string compiledScriptsDir;  //< Directory where the compiled scripts should be put
-        std::string arkscriptLibDir;     //< Path to the ArkScript standard library
+        std::string scriptsDirectory;    ///< Game scripts directory
+        std::string compiledScriptsDir;  ///< Directory where the compiled scripts should be put
+        std::string arkscriptLibDir;     ///< Path to the ArkScript standard library
     };
 }
 

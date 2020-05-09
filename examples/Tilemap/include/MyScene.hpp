@@ -10,7 +10,7 @@ class MyScene : public sgl::Scene
 public:
     MyScene(int id);
 
-    void onRender(sf::RenderTarget& screen);
+    void onRender(sf::RenderTarget& screen, const sf::Transform& transform);
 
 private:
     sgl::Graphics::Tilemap m_tilemap;

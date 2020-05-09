@@ -12,11 +12,11 @@
 #ifndef sgl_small_widgets_base
 #define sgl_small_widgets_base
 
-#include <SFML/Graphics/Transformable.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/System/Time.hpp>
 #include <SFML/Window/Event.hpp>
+#include <Small/Graphics/Node.hpp>
 
 namespace sgl::Widgets
 {
@@ -26,9 +26,9 @@ namespace sgl::Widgets
      */
     enum class Style
     {
-        Text,    //< Display text only, if available (default)
-        Sprite,  //< Display sprite only, if available
-        Both     //< Display both, first the sprite, then the text over it
+        Text,    ///< Display text only, if available (default)
+        Sprite,  ///< Display sprite only, if available
+        Both     ///< Display both, first the sprite, then the text over it
     };
 
     /**
@@ -37,7 +37,7 @@ namespace sgl::Widgets
      *          rendering, transformations. Position is **always** relative to the parent.
      * 
      */
-    class Base : public sf::Transformable
+    class Base : public Graphics::Node
     {
     public:
         using Ptr = Base*;
@@ -133,7 +133,7 @@ namespace sgl::Widgets
          * 
          * @return sf::FloatRect 
          */
-        virtual sf::FloatRect getLocalBounds() const final;
+        virtual sf::FloatRect getLocalBounds() final;
 
         /**
          * @brief Get the global bounding rectangle of the entity
@@ -142,7 +142,7 @@ namespace sgl::Widgets
          * 
          * @return sf::FloatRect 
          */
-        virtual sf::FloatRect getGlobalBounds() const final;
+        virtual sf::FloatRect getGlobalBounds() final;
 
         /**
          * @brief Activate a widget event listener or not
@@ -182,32 +182,44 @@ namespace sgl::Widgets
         virtual Style getStyle() const final;
 
         /**
-         * @brief Set the relative position of the widget
+         * @brief Return the widget as another type (should be a widget subclass)
          * 
-         * @param x 
-         * @param y 
+         * @tparam T The widget type
+         * @return T* A pointer to the widget (use at your own risks, if it's not a widget subclass, it will result in an undefined behaviour)
          */
-        virtual void setPosition(int x, int y) final;
-
-        /**
-         * @brief Function in charge of drawing our widget
-         * @details This method shouldn't be modified unless you need to do specific 
-                    things like playing with transformations, otherwise implement your 
-                    rendering methods in onRender
-         * 
-         * @param target 
-         * @param parentTransform 
-         */
-        virtual void draw_(sf::RenderTarget& target, const sf::Transform& parentTransform);
+        template <typename T>
+        T* as()
+        {
+            return static_cast<T*>(this);
+        }
 
     protected:
-        const int m_id;  //< Unique identifier for the widget
-        bool m_focused;  //< Tell if the widget is being focused or not
-        bool m_listening;  //< Tell if a widget can receive events
-        sf::IntRect m_rect;  //< Rectangle in which the widget is
-        Ptr m_parent;  //< Pointer to the parent widget
+        const int m_id;  ///< Unique identifier for the widget
+        bool m_focused;  ///< Tell if the widget is being focused or not
+        bool m_listening;  ///< Tell if a widget can receive events
+        sf::IntRect m_rect;  ///< Rectangle in which the widget is
+        Ptr m_parent;  ///< Pointer to the parent widget
         Style m_style;
     };
+
+    /**
+     * @brief Utility to create widget out of the "layout" box
+     * @details Useful when it comes to try something out without having to drop
+     *          a layout and some heavy configuration code. Example:
+     * @code
+     * auto button = sgl::Widgets::make<sgl::Widgets::Button>(sf::IntRect(12, 12, 48, 16));
+     * @endcode
+     * 
+     * @tparam W The widget typename
+     * @tparam Args 
+     * @param args Arguments for the widget, appart from the automatic ones (id and parent)
+     * @return W 
+     */
+    template <typename W, typename... Args>
+    W make(Args&&... args)
+    {
+        return W(/* id */ 0, /* parent */ nullptr, std::forward<Args>(args)...);
+    }
 }
 
 #endif

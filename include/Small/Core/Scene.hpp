@@ -17,6 +17,7 @@
 #include <SFML/Window/Event.hpp>
 #include <string>
 #include <Small/Scripting/Config.hpp>
+#include <Small/Graphics/Node.hpp>
 
 namespace sgl
 {
@@ -28,16 +29,16 @@ namespace sgl
      */
     enum class State
     {
-        Running,  //< The scene is active and running
-        Idle,     //< The scene is rendered / updated / processing events after the running one
-        Stopped   //< The scene isn't rendered, updated, and doesn't receive events
+        Running,  ///< The scene is active and running
+        Idle,     ///< The scene is rendered / updated / processing events after the running one
+        Stopped   ///< The scene isn't rendered, updated, and doesn't receive events
     };
 
     /**
      * @brief Base class which every user scene must derive from
      * 
      */
-    class Scene
+    class Scene : public Graphics::Node
     {
     public:
         /**
@@ -77,10 +78,16 @@ namespace sgl
 
         /**
          * @brief Rendering method, called after having updated the scene
+         * @details This method is called first, then all the children (if any) attached to it
+         *          are rendered one after another, in the order they were attached.
          * 
          * @param screen 
+         * @param transform transformation used as a base when rendering something, eg:
+         * @code
+         * screen.draw(sprite, transform);
+         * @endcode
          */
-        virtual void onRender(sf::RenderTarget& screen);
+        virtual void onRender(sf::RenderTarget& screen, const sf::Transform& transform);
 
         /**
          * @brief Method called when the application is closing
@@ -112,9 +119,9 @@ namespace sgl
         friend class SceneManager;
 
     protected:
-        State m_state;   //< The state of the scene (running, idle, stopped)
-        const int m_id;  //< The unique identifier of the scene
-        SceneManager* m_sceneManager;  //< The SceneManager to be able to change active scene
+        State m_state;   ///< The state of the scene (running, idle, stopped)
+        const int m_id;  ///< The unique identifier of the scene
+        SceneManager* m_sceneManager;  ///< The SceneManager to be able to change active scene
     };
 }
 

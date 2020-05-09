@@ -2,7 +2,7 @@
  * @file Animation.hpp
  * @author Alexandre Plateau (lexplt.dev@gmail.com)
  * @brief Handling animated sprites
- * @version 0.2
+ * @version 0.4
  * @date 2020-04-20
  * 
  * @copyright Copyright (c) 2020
@@ -103,11 +103,26 @@ namespace sgl::Graphics
          */
         int getEnd() const;
 
+        /**
+         * @brief Set the Frame Time object
+         * 
+         * @param time 
+         */
+        void setFrameTime(sf::Time time);
+
+        /**
+         * @brief Get the Frame Time object
+         * 
+         * @return sf::Time 
+         */
+        sf::Time getFrameTime() const;
+
     private:
         std::vector<sf::IntRect> m_frames;
         const sf::Texture* m_texture;
         bool m_invertX = false;
-        int m_end = -1;
+        int m_end;
+        sf::Time m_frameTime;
     };
 
     /**
@@ -120,11 +135,10 @@ namespace sgl::Graphics
         /**
          * @brief Construct a new Animated Sprite object
          * 
-         * @param frameTime Time spent drawing a single frame
          * @param paused Is the animation paused?
          * @param looped Is the animation looping?
          */
-        AnimatedSprite(sf::Time frameTime=sf::seconds(0.2f), bool paused=false, bool looped=true);
+        AnimatedSprite(bool paused=false, bool looped=true);
 
         /**
          * @brief Update the sprite
@@ -139,13 +153,6 @@ namespace sgl::Graphics
          * @param animation 
          */
         void setAnimation(const Animation& animation);
-
-        /**
-         * @brief Set the Frame Time object
-         * 
-         * @param time 
-         */
-        void setFrameTime(sf::Time time);
 
         /**
          * @brief Play animation
@@ -224,13 +231,6 @@ namespace sgl::Graphics
         bool isPlaying() const;
 
         /**
-         * @brief Get the Frame Time object
-         * 
-         * @return sf::Time 
-         */
-        sf::Time getFrameTime() const;
-
-        /**
          * @brief Set the Frame object
          * 
          * @param newFrame 
@@ -248,7 +248,6 @@ namespace sgl::Graphics
 
     private:
         const Animation* m_animation;
-        sf::Time m_frameTime;
         sf::Time m_currentTime;
         std::size_t m_currentFrame;
         bool m_isPaused;
@@ -272,10 +271,10 @@ namespace sgl::Graphics
      * [data]
      * spriteSheet="path to your spritesheet"
      * steps=["idleRight", "idleLeft", "runRight", ...]
-     * frameTime=0.2
      * 
      * [idleRight]
      * framesCount=3
+     * frameTime=0.2
      *     [idleRight.frame0]
      *     left=0
      *     top=0
@@ -293,6 +292,10 @@ namespace sgl::Graphics
      * 
      * ...
      * @endcode
+     * @details An animation loader is loading Animations from a TOML configuration file,
+     *          but it doesn't hold an AnimatedSprite, which should be handled separately.
+     *          You can retrieve animations from the loader by using `my_loader["animation_name"]`,
+     *          and attach them to a pre-existing AnimatedSprite.
      */
     class AnimationLoader
     {
@@ -320,18 +323,10 @@ namespace sgl::Graphics
          */
         Animation& operator[](const std::string& key);
 
-        /**
-         * @brief Return a reference to the underlying animated sprite
-         * 
-         * @return AnimatedSprite& 
-         */
-        AnimatedSprite& sprite();
-
     private:
         toml::Value m_config;
         std::unordered_map<std::string, Animation> m_animations;
-        sf::Texture m_texture;
-        AnimatedSprite m_sprite;
+        std::string m_textureID;
     };
 }
 

@@ -1,15 +1,20 @@
 # Roadmap
 
-## 0.0.5
+## 0.0.6
 - [ ] Shaders
 - [ ] document every class with a complete example
+- [ ] http based debugger
 
-## 0.0.4
-- [x] ArkScript-ing
-- [ ] scene graph
+## 0.0.5
+- [ ] redo the animation loader
 - [ ] actors
 - [ ] Resource management
 - [ ] Tilemap loader (from files)
+- [ ] tool: animation maker in python/pygame
+
+## 0.0.4
+- [x] ArkScript-ing
+- [x] scene graph
 
 ## 0.0.3
 - [x] Better tilemaps
