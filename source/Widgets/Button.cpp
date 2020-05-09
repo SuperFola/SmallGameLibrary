@@ -3,8 +3,8 @@
 namespace sgl::Widgets
 {
     Button::Button(int id, Base::Ptr parent, const sf::IntRect& bounds) :
-        Base(id, parent, bounds), m_shape(sf::Vector2f(static_cast<float>(bounds.width), static_cast<float>(bounds.height))),
-        m_sprite(nullptr), m_click(false), m_callback(nullptr)
+        Base(id, parent, bounds), m_shape(nullptr),
+        m_click(false), m_callback(nullptr)
     {}
 
     Button::~Button()
