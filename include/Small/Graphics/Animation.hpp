@@ -135,11 +135,10 @@ namespace sgl::Graphics
         /**
          * @brief Construct a new Animated Sprite object
          * 
-         * @param frameTime Time spent drawing a single frame
          * @param paused Is the animation paused?
          * @param looped Is the animation looping?
          */
-        AnimatedSprite(sf::Time frameTime=sf::seconds(0.2f), bool paused=false, bool looped=true);
+        AnimatedSprite(bool paused=false, bool looped=true);
 
         /**
          * @brief Update the sprite
