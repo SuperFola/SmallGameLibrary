@@ -57,7 +57,7 @@ namespace sgl::Widgets
         void onRender(sf::RenderTarget& screen, const sf::Transform& transform);
 
     protected:
-        sf::Text m_text;  //< Text of the label
+        sf::Text m_text;  ///< Text of the label
     };
 }
 

@@ -2,7 +2,7 @@
  * @file Image.hpp
  * @author Alexandre Plateau (lexplt.dev@gmail.com)
  * @brief Basic image widget
- * @version 0.1
+ * @version 0.2
  * @date 2020-04-19
  * 
  * @copyright Copyright (c) 2020
@@ -41,11 +41,17 @@ namespace sgl::Widgets
         ~Image();
 
         /**
-         * @brief Return a reference to the sprite to modify it
+         * @brief Return a pointer to the sprite to set and modify it
+         * @details Usage example:
+         * @code
+         * auto image = sgl::Widgets::make<Image>(sf::IntRect(12, 12, 32, 32));
+         * sgl::GameObjects::SpriteManager::get().add("my_sprite", my_sprite);
+         * image.sprite() = &sgl::GameObjects::SpriteManager::get().["my_sprite"];
+         * @endcode
          * 
-         * @return sf::Sprite& 
+         * @return sf::Sprite* 
          */
-        sf::Sprite& sprite();
+        sf::Sprite* sprite();
 
         /**
          * @brief Render the widget on screen
@@ -56,7 +62,7 @@ namespace sgl::Widgets
         void onRender(sf::RenderTarget& screen, const sf::Transform& transform);
 
     protected:
-        sf::Sprite m_sprite;  //< The image itself
+        sf::Sprite* m_sprite;  ///< The image itself
     };
 }
 

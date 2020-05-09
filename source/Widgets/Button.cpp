@@ -4,7 +4,7 @@ namespace sgl::Widgets
 {
     Button::Button(int id, Base::Ptr parent, const sf::IntRect& bounds) :
         Base(id, parent, bounds), m_shape(sf::Vector2f(static_cast<float>(bounds.width), static_cast<float>(bounds.height))),
-        m_click(false), m_callback(nullptr)
+        m_sprite(nullptr), m_click(false), m_callback(nullptr)
     {}
 
     Button::~Button()
@@ -20,12 +20,12 @@ namespace sgl::Widgets
         return m_text;
     }
 
-    sf::Sprite& Button::sprite()
+    sf::Sprite* Button::sprite()
     {
         return m_sprite;
     }
 
-    sf::RectangleShape& Button::shape()
+    sf::RectangleShape* Button::shape()
     {
         return m_shape;
     }
@@ -35,16 +35,19 @@ namespace sgl::Widgets
         switch (getStyle())
         {
         case Style::Text:
-            screen.draw(m_shape, transform);
+            if (m_shape)
+                screen.draw(*m_shape, transform);
             screen.draw(m_text, transform);
             break;
 
         case Style::Sprite:
-            screen.draw(m_sprite, transform);
+            if (m_sprite)
+                screen.draw(*m_sprite, transform);
             break;
 
         case Style::Both:
-            screen.draw(m_sprite, transform);
+            if (m_sprite)
+                screen.draw(*m_sprite, transform);
             screen.draw(m_text, transform);
             break;
         }

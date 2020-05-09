@@ -327,7 +327,7 @@ namespace sgl::Graphics
     private:
         toml::Value m_config;
         std::unordered_map<std::string, Animation> m_animations;
-        sf::Texture m_texture;
+        std::string m_textureID;
     };
 }
 

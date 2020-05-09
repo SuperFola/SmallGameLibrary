@@ -29,9 +29,9 @@ namespace sgl
      */
     enum class State
     {
-        Running,  //< The scene is active and running
-        Idle,     //< The scene is rendered / updated / processing events after the running one
-        Stopped   //< The scene isn't rendered, updated, and doesn't receive events
+        Running,  ///< The scene is active and running
+        Idle,     ///< The scene is rendered / updated / processing events after the running one
+        Stopped   ///< The scene isn't rendered, updated, and doesn't receive events
     };
 
     /**
@@ -119,9 +119,9 @@ namespace sgl
         friend class SceneManager;
 
     protected:
-        State m_state;   //< The state of the scene (running, idle, stopped)
-        const int m_id;  //< The unique identifier of the scene
-        SceneManager* m_sceneManager;  //< The SceneManager to be able to change active scene
+        State m_state;   ///< The state of the scene (running, idle, stopped)
+        const int m_id;  ///< The unique identifier of the scene
+        SceneManager* m_sceneManager;  ///< The SceneManager to be able to change active scene
     };
 }
 

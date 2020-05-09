@@ -125,11 +125,11 @@ namespace sgl::Scenes
         Zone(int id, int tileSize, const sf::Vector2i& zoneSize, const sf::Vector2i& mapSize);
 
     protected:
-        const int m_tileSize;            //< Size of a tile, in pixels
-        const sf::Vector2i m_zoneSize;   //< Size of a zone, in tiles
-        const sf::Vector2i m_mapSize;    //< Size of the map, in zones
-        sgl::Graphics::TileView m_view;  //< View for the map, handling transitions between zones
-        sf::Vector2i m_currentZone;      //< The zone in which the player is currently
+        const int m_tileSize;            ///< Size of a tile, in pixels
+        const sf::Vector2i m_zoneSize;   ///< Size of a zone, in tiles
+        const sf::Vector2i m_mapSize;    ///< Size of the map, in zones
+        sgl::Graphics::TileView m_view;  ///< View for the map, handling transitions between zones
+        sf::Vector2i m_currentZone;      ///< The zone in which the player is currently
 
         /**
          * @brief Get the current zone position in the map

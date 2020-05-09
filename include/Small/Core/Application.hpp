@@ -33,10 +33,10 @@ namespace sgl
      */
     namespace Style
     {
-        constexpr unsigned Titlebar   = sf::Style::Titlebar;  //< The window will have a titlebar
-        constexpr unsigned Resizable  = sf::Style::Resize;  //< The window will be resizable
-        constexpr unsigned Close      = sf::Style::Close;  //< The window will have a close button
-        constexpr unsigned Fullscreen = sf::Style::Fullscreen;  //< The window will be in fullscren, can not be combined with others
+        constexpr unsigned Titlebar   = sf::Style::Titlebar;  ///< The window will have a titlebar
+        constexpr unsigned Resizable  = sf::Style::Resize;  ///< The window will be resizable
+        constexpr unsigned Close      = sf::Style::Close;  ///< The window will have a close button
+        constexpr unsigned Fullscreen = sf::Style::Fullscreen;  ///< The window will be in fullscren, can not be combined with others
     }
 
     /**
@@ -45,13 +45,13 @@ namespace sgl
      */
     struct Settings
     {
-        unsigned width = 480;        //< Width of the window, in pixels
-        unsigned height = 360;       //< Height of the window, in pixels
-        unsigned style = Style::Titlebar | Style::Resizable | Style::Close;  //< Default mode for the window, titlebar, resizable and has a close button
-        unsigned bitsPerPixel = 32;  //< By default, we request 32 bits per pixel
-        unsigned depth = 0;          //< Depth buffer bits
-        unsigned stencil = 0;        //< Stencil buffer bits
-        unsigned antiAliasing = 1;   //< Anti aliasing level
+        unsigned width = 480;        ///< Width of the window, in pixels
+        unsigned height = 360;       ///< Height of the window, in pixels
+        unsigned style = Style::Titlebar | Style::Resizable | Style::Close;  ///< Default mode for the window, titlebar, resizable and has a close button
+        unsigned bitsPerPixel = 32;  ///< By default, we request 32 bits per pixel
+        unsigned depth = 0;          ///< Depth buffer bits
+        unsigned stencil = 0;        ///< Stencil buffer bits
+        unsigned antiAliasing = 1;   ///< Anti aliasing level
     };
 
     /**

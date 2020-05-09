@@ -3,6 +3,7 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <Small/GameObjects/Manager.hpp>
 
 namespace sgl::Graphics
 {
@@ -275,11 +276,14 @@ namespace sgl::Graphics
         }
 
         // register spritesheet
-        if (!m_texture.loadFromFile(spriteSheet->as<std::string>()))
+        sf::Texture tex;
+        if (!tex.loadFromFile(spriteSheet->as<std::string>()))
         {
             std::cerr << "AnimationLoader configuration: couldn't load spriteSheet: " << spriteSheet->as<std::string>() << std::endl;
             return false;
         }
+        m_textureID = spriteSheet->as<std::string>();
+        GameObjects::TextureManager::get().add(m_textureID, std::move(tex));
 
         // iterate on the steps
         std::vector<std::string> stepsData = steps->as<std::vector<std::string>>();
@@ -307,7 +311,7 @@ namespace sgl::Graphics
                 }
 
                 m_animations[stepsData[i]] = Animation();
-                m_animations[stepsData[i]].setSpriteSheet(m_texture);
+                m_animations[stepsData[i]].setSpriteSheet(GameObjects::TextureManager::get()[m_textureID]);
                 m_animations[stepsData[i]].setFrameTime(sf::seconds(static_cast<float>(frameTime->as<double>())));
 
                 // iterate on the frames

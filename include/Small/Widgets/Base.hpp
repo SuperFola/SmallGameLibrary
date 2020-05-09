@@ -26,9 +26,9 @@ namespace sgl::Widgets
      */
     enum class Style
     {
-        Text,    //< Display text only, if available (default)
-        Sprite,  //< Display sprite only, if available
-        Both     //< Display both, first the sprite, then the text over it
+        Text,    ///< Display text only, if available (default)
+        Sprite,  ///< Display sprite only, if available
+        Both     ///< Display both, first the sprite, then the text over it
     };
 
     /**
@@ -194,11 +194,11 @@ namespace sgl::Widgets
         }
 
     protected:
-        const int m_id;  //< Unique identifier for the widget
-        bool m_focused;  //< Tell if the widget is being focused or not
-        bool m_listening;  //< Tell if a widget can receive events
-        sf::IntRect m_rect;  //< Rectangle in which the widget is
-        Ptr m_parent;  //< Pointer to the parent widget
+        const int m_id;  ///< Unique identifier for the widget
+        bool m_focused;  ///< Tell if the widget is being focused or not
+        bool m_listening;  ///< Tell if a widget can receive events
+        sf::IntRect m_rect;  ///< Rectangle in which the widget is
+        Ptr m_parent;  ///< Pointer to the parent widget
         Style m_style;
     };
 

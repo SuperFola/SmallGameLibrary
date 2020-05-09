@@ -134,7 +134,7 @@ namespace sgl
     private:
         std::vector<std::unique_ptr<Scene>> m_scenes;
         int m_current;
-        sf::Transform m_transform;  //< This transform never change, we just use it as a base when rendering
+        sf::Transform m_transform;  ///< This transform never change, we just use it as a base when rendering
     };
 }
 
