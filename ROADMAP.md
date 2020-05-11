@@ -6,9 +6,9 @@
 - [ ] http based debugger
 
 ## 0.0.5
-- [ ] redo the animation loader
+- [x] redo the animation loader
 - [ ] actors
-- [ ] Resource management
+- [x] Resource management
 - [ ] Tilemap loader (from files)
 - [ ] tool: animation maker in python/pygame
 
