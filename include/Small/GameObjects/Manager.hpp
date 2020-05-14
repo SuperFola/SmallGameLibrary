@@ -74,6 +74,7 @@ namespace sgl::GameObjects
     private:
         Manager() {}
 
+    protected:
         std::unordered_map<std::string, T> m_container;
     };
 }

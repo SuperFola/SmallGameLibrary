@@ -4,13 +4,17 @@
 - [ ] Shaders
 - [ ] document every class with a complete example
 - [ ] http based debugger
+- [ ] parallax helper
+- [ ] raycasting
 
 ## 0.0.5
 - [x] redo the animation loader
 - [ ] actors
 - [x] Resource management
-- [ ] Tilemap loader (from files)
+- [ ] Tiled map loader
 - [ ] tool: animation maker in python/pygame
+- [ ] triggers, update trigers
+- [ ] send data from scene to scene when changing the active scene
 
 ## 0.0.4
 - [x] ArkScript-ing
