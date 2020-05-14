@@ -2,11 +2,10 @@
 
 namespace sgl::GameObjects
 {
-    TriggerManager& TriggerManager::onUpdate(const sf::Time dt)
+    TriggerManager& TriggerManager::update(TriggerManager::Visitor_t&& visitor)
     {
         for (auto& pair : m_container)
-        {
-            pair.second.onUpdate(dt);
-        }
+            visitor(pair.second);
+        return *this;
     }
 }

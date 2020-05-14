@@ -13,6 +13,7 @@
 #define sgl_small_gameobjects_triggers_trigger
 
 #include <functional>
+#include <string>
 
 namespace sgl::GameObjects
 {
@@ -28,9 +29,11 @@ namespace sgl::GameObjects
         /**
          * @brief Construct a new Trigger object
          * 
-         * @param repetions Default to 0: one time trigger
+         * @param action A void() function to call when the trigger is executed
+         * @param triggerType The typename of the inheriting children, used for inspection (name of the class to string)
+         * @param repetitions Default to 0: one time trigger. Infinite is any number below -1 (starting from -2)
          */
-        Trigger(int repetions=0);
+        Trigger(Callback_t&& action, const std::string& triggerType, int repetitions=0);
 
         /**
          * @brief Destroy the Trigger object
@@ -50,12 +53,32 @@ namespace sgl::GameObjects
          * 
          * @return int 
          */
-        int getRepetitions() const;
+        virtual const int getRepetitions() const final;
+
+        /**
+         * @brief Get the Trigger Type object
+         * 
+         * @return const std::string& 
+         */
+        virtual const std::string& getTriggerType() const final;
+
+        /**
+         * @brief Return the trigger as another type (should be a trigger subclass)
+         * 
+         * @tparam T The trigger type
+         * @return T* A pointer to the trigger (use at your own risks, if it's not a trigger subclass, it will result in an undefined behaviour)
+         */
+        template <typename T>
+        T* as()
+        {
+            return static_cast<T*>(this);
+        }
 
     protected:
         bool m_active;
-        int m_repetions;
+        int m_repetitions;
         Callback_t m_action;
+        const std::string m_triggerType;
     };
 }
 
