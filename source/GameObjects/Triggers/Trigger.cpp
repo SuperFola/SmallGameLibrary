@@ -16,7 +16,7 @@ namespace sgl::GameObjects
         m_repetitions--;
     }
 
-    int Trigger::getRepetitions() const
+    const int Trigger::getRepetitions() const
     {
         return m_repetitions;
     }
