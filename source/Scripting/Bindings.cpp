@@ -24,7 +24,7 @@ namespace sgl::Scripting
 {
     void bindCore(Ark::State* state, Application* app)
     {
-        state->loadFunction("sglCoreAppSetTitle", [=](std::vector<Ark::Value>& args) {
+        /*state->loadFunction("sglCoreAppSetTitle", [=](std::vector<Ark::Value>& args) {
             ARK_AWAIT("sglCoreAppSetTitle", 1);
             ARK_CHECK_ARG("sglCoreAppSetTitle", 0, String);
 
@@ -67,36 +67,36 @@ namespace sgl::Scripting
             app->setCurrentScene(static_cast<int>(args[0].number()));
 
             return Ark::Nil;
-        });
+        });*/
     }
 
     void bindGraphics(Ark::State* state)
     {
         // sf::RenderTarget
 
-        state->loadFunction("sglGraphics", [](std::vector<Ark::Value>& args) {
+        /*state->loadFunction("sglGraphics", [](std::vector<Ark::Value>& args) {
             return Ark::Nil;
-        });
+        });*/
     }
 
     void bindScenes(Ark::State* state)
     {
-        state->loadFunction("sglScenes", [](std::vector<Ark::Value>& args) {
+        /*state->loadFunction("sglScenes", [](std::vector<Ark::Value>& args) {
             return Ark::Nil;
-        });
+        });*/
     }
 
     void bindSystem(Ark::State* state)
     {
-        state->loadFunction("sglSystem", [](std::vector<Ark::Value>& args) {
+        /*state->loadFunction("sglSystem", [](std::vector<Ark::Value>& args) {
             return Ark::Nil;
-        });
+        });*/
     }
 
     void bindWidgets(Ark::State* state)
     {
-        state->loadFunction("sglWidgets", [](std::vector<Ark::Value>& args) {
+        /*state->loadFunction("sglWidgets", [](std::vector<Ark::Value>& args) {
             return Ark::Nil;
-        });
+        });*/
     }
 }

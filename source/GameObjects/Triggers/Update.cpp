@@ -3,7 +3,7 @@
 namespace sgl::GameObjects
 {
     UpdateTrigger::UpdateTrigger(const sf::Time delta, Trigger::Callback_t&& action, int repetitions) :
-        Trigger(action, "UpdateTrigger", repetitions), m_updateDelta(delta),
+        Trigger(std::move(action), "UpdateTrigger", repetitions), m_updateDelta(delta),
         m_currentTime(delta)
     {}
 
@@ -16,6 +16,6 @@ namespace sgl::GameObjects
         if (m_currentTime.asSeconds() <= 0.f)
             (*this)();  // call action
 
-        m_currentTime += delta;
+        m_currentTime += dt;
     }
 }
