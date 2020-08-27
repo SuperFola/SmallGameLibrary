@@ -25,6 +25,7 @@ public:
     void onEvent(const sf::Event& event);
     void onRender(sf::RenderTarget& screen, const sf::Transform& transform);
     void onQuit();
+    void onChange(void*);
 
 private:
     // animations

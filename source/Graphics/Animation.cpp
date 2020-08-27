@@ -306,7 +306,7 @@ namespace sgl::Graphics
                 const toml::Value* frameTime = m_config.find(stepsData[i] + ".frameTime");
                 if (frameTime == nullptr || !frameTime->is<double>())
                 {
-                    std::cerr << "AnimationLoader configuration: data.frameTime (double) missing" << std::endl;
+                    std::cerr << "AnimationLoader configuration: " << stepsData[i] << ".frameTime (double) missing" << std::endl;
                     return false;
                 }
 

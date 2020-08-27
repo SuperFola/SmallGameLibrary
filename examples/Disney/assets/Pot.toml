@@ -1,9 +1,9 @@
 [data]
 spriteSheet="assets/Civilian Enemies.gif"
 steps=["fall", "crash"]
-frameTime=0.3
 
 [fall]
+frameTime=0.3
 framesCount=6
     [fall.frame0]
     left=121
@@ -42,6 +42,7 @@ framesCount=6
     height=25
 
 [crash]
+frameTime=0.3
 framesCount=2
     [crash.frame0]
     left=230

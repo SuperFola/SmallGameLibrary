@@ -14,7 +14,7 @@ Game::Game(int id) :
     sgl::Scene(id), m_keyPressed(false),
     m_direction(static_cast<int>(Direction::Left)), m_jumping(false)
 {
-    std::srand(std::time(nullptr));
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
     if (!m_player.load("assets/Abu.toml"))
         std::cerr << "ERROR abu.toml" << std::endl;
@@ -26,32 +26,9 @@ Game::Game(int id) :
     {
         if (!m_pots[i].load("assets/Pot.toml"))
             std::cerr << "ERROR Pot.toml" << std::endl;
-        else
-        {
-            m_potsS[i].play(m_pots[i]["fall"]);
-        }
     }
     if (!m_font.loadFromFile("assets/yoster.ttf"))
         std::cerr << "Error yoster.ttf" << std::endl;
-
-    m_pointstxt.setFont(m_font);
-    m_pointstxt.setPosition(42, 16);
-    m_pointstxt.setCharacterSize(18);
-    m_pointstxt.setString(std::to_string(m_points));
-
-    m_gemcount = m_gem;
-    m_gemcountS.play(m_gemcount["static_gem"]);
-    m_gemcountS.setPosition(16, 20);
-
-    m_playerS.setPosition(276, floor_y);
-    m_playerS.play(m_player["idleLeft"]);
-
-    m_vendorS.setPosition(12, 500);
-    m_vendorS.play(m_vendor["idleRight"]);
-
-    m_gemS.play(m_gem["gem"]);
-    m_gempos.x = -20.f;
-    m_gemS.setPosition(m_gempos.x, m_gempos.y);
 
     if (!m_livesTex.loadFromFile("assets/abu_life.png"))
         std::cerr << "ERROR abu_life.png" << std::endl;
@@ -64,8 +41,6 @@ Game::Game(int id) :
 
     if (!m_music.openFromFile("assets/Aladdin, Disney's (GENESIS) Music - Stage 01 Prince Ali.ogg"))
         std::cerr << "ERROR Aladdin, Disney's (GENESIS) Music - Stage 01 Prince Ali.ogg" << std::endl;
-    m_music.setLoop(true);
-    m_music.play();
 }
 
 void Game::onUpdate(const sf::Time dt)
@@ -154,6 +129,7 @@ void Game::onUpdate(const sf::Time dt)
                 m_pointstxt.setString(std::to_string(m_points));
                 m_invicible = 1;
                 m_lives -= 1;
+                m_potsS[i].play(m_pots[i]["crash"]);
             }
             // update pots
             if (vec.y < floor_y + 20)
@@ -308,6 +284,49 @@ void Game::onRender(sf::RenderTarget& screen, const sf::Transform& transform)
 void Game::onQuit()
 {
     m_music.stop();
+}
+
+void Game::onChange(void*)
+{
+    m_points = 0;
+    m_jumping = false;
+    m_lives = 3;
+
+    m_potsPos.clear();
+
+    for (int i=0; i < maxPotCount - 1; ++i)
+        m_potsS[i].play(m_pots[i]["fall"]);
+
+    m_pointstxt.setFont(m_font);
+    m_pointstxt.setPosition(42, 16);
+    m_pointstxt.setCharacterSize(18);
+    m_pointstxt.setString(std::to_string(m_points));
+
+    m_gemcount = m_gem;
+    m_gemcountS.play(m_gemcount["static_gem"]);
+    m_gemcountS.setPosition(16, 20);
+
+    m_playerS.setPosition(276, floor_y);
+    m_playerS.play(m_player["idleLeft"]);
+
+    m_vendorS.setPosition(12, 500);
+    m_vendorS.play(m_vendor["idleRight"]);
+
+    m_gemS.play(m_gem["gem"]);
+    m_gempos.x = -20.f;
+    m_gemS.setPosition(m_gempos.x, m_gempos.y);
+
+    m_music.setLoop(true);
+    m_music.play();
+
+    m_keyPressed = false;
+    m_left = false;
+    m_right = false;
+    m_controls = true;
+
+    m_waitTime = sf::seconds(5.f);
+    m_generate = true;
+    m_invicible = 0;
 }
 
 void Game::generateWave()

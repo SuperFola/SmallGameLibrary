@@ -1,10 +1,10 @@
 [data]
 spriteSheet="assets/Vendor.gif"
 steps=["idleLeft", "idleRight"]
-frameTime=0.16
 
 [idleLeft]
 framesCount=5
+frameTime=0.16
     [idleLeft.frame0]
     left=4
     top=1
@@ -36,5 +36,6 @@ framesCount=5
     height=58
 
 [idleRight]
+frameTime=0.16
 copy="idleLeft"
 invertX=true

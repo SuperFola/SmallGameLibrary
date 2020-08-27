@@ -1,20 +1,25 @@
 #include <Quit.hpp>
 
+#include <Small/Core/SceneManager.hpp>
+
 Quit::Quit(int id) :
     sgl::Scene(id), m_layout()
 {
     m_font.loadFromFile("assets/yoster.ttf");
     m_layout = this->attach<sgl::Widgets::Layout>(0, nullptr, sf::IntRect(0, 0, 600, 600));
 
-    sgl::Widgets::Label* label = m_layout->add<sgl::Widgets::Label>(sf::IntRect(230, 270, 0, 0));
+    sgl::Widgets::Label* label = m_layout->add<sgl::Widgets::Label>(sf::IntRect(150, 200, 0, 0));
     {
-        label->text().setString("Game Over");
+        label->text().setString(
+            "        Game Over     \n\n"
+            "Appuyez sur une touche\n"
+            "    pour recommencer    ");
         label->text().setFont(m_font);
         label->text().setCharacterSize(24);
         label->text().setFillColor(sf::Color::Red);
     }
 
-    m_labelScore = m_layout->add<sgl::Widgets::Label>(sf::IntRect(230, 300, 0, 0));
+    m_labelScore = m_layout->add<sgl::Widgets::Label>(sf::IntRect(210, 340, 0, 0));
     {
         m_labelScore->text().setFont(m_font);
         m_labelScore->text().setCharacterSize(24);
@@ -25,6 +30,9 @@ Quit::Quit(int id) :
 void Quit::onEvent(const sf::Event& event)
 {
     m_layout->onEvent(event);
+
+    if (event.type == sf::Event::KeyPressed)
+        m_sceneManager->setCurrent(1);  // Game
 }
 
 void Quit::onUpdate(const sf::Time dt)

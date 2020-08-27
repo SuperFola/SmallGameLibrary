@@ -1,9 +1,9 @@
 [data]
 spriteSheet="assets/items.png"
 steps=["gem", "static_gem"]
-frameTime=0.16
 
 [gem]
+frameTime=0.16
 framesCount=9
     [gem.frame0]
     left=340
@@ -60,6 +60,7 @@ framesCount=9
     height=16
 
 [static_gem]
+frameTime=0.16
 framesCount=1
     [static_gem.frame0]
     left=386
