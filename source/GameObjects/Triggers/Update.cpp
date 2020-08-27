@@ -14,8 +14,12 @@ namespace sgl::GameObjects
     {
         m_currentTime -= dt;
         if (m_currentTime.asSeconds() <= 0.f)
+        {
             (*this)();  // call action
 
-        m_currentTime += dt;
+            // reset current time if it's meant to be repeated again
+            if (m_repetitions > 0)
+                m_currentTime = m_updateDelta;
+        }
     }
 }
