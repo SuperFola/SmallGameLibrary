@@ -13,8 +13,8 @@
 - [x] Resource management
 - [ ] Tiled map loader
 - [ ] tool: animation maker in python/pygame
-- [ ] triggers, update trigers
-- [ ] send data from scene to scene when changing the active scene
+- [x] triggers, update trigers
+- [x] send data from scene to scene when changing the active scene
 
 ## 0.0.4
 - [x] ArkScript-ing

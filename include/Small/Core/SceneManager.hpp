@@ -70,9 +70,10 @@ namespace sgl
          * @brief Set the Current scene
          * 
          * @param id 
+         * @param data Default to nullptr. Points to data owned by the scene calling setCurrent, to give to the next scene
          * @return SceneManager& 
          */
-        SceneManager& setCurrent(int id);
+        SceneManager& setCurrent(int id, void* data=nullptr);
 
         /**
          * @brief Initialize needed scenes with scripting informations
@@ -114,6 +115,14 @@ namespace sgl
         SceneManager& onQuit();
 
         /**
+         * @brief Return the transfered data from the last scene
+         * @details m_transferedData is left untouched until the next setCurrent() call
+         * 
+         * @return void* 
+         */
+        void* getTransferedData();
+
+        /**
          * @brief Register a scene and return its identifier
          * 
          * @tparam S The type of the scene
@@ -135,6 +144,7 @@ namespace sgl
         std::vector<std::unique_ptr<Scene>> m_scenes;
         int m_current;
         sf::Transform m_transform;  ///< This transform never change, we just use it as a base when rendering
+        void* m_transferedData;  ///< Data transfered from a scene to another. Not owned by this class at all
     };
 }
 
