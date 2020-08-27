@@ -1,0 +1,5 @@
+*.dll
+*.zip
+*.exe
+SGL/
+build/

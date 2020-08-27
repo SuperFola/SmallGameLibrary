@@ -15,5 +15,3 @@ bin/
 documentation/
 *.tmp
 warnings.log
-
-examples/Disney

@@ -1,14 +1,14 @@
-#ifndef examples_widgets_myscene
-#define examples_widgets_myscene
+#ifndef examples_disney_menu
+#define examples_disney_menu
 
 #include <Small/Core/Scene.hpp>
 #include <Small/Widgets.hpp>
 #include <SFML/Graphics/Font.hpp>
 
-class MyScene : public sgl::Scene
+class Menu : public sgl::Scene
 {
 public:
-    MyScene(int id);
+    Menu(int id);
 
     void onEvent(const sf::Event& event);
     void onUpdate(const sf::Time dt);
@@ -16,7 +16,6 @@ public:
 
 private:
     sgl::Widgets::Layout* m_layout;
-    sgl::Widgets::Label* m_label;
     sf::Font m_font;
 };
 

@@ -6,7 +6,7 @@
 namespace sgl
 {
     SceneManager::SceneManager() :
-        m_current(-1), m_transferedData(nullptr)
+        m_current(-1)
     {}
 
     SceneManager::~SceneManager()
@@ -19,7 +19,7 @@ namespace sgl
     {
         if (id == m_current)
             m_current = -1;
-        
+
         auto it = std::find_if(m_scenes.begin(), m_scenes.end(), [id](auto& scene) -> bool {
             return scene->getId() == id;
         });
@@ -42,8 +42,9 @@ namespace sgl
             m_current = id;
             m_scenes[m_current]->setState(State::Running);
 
-            // on success (scene exists), save scene transfered data
-            m_transferedData = data;
+            // call the onChange method of the scene to notify it
+            // that the current running scene has changed
+            m_scenes[m_current]->onChange(data);
         }
         return *this;
     }
@@ -59,7 +60,7 @@ namespace sgl
     {
         if (m_current != -1)
             m_scenes[m_current]->onEvent(event);
-        
+
         for (std::size_t i = 0, size = m_scenes.size(); i < size; ++i)
         {
             if (m_scenes[i]->getState() == State::Idle)
@@ -73,7 +74,7 @@ namespace sgl
     {
         if (m_current != -1)
             m_scenes[m_current]->onUpdate(dt);
-        
+
         for (std::size_t i = 0, size = m_scenes.size(); i < size; ++i)
         {
             if (m_scenes[i]->getState() == State::Idle)
@@ -103,10 +104,5 @@ namespace sgl
             m_scenes[i]->onQuit();
 
         return *this;
-    }
-
-    void* SceneManager::getTransferedData()
-    {
-        return m_transferedData;
     }
 }

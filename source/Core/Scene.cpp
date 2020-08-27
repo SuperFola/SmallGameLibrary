@@ -26,6 +26,9 @@ namespace sgl
     void Scene::onQuit()
     {}
 
+    void Scene::onChange(void* data)
+    {}
+
     void Scene::setState(State state)
     {
         m_state = state;

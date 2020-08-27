@@ -143,11 +143,13 @@ namespace sgl::Graphics
          * @tparam N 
          * @tparam Args 
          * @param args 
+         * @return N* Owned raw pointer to the created object
          */
         template <typename N, typename... Args>
-        void attach(Args&&... args)
+        N* attach(Args&&... args)
         {
             m_children.push_back(std::make_shared<N>(std::forward<Args>(args)...));
+            return static_cast<N*>(m_children.back().get());
         }
 
         /**
