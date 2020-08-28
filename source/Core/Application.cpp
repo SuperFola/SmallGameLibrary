@@ -66,6 +66,9 @@ namespace sgl
         m_scriptingConfig = config;
         m_state.setLibDir(config.arkscriptLibDir);
 
+        // save an owned pointer to this app into the VM to retrieve it from the binded functions
+        m_vm.setUserPointer(static_cast<void*>(this));
+
         // perform bindings before compiling
         Scripting::bindCore(&m_state, this);
         Scripting::bindGraphics(&m_state);
