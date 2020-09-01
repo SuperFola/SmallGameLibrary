@@ -13,6 +13,8 @@ namespace sgl
             settings.style,
             sf::ContextSettings(settings.depth, settings.stencil, settings.antiAliasing)
         ),
+        // we don't want to remove unused variables
+        m_state(Ark::FeaturePersist | Ark::FeatureFunctionArityCheck | Ark::FeatureDisallowInvalidTokenAfterParen),
         m_vm(&m_state),
         m_showDebug(false), m_scriptingEnabled(false)
     {

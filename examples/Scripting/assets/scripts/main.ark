@@ -1,7 +1,5 @@
-{
-    (let onLoad (fun ()
-        (sglCoreAppSetTitle "new title set from arkscript!")))
+(let onLoad (fun ()
+    (sgl:core:app:setTitle "new title set from arkscript!")))
 
-    (let onQuit (fun ()
-        (print "quitting")))
-}
+(let onQuit (fun ()
+    (print "quitting")))

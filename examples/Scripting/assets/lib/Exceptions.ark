@@ -1,0 +1,6 @@
+(import "Functional.ark")
+
+(let throw left)
+(let return right)
+(let try (fun (_either _continue _handle)
+    (_either _handle _continue)))

@@ -1,0 +1,185 @@
+# (([List]index)
+# !List
+# \list:forEach Iterate over a given list and run a given function on every element.
+# \list:forEach The original list is left unmodified. Example:
+# `
+# (import "List.ark")
+# (let collection [1 2 5 12])
+# (let new (list:forEach collection (fun (element) {
+#     (print element)
+# })))
+# `
+# @_L the list to iterate over
+# @_func the function to call on each element
+# author: https://github.com/SuperFola
+# )
+(let list:forEach (fun (_L _func) {
+    (mut _index 0)
+    (while (< _index (len _L)) {
+        (mut _element (@ _L _index))
+        (_func _element)
+        (set _index (+ 1 _index))
+    })
+}))
+
+# (([List]index)
+# !List
+# \list:product Iterate over a given list and multiply all the elements with the others.
+# \list:product The original list is left unmodified. Example:
+# `
+# (import "List.ark")
+# (let collection [1 2 5 12])
+# (let p (list:product collection))  # => 120
+# `
+# @_L the list to iterate over
+# author: https://github.com/FrenchMasterSword
+# )
+(let list:product (fun (_L) {
+    (mut _index 0)
+    (mut _output 1)
+    (while (< _index (len _L)) {
+        (set _output (* _output (@ _L _index)))
+        (set _index (+ 1 _index))
+    })
+    _output
+}))
+
+# (([List]index)
+# !List
+# \list:sum Iterate over a given list and sum all the elements.
+# \list:sum The original list is left unmodified. Example:
+# `
+# (import "List.ark")
+# (let collection [1 2 5 12])
+# (let p (list:sum collection))  # => 20
+# `
+# @_L the list to iterate over
+# author: https://github.com/FrenchMasterSword
+# )
+(let list:sum (fun (_L) {
+    (mut _index 0)
+    (mut _output 0)
+    (while (< _index (len _L)) {
+        (set _output (+ _output (@ _L _index)))
+        (set _index (+ 1 _index))
+    })
+    _output
+}))
+
+# @author: https://github.com/rstefanic
+(let list:drop (fun (_L _n) {
+    (mut _index _n)
+    (mut _output [])
+    (while (< _index (len _L)) {
+        (set _output (append _output (@ _L _index)))
+        (set _index (+ 1 _index))
+    })
+    _output
+}))
+
+# @author: https://github.com/rstefanic
+(let list:dropWhile (fun (_L _f) {
+    (mut _index 0)
+    (mut _output [])
+    (mut _continue true)
+
+    (while (and (< _index (len _L)) _continue) {
+        (if (_f (@ _L _index)) {
+                (set _index (+ 1 _index))
+                (set _output (append _output (@ _L _index)))
+            }
+            (set _continue false))
+    })
+    _output
+}))
+
+# @author: https://github.com/rstefanic
+(let list:filter (fun (_L _f) {
+    (mut _index 0)
+    (mut _output [])
+    (while (< _index (len _L)) {
+        (if (_f (@ _L _index))
+            (set _output (append _output (@ _L _index))))
+        (set _index (+ 1 _index))
+    })
+    _output
+}))
+
+# @author: https://github.com/rstefanic
+(let list:map (fun (_L _f) {
+    (mut _index 0)
+    (mut _output [])
+    (while (< _index (len _L)) {
+        (set _output (append _output (_f (@ _L _index))))
+        (set _index (+ 1 _index))
+    })
+    _output
+}))
+
+# @author: https://github.com/FrenchMasterSword
+(let list:reduce (fun (_L _f) {
+    (mut _index 1)
+    (mut _output (@ _L 0))
+    (while (< _index (len _L)) {
+        (set _output (_f _output (@ _L _index)))
+        (set _index (+ 1 _index))
+    })
+    _output
+}))
+
+# @author: https://github.com/rstefanic
+(let list:take (fun (_L _n) {
+    (mut _index 0)
+    (mut _output [])
+    (while (and (< _index _n) (< _index (len _L))) {
+        (set _output (append _output (@ _L _index)))
+        (set _index (+ 1 _index))
+    })
+    _output
+}))
+
+# @author: https://github.com/rstefanic
+(let list:takeWhile (fun (_L _f) {
+    (mut _index 0)
+    (mut _output [])
+    (mut _continue true)
+
+    (while (and (< _index (len _L)) _continue) {
+        (if (_f (@ _L _index)) {
+                (set _output (append _output (@ _L _index)))
+                (set _index (+ 1 _index))
+            }
+            (set _continue false)
+        )
+    })
+    _output
+}))
+
+# @author: https://github.com/FrenchMasterSword
+(let list:unzip (fun (_L) {
+    (let _m (len _L))
+    (mut _list1 [])
+    (mut _list2 [])
+    (mut _index 0)
+    (while (< _index _m) {
+        (mut current (@ _L _index))
+        (set _list1 (append _list1 (@ current 0)))
+        (set _list2 (append _list2 (@ current 1)))
+        (set _index (+ 1 _index))
+    })
+    [_list1 _list2]
+}))
+
+(import "Math.ark")  # needed for (math:min a b)
+
+# @author: https://github.com/FrenchMasterSword
+(let list:zip (fun (_a _b) {
+    (let _m (math:min (len _a) (len _b)))
+    (mut _c [])
+    (mut _index 0)
+    (while (< _index _m) {
+        (set _c (append _c [(@ _a _index) (@ _b _index)]))
+        (set _index (+ 1 _index))
+    })
+    _c
+}))
