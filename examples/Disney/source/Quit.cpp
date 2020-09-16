@@ -1,4 +1,5 @@
 #include <Quit.hpp>
+#include <Game.hpp>
 
 #include <Small/Core/SceneManager.hpp>
 
@@ -32,7 +33,7 @@ void Quit::onEvent(const sf::Event& event)
     m_layout->onEvent(event);
 
     if (event.type == sf::Event::KeyPressed)
-        m_sceneManager->setCurrent(1);  // Game
+        m_sceneManager->setCurrent<Game>();  // Game
 }
 
 void Quit::onUpdate(const sf::Time dt)

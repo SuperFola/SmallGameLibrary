@@ -149,17 +149,18 @@ namespace sgl
 
         /**
          * @brief Add a scene to the application
-         * @details Create the scene in place, and return its identifier to refer to it later.
+         * @details Create the scene in place.
          * 
          * @tparam S The type of the scene
          * @tparam Args 
          * @param args Arguments for the constructor of the scene
-         * @return int 
+         * @return Application& 
          */
         template <typename S, typename... Args>
-        int add(Args&&... args)
+        Application& add(Args&&... args)
         {
-            return m_sceneManager.add<S>(std::forward<Args>(args)...);
+            m_sceneManager.add<S>(std::forward<Args>(args)...);
+            return *this;
         }
 
         /**

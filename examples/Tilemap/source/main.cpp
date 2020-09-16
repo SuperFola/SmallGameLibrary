@@ -16,9 +16,8 @@ int main(int argc, char** argv)
         .setFPSLimit(60)
         .setDebug(true);
 
-    int id = app.add<MyScene>();
-    std::cout << id;
-    app.setCurrentScene(id);
+    app.add<MyScene>();
+    app.setCurrentScene<MyScene>();
 
     app.run();
 

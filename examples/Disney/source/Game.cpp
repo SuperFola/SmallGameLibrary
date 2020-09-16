@@ -1,4 +1,5 @@
 #include <Game.hpp>
+#include <Quit.hpp>
 
 #include <Small/Core/SceneManager.hpp>
 
@@ -146,7 +147,7 @@ void Game::onUpdate(const sf::Time dt)
     if (m_lives <= 0)
     {
         m_controls = false;
-        m_sceneManager->setCurrent(2, static_cast<void*>(&m_points));  // game over scene
+        m_sceneManager->setCurrent<Quit>(static_cast<void*>(&m_points));  // game over scene
     }
 
     // intersects with gem?

@@ -16,10 +16,10 @@ int main(int argc, char** argv)
     app.setTitle("Disney")
         .setFPSLimit(60);
 
-    int mid = app.add<Menu>();
-    int gid = app.add<Game>();
-    int qid = app.add<Quit>();
-    app.setCurrentScene(mid);
+    app.add<Menu>()
+        .add<Game>()
+        .add<Quit>();
+    app.setCurrentScene<Menu>();
 
     app.run();
 

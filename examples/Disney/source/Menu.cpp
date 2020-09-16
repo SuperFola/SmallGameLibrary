@@ -1,4 +1,5 @@
 #include <Menu.hpp>
+#include <Game.hpp>
 
 #include <Small/Core/SceneManager.hpp>
 
@@ -36,7 +37,7 @@ void Menu::onEvent(const sf::Event& event)
     m_layout->onEvent(event);
 
     if (event.type == sf::Event::KeyReleased)
-        m_sceneManager->setCurrent(1);  // Game
+        m_sceneManager->setCurrent<Game>();  // Game
 }
 
 void Menu::onUpdate(const sf::Time dt)

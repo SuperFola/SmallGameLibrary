@@ -12,9 +12,9 @@ int main(int argc, char** argv)
 
     app.setTitle("Hello world!")
         .setFPSLimit(60);
-    
-    int id = app.add<Bis>();
-    app.setCurrentScene(id);
+
+    app.add<Bis>();
+    app.setCurrentScene<Bis>();
 
     app.run();
 
