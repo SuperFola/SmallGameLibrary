@@ -51,6 +51,12 @@ namespace sgl
         return *this;
     }
 
+    Application& Application::setCurrentSceneId(int id)
+    {
+        m_sceneManager.setCurrentId(id);
+        return *this;
+    }
+
     Application& Application::setScripting(bool value)
     {
         m_scriptingEnabled = value;

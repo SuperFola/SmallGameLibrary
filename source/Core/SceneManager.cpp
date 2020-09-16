@@ -23,7 +23,7 @@ namespace sgl
         if (id == m_current)
             m_current = -1;
 
-        for (std::size_t i = 0, end = m_scenes.end(); i < end; ++i)
+        for (std::size_t i = 0, end = m_scenes.size(); i < end; ++i)
         {
             if (m_scenes[i] && m_scenes[i]->getId() == id)
             {
@@ -34,6 +34,27 @@ namespace sgl
         }
 
         return false;
+    }
+
+    SceneManager& SceneManager::setCurrentId(int id, void* data)
+    {
+        for (std::size_t i = 0, end = m_scenes.size(); i < end; ++i)
+        {
+            if (m_scenes[i] && m_scenes[i]->getId() == id)
+            {
+                if (m_current != -1)
+                    m_scenes[m_current]->setState(State::Stopped);
+                m_current = id;
+                m_scenes[m_current]->setState(State::Running);
+
+                // call the onChange method of the scene to notify it
+                // that the current running scene has changed
+                m_scenes[m_current]->onChange(data);
+                break;
+            }
+        }
+
+        return *this;
     }
 
     SceneManager& SceneManager::init(const Scripting::Config& config)

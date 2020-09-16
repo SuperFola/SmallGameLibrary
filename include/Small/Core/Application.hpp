@@ -123,10 +123,23 @@ namespace sgl
          * @brief Set the Current Scene
          * @details By default, no scene is selected, thus nothing will be rendered
          * 
-         * @param id 
+         * @tparam S The type of the scene
          * @return Application& 
          */
-        Application& setCurrentScene(int id);
+        template <typename S>
+        Application& setCurrentScene()
+        {
+            m_sceneManager.setCurrent<S>();
+            return *this;
+        }
+
+        /**
+         * @brief Set the Current Scene Id object
+         * 
+         * @param id the id of the scene
+         * @return Application& 
+         */
+        Application& setCurrentSceneId(int id);
 
         /**
          * @brief Enable or disable scripting

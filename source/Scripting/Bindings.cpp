@@ -77,7 +77,7 @@ namespace sgl::Scripting
         ARK_CHECK_ARG("sgl:core:app:setCurrentScene", 0, Number);
         RETRIEVE_SGL_APP(vm);
 
-        app->setCurrentScene(static_cast<int>(args[0].number()));
+        app->setCurrentSceneId(static_cast<int>(args[0].number()));
 
         return Ark::Nil;
     }

@@ -76,7 +76,7 @@ namespace sgl
          * @return SceneManager& 
          */
         template <typename Scene>
-        SceneManager& setCurrent(void* data=nullptr);
+        SceneManager& setCurrent(void* data=nullptr)
         {
             const std::type_info& type(typeid(Scene));
             int id = m_hashCodeToSceneId[type.hash_code()];
@@ -94,6 +94,15 @@ namespace sgl
             }
             return *this;
         }
+
+        /**
+         * @brief Set the Current Id object
+         * 
+         * @param id the scene id
+         * @param data optional pointer to data for the scene
+         * @return SceneManager& 
+         */
+        SceneManager& setCurrentId(int id, void* data=nullptr);
 
         /**
          * @brief Initialize needed scenes with scripting informations
@@ -148,13 +157,13 @@ namespace sgl
             // register the scene manger in the newly created scene
             m_scenes.back().get()->m_sceneManager = this;
 
-            const std::type_info& type(std::type_info(typeid(S)));
+            const std::type_info& type(typeid(S));
             m_hashCodeToSceneId[type.hash_code()] = static_cast<int>(m_scenes.size()) - 1;
         }
 
     private:
         std::vector<std::unique_ptr<Scene>> m_scenes;
-        std::unordered_map<std::size_t, std::size_t> m_hashCodeToSceneId;
+        std::unordered_map<std::size_t, int> m_hashCodeToSceneId;
         int m_current;
         sf::Transform m_transform;  ///< This transform never change, we just use it as a base when rendering
     };
