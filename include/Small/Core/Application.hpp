@@ -52,6 +52,8 @@ namespace sgl
         unsigned depth = 0;          ///< Depth buffer bits
         unsigned stencil = 0;        ///< Stencil buffer bits
         unsigned antiAliasing = 1;   ///< Anti aliasing level
+        unsigned major = 3;          ///< Major version for OpenGL
+        unsigned minor = 3;          ///< Minor version for OpenGL
     };
 
     /**

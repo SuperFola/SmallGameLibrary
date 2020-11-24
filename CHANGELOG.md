@@ -5,6 +5,8 @@
 - added a widget maker `sgl::Widgets::make<Type>(args)`
 - adding basic actor in `sgl::GameObjects::Actor`
 - adding a templated ressource manager class in `sgl::GameObjects::Manager<T>`
+- added glad
+- added glm
 
 ### Changed
 - the whole widget system is now using the scene graph through the `sgl::Graphics::Node` class

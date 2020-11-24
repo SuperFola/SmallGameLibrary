@@ -1,3 +1,5 @@
+#include <glad.h>
+
 #include <Small/Core/Application.hpp>
 
 #include <Small/Scripting/Engine.hpp>
@@ -11,15 +13,22 @@ namespace sgl
             sf::VideoMode(settings.width, settings.height, settings.bitsPerPixel),
             "SmallGameLibray default application",
             settings.style,
-            sf::ContextSettings(settings.depth, settings.stencil, settings.antiAliasing)
+            sf::ContextSettings(settings.depth, settings.stencil, settings.antiAliasing, settings.major, settings.minor)
         ),
         // we don't want to remove unused variables
-        m_state(Ark::FeaturePersist | Ark::FeatureFunctionArityCheck | Ark::FeatureDisallowInvalidTokenAfterParen),
+        m_state(Ark::FeaturePersist | Ark::FeatureFunctionArityCheck),
         m_vm(&m_state),
         m_showDebug(false), m_scriptingEnabled(false)
     {
+        if (!gladLoadGL())
+        {
+            std::cout << "Failed to load glad" << std::endl;
+            exit(-1);
+        }
+
         ImGui::SFML::Init(m_screen);
         m_screen.resetGLStates();
+        glViewport(0, 0, settings.width, settings.height);
     }
 
     Application::~Application()
