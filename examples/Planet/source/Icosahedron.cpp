@@ -34,10 +34,6 @@
 #include <cmath>
 #include <Icosahedron.h>
 
-
-///////////////////////////////////////////////////////////////////////////////
-// ctor
-///////////////////////////////////////////////////////////////////////////////
 Icosahedron::Icosahedron(float radius) : interleavedStride(32)
 {
     setRadius(radius);
@@ -46,9 +42,6 @@ Icosahedron::Icosahedron(float radius) : interleavedStride(32)
 Icosahedron::~Icosahedron()
 {}
 
-///////////////////////////////////////////////////////////////////////////////
-// setters
-///////////////////////////////////////////////////////////////////////////////
 void Icosahedron::setRadius(float radius)
 {
     this->radius = radius;
@@ -66,10 +59,10 @@ void Icosahedron::setEdgeLength(float edge)
     updateRadius(); // update vertex positions only
 }
 
-///////////////////////////////////////////////////////////////////////////////
-// draw a icosahedron in VertexArray mode
-// OpenGL RC must be set before calling it
-///////////////////////////////////////////////////////////////////////////////
+/*
+    draw a icosahedron in VertexArray mode
+    OpenGL RC must be set before calling it
+*/
 void Icosahedron::draw() const
 {
     glEnableClientState(GL_VERTEX_ARRAY);
@@ -87,11 +80,9 @@ void Icosahedron::draw() const
     glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }
 
-
-
-///////////////////////////////////////////////////////////////////////////////
-// update vertex positions only
-///////////////////////////////////////////////////////////////////////////////
+/*
+    update vertex positions only
+*/
 void Icosahedron::updateRadius()
 {
     float scale = sqrtf(radius * radius / (vertices[0] * vertices[0] + vertices[1] * vertices[1] + vertices[2] * vertices[2]));
@@ -111,14 +102,12 @@ void Icosahedron::updateRadius()
     }
 }
 
-
-
-///////////////////////////////////////////////////////////////////////////////
-// compute 12 vertices of icosahedron using spherical coordinates
-// The north pole is at (0, 0, r) and the south pole is at (0,0,-r).
-// 5 vertices are placed by rotating 72 deg at elevation 26.57 deg (=atan(1/2))
-// 5 vertices are placed by rotating 72 deg at elevation -26.57 deg
-///////////////////////////////////////////////////////////////////////////////
+/*
+    compute 12 vertices of icosahedron using spherical coordinates
+    The north pole is at (0, 0, r) and the south pole is at (0,0,-r).
+    5 vertices are placed by rotating 72 deg at elevation 26.57 deg (=atan(1/2))
+    5 vertices are placed by rotating 72 deg at elevation -26.57 deg
+*/
 std::vector<float> Icosahedron::computeVertices()
 {
     const float PI = 3.1415926f;
@@ -166,23 +155,21 @@ std::vector<float> Icosahedron::computeVertices()
     return vertices;
 }
 
-
-
-///////////////////////////////////////////////////////////////////////////////
-// generate vertices with flat shading
-// each triangle is independent (no shared vertices)
-// NOTE: The texture coords are offset in order to align coords to image pixels
-//    (S,0)  3S  5S  7S  (9S,0)
-//       /\  /\  /\  /\  /\             //
-//      /__\/__\/__\/__\/__\(10S,T)     //
-// (0,T)\  /\  /\  /\  /\  /\           //
-//       \/__\/__\/__\/__\/__\(11S,2T)  //
-//  (S,2T)\  /\  /\  /\  /\  /          //
-//         \/  \/  \/  \/  \/           //
-//    (2S,3T)  4S  6S  8S  (10S,3T)
-// where S = 186/2048 = 0.0908203
-//       T = 322/1024 = 0.3144531, If texture size is 2048x1024, S=186, T=322
-///////////////////////////////////////////////////////////////////////////////
+/*
+    generate vertices with flat shading
+    each triangle is independent (no shared vertices)
+    NOTE: The texture coords are offset in order to align coords to image pixels
+       (S,0)  3S  5S  7S  (9S,0)
+          /\  /\  /\  /\  /\             //
+         /__\/__\/__\/__\/__\(10S,T)     //
+    (0,T)\  /\  /\  /\  /\  /\           //
+          \/__\/__\/__\/__\/__\(11S,2T)  //
+     (S,2T)\  /\  /\  /\  /\  /          //
+            \/  \/  \/  \/  \/           //
+       (2S,3T)  4S  6S  8S  (10S,3T)
+    where S = 186/2048 = 0.0908203
+          T = 322/1024 = 0.3144531, If texture size is 2048x1024, S=186, T=322
+*/
 void Icosahedron::buildVertices()
 {
     //const float S_STEP = 1 / 11.0f;         // horizontal texture step
@@ -269,12 +256,10 @@ void Icosahedron::buildVertices()
     buildInterleavedVertices();
 }
 
-
-
-///////////////////////////////////////////////////////////////////////////////
-// generate interleaved vertices: V/N/T
-// stride must be 32 bytes
-///////////////////////////////////////////////////////////////////////////////
+/*
+    generate interleaved vertices: V/N/T
+    stride must be 32 bytes
+*/
 void Icosahedron::buildInterleavedVertices()
 {
     std::vector<float>().swap(interleavedVertices);
@@ -296,11 +281,9 @@ void Icosahedron::buildInterleavedVertices()
     }
 }
 
-
-
-///////////////////////////////////////////////////////////////////////////////
-// add 3 vertices to array
-///////////////////////////////////////////////////////////////////////////////
+/*
+    add 3 vertices to array
+*/
 void Icosahedron::addVertices(float v1[3], float v2[3], float v3[3])
 {
     vertices.push_back(v1[0]);  // x
@@ -314,11 +297,9 @@ void Icosahedron::addVertices(float v1[3], float v2[3], float v3[3])
     vertices.push_back(v3[2]);
 }
 
-
-
-///////////////////////////////////////////////////////////////////////////////
-// add 3 normals to array
-///////////////////////////////////////////////////////////////////////////////
+/*
+    add 3 normals to array
+*/
 void Icosahedron::addNormals(float n1[3], float n2[3], float n3[3])
 {
     normals.push_back(n1[0]);  // nx
@@ -332,11 +313,9 @@ void Icosahedron::addNormals(float n1[3], float n2[3], float n3[3])
     normals.push_back(n3[2]);
 }
 
-
-
-///////////////////////////////////////////////////////////////////////////////
-// add 3 texture coords to array
-///////////////////////////////////////////////////////////////////////////////
+/*
+    add 3 texture coords to array
+*/
 void Icosahedron::addTexCoords(float t1[2], float t2[2], float t3[2])
 {
     texCoords.push_back(t1[0]); // s
@@ -347,11 +326,9 @@ void Icosahedron::addTexCoords(float t1[2], float t2[2], float t3[2])
     texCoords.push_back(t3[1]);
 }
 
-
-
-///////////////////////////////////////////////////////////////////////////////
-// add 3 indices to array
-///////////////////////////////////////////////////////////////////////////////
+/*
+    add 3 indices to array
+*/
 void Icosahedron::addIndices(unsigned int i1, unsigned int i2, unsigned int i3)
 {
     indices.push_back(i1);
@@ -359,17 +336,15 @@ void Icosahedron::addIndices(unsigned int i1, unsigned int i2, unsigned int i3)
     indices.push_back(i3);
 }
 
-
-
-///////////////////////////////////////////////////////////////////////////////
-// add 6 edge lines to array starting from param (i)
-//  /   /   /   /   /       : (i, i+1)                          //
-// /__ /__ /__ /__ /__                                          //
-// \  /\  /\  /\  /\  /     : (i+3, i+4), (i+3, i+5), (i+4, i+5)//
-//  \/__\/__\/__\/__\/__                                        //
-//   \   \   \   \   \      : (i+9,i+10), (i+9, i+11)           //
-//    \   \   \   \   \                                         //
-///////////////////////////////////////////////////////////////////////////////
+/*
+    add 6 edge lines to array starting from param (i)
+     /   /   /   /   /       : (i, i+1)                          //
+    /__ /__ /__ /__ /__                                          //
+    \  /\  /\  /\  /\  /     : (i+3, i+4), (i+3, i+5), (i+4, i+5)//
+     \/__\/__\/__\/__\/__                                        //
+      \   \   \   \   \      : (i+9,i+10), (i+9, i+11)           //
+       \   \   \   \   \                                         //
+*/
 void Icosahedron::addLineIndices(unsigned int index)
 {
     lineIndices.push_back(index);       // (i, i+1)
@@ -386,13 +361,12 @@ void Icosahedron::addLineIndices(unsigned int index)
     lineIndices.push_back(index+11);
 }
 
+/*
+    static functions
 
-
-// static functions ===========================================================
-///////////////////////////////////////////////////////////////////////////////
-// return face normal of a triangle v1-v2-v3
-// if a triangle has no surface (normal length = 0), then return a zero vector
-///////////////////////////////////////////////////////////////////////////////
+    return face normal of a triangle v1-v2-v3
+    if a triangle has no surface (normal length = 0), then return a zero vector
+*/
 void Icosahedron::computeFaceNormal(float v1[3], float v2[3], float v3[3], float n[3])
 {
     const float EPSILON = 0.000001f;
