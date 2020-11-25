@@ -26,9 +26,10 @@ namespace sgl
             exit(-1);
         }
 
-        ImGui::SFML::Init(m_screen);
         m_screen.resetGLStates();
         glViewport(0, 0, settings.width, settings.height);
+
+        ImGui::SFML::Init(m_screen);
     }
 
     Application::~Application()

@@ -27,6 +27,8 @@ namespace sgl
 
         if (m_showDebug)
         {
+            m_screen.pushGLStates();
+
             m_profiler.Begin(internal::Profiler::Stage::Plot);
 
             m_profiler.Begin(internal::Profiler::Stage::NewFrame);
@@ -83,6 +85,8 @@ namespace sgl
             }
 
             m_profiler.End(internal::Profiler::Stage::Plot);
+
+            m_screen.popGLStates();
         }
 
         m_sceneManager.onUpdate(dt);
@@ -103,15 +107,22 @@ namespace sgl
         // then the debug interface on top of it
         if (m_showDebug)
         {
+            m_screen.pushGLStates();
+
             m_profiler.Begin(internal::Profiler::Stage::ImGuiRender);
 
             if (m_wireframe)
                 glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
             ImGui::SFML::Render(m_screen);
-            if (m_wireframe)
-                glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
             m_profiler.End(internal::Profiler::Stage::ImGuiRender);
+
+            m_screen.popGLStates();
+
+            if (m_wireframe)
+                glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+            else
+                glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
         }
 
         m_profiler.Begin(internal::Profiler::Stage::SwapWindow);
