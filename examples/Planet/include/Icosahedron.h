@@ -41,9 +41,9 @@ public:
 
     // getters/setters
     float getRadius() const                 { return radius; }
-    void setRadius(float radius);
+    void  setRadius(float radius);
     float getEdgeLength() const             { return edgeLength; }
-    void setEdgeLength(float edge);
+    void  setEdgeLength(float edge);
 
     // for vertex data
     unsigned int getVertexCount() const     { return (unsigned int)vertices.size() / 3; }
@@ -74,9 +74,6 @@ public:
     // draw in VertexArray mode
     void draw() const;
 
-    // debug
-    void printSelf() const;
-
 protected:
 
 private:
@@ -102,7 +99,6 @@ private:
     std::vector<float> texCoords;
     std::vector<unsigned int> indices;
     std::vector<unsigned int> lineIndices;
-    unsigned m_vao, m_vbo;
 
     // interleaved
     std::vector<float> interleavedVertices;

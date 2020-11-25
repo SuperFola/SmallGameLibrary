@@ -27,7 +27,6 @@
 // UPDATED: 2018-07-31
 ///////////////////////////////////////////////////////////////////////////////
 
-// #include <glad.h>
 #include <SFML/OpenGL.hpp>
 
 #include <iostream>
@@ -36,36 +35,16 @@
 #include <Icosahedron.h>
 
 
-
 ///////////////////////////////////////////////////////////////////////////////
 // ctor
 ///////////////////////////////////////////////////////////////////////////////
 Icosahedron::Icosahedron(float radius) : interleavedStride(32)
 {
     setRadius(radius);
-
-    /*glGenVertexArrays(1, &m_vao);
-    glGenBuffers(1, &m_vbo);
-
-    glBindVertexArray(m_vao);
-    glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
-    glBufferData(GL_ARRAY_BUFFER, interleavedVertices.size(), interleavedVertices.data(), GL_STATIC_DRAW);
-
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*) 0);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*) (3 * sizeof(GLfloat)));
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*) (6 * sizeof(GLfloat)));
-    glEnableVertexAttribArray(2);
-
-    glBindVertexArray(0);*/
 }
 
 Icosahedron::~Icosahedron()
-{
-    /*glDeleteVertexArrays(1, &m_vao);
-    glDeleteBuffers(1, &m_vbo);*/
-}
+{}
 
 ///////////////////////////////////////////////////////////////////////////////
 // setters
@@ -88,30 +67,11 @@ void Icosahedron::setEdgeLength(float edge)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// print itself
-///////////////////////////////////////////////////////////////////////////////
-void Icosahedron::printSelf() const
-{
-
-    std::cout << "===== Icosahedron =====\n"
-              << "        Radius: " << radius << "\n"
-              << "   Edge Length: " << edgeLength << "\n"
-              << "Triangle Count: " << getTriangleCount() << "\n"
-              << "   Index Count: " << getIndexCount() << "\n"
-              << "  Vertex Count: " << getVertexCount() << "\n"
-              << "  Normal Count: " << getNormalCount() << "\n"
-              << "TexCoord Count: " << getTexCoordCount() << std::endl;
-}
-
-///////////////////////////////////////////////////////////////////////////////
 // draw a icosahedron in VertexArray mode
 // OpenGL RC must be set before calling it
 ///////////////////////////////////////////////////////////////////////////////
 void Icosahedron::draw() const
 {
-    /*glBindVertexArray(m_vao);
-    glDrawArrays(GL_TRIANGLES, 0, interleavedVertices.size() / 8);*/
-
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_NORMAL_ARRAY);
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);

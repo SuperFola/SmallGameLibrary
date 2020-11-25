@@ -27,15 +27,6 @@ MyScene::MyScene(int id) :
         glm::vec3(0.0f, 1.0f, 0.0f)
     );
 
-    // glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-    // glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
-    glEnable(GL_DEPTH_TEST);
-    // glEnable(GL_LIGHTING);
-    // glEnable(GL_TEXTURE_2D);
-    glEnable(GL_CULL_FACE);
-    glDepthFunc(GL_LEQUAL);
-    glDepthMask(GL_TRUE);
-
     // shader
     m_shader.loadFromFile("assets/shader.vert", "assets/shader.frag");
 
