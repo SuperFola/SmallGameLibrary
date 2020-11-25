@@ -7,6 +7,7 @@
 - adding a templated ressource manager class in `sgl::GameObjects::Manager<T>`
 - added glad
 - added glm
+- enhancing debug window to add FPS and vsync toggle
 
 ### Changed
 - the whole widget system is now using the scene graph through the `sgl::Graphics::Node` class
@@ -14,6 +15,7 @@
 - the frameTime attribute of the animations are now per animation and not per animated sprite
 - instead of using the scene id to select the current scene we now use the scene class name (template parameter)
 - now removing scene correctly to avoid invalidation of `m_current` (index of the current running scene)
+- better handling of imgui in debug mode to avoid depth problems with OpenGL
 
 ### Removed
 
