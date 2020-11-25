@@ -41,13 +41,13 @@ namespace sgl
                 ImGui::Begin("Debug");
 
                 ImGui::PlotVariable("Frame time: ", dt.asSeconds() * 1000.0f);
+                ImGui::Text("FPS: %0.2f", 1.f / dt.asSeconds());
 
-                if (ImGui::Checkbox("Wireframe", &m_wireframe))
+                ImGui::Checkbox("Wireframe", &m_wireframe);
+
+                if (ImGui::Checkbox("VSync", &m_vsync))
                 {
-                    if (m_wireframe)
-                        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-                    else
-                        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+                    setVSync(m_vsync);
                 }
 
                 ImGui::End();
@@ -61,8 +61,8 @@ namespace sgl
 
                 auto& entry = m_profiler._entries[m_profiler.GetCurrentEntryIndex()];
                 ImGuiWidgetFlameGraph::PlotFlame(
-                    "CPU", &internal::ProfilerValueGetter, &entry, internal::Profiler::_StageCount,
-                    0, "Main Thread", FLT_MAX, FLT_MAX, ImVec2(600, 200)
+                    "", &internal::ProfilerValueGetter, &entry, internal::Profiler::_StageCount,
+                    0, "Main Thread", FLT_MAX, FLT_MAX, ImVec2(400, 200)
                 );
 
                 std::chrono::duration<float, std::milli> frameDuration = entry._frameEnd - entry._frameStart;

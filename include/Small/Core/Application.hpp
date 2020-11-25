@@ -202,6 +202,7 @@ namespace sgl
         bool m_showDebug;
         const int m_debugKey = sf::Keyboard::F4;
         bool m_wireframe = false;
+        bool m_vsync = false;
 
         /**
          * @brief Handling basic events (closing window, triggering debug mode), and passing the events to the active scene

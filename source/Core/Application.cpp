@@ -45,6 +45,7 @@ namespace sgl
 
     Application& Application::setVSync(bool state)
     {
+        m_vsync = state;
         m_screen.setVerticalSyncEnabled(state);
         return *this;
     }
