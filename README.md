@@ -1,6 +1,7 @@
-# SmallGameLibrary
+# SmallGameLibrary ![Latest version](https://img.shields.io/github/v/tag/superfola/smallgamelibrary?label=version&include_prereleases&style=for-the-badge)
 
-![CI](https://github.com/SuperFola/SmallGameLibrary/workflows/CI/badge.svg)
+![Code size](https://img.shields.io/github/languages/code-size/SuperFola/SmallGameLibrary?style=for-the-badge&logo=github)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/SuperFola/SmallGameLibrary/CI?logo=cmake&style=for-the-badge)
 
 A C++17 small game library relying on SFML 2.5.x.
 
@@ -23,6 +24,6 @@ Examples are provided in the `examples/` folder, and can be built right there, t
 
 # Copyright and License information
 
-Copyright (c) 2020 Alexandre Plateau (SuperFola). All rights reserved.
+Copyright (c) 2020-2021 Alexandre Plateau (SuperFola). All rights reserved.
 
 This project is distributed under Mozilla Public License 2.0.
