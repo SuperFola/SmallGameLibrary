@@ -15,8 +15,8 @@ public:
     void onRender(sf::RenderTarget& screen, const sf::Transform& transform);
 
 private:
-    sgl::Widgets::Layout m_layout;
-    int m_labelId;
+    sgl::Widgets::Layout* m_layout;
+    sgl::Widgets::Label* m_label;
     sf::Font m_font;
 };
 

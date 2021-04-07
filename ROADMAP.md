@@ -1,16 +1,19 @@
 # Roadmap
 
 ## 0.0.6
-- [ ] Shaders
 - [ ] document every class with a complete example
 - [ ] http based debugger
+- [ ] parallax helper
+- [ ] raycasting
+- [ ] actors
 
 ## 0.0.5
-- [ ] redo the animation loader
-- [ ] actors
-- [ ] Resource management
-- [ ] Tilemap loader (from files)
-- [ ] tool: animation maker in python/pygame
+- [x] redo the animation loader
+- [x] actors WIP
+- [x] Resource management
+- [ ] Tiled map loader
+- [x] triggers, update trigers
+- [x] send data from scene to scene when changing the active scene
 
 ## 0.0.4
 - [x] ArkScript-ing

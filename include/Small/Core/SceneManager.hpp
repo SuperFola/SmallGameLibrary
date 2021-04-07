@@ -20,6 +20,8 @@
 #include <Small/Core/Scene.hpp>
 #include <Small/Scripting/Config.hpp>
 #include <SFML/Graphics/Transform.hpp>
+#include <typeinfo>
+#include <unordered_map>
 
 namespace sgl
 {
@@ -62,17 +64,45 @@ namespace sgl
          * @brief Return a scene by its identifier
          * 
          * @param id 
-         * @return Scene* 
+         * @return Scene* will be nullptr if the scene couldn't be found
          */
         inline Scene* operator[](int id);
 
         /**
          * @brief Set the Current scene
          * 
-         * @param id 
+         * @tparam S The type of the scene
+         * @param data Default to nullptr. Points to data owned by the scene calling setCurrent, to give to the next scene
          * @return SceneManager& 
          */
-        SceneManager& setCurrent(int id);
+        template <typename Scene>
+        SceneManager& setCurrent(void* data=nullptr)
+        {
+            const std::type_info& type(typeid(Scene));
+            int id = m_hashCodeToSceneId[type.hash_code()];
+
+            if (0 <= id && id < static_cast<int>(m_scenes.size()))
+            {
+                if (m_current != -1)
+                    m_scenes[m_current]->setState(State::Stopped);
+                m_current = id;
+                m_scenes[m_current]->setState(State::Running);
+
+                // call the onChange method of the scene to notify it
+                // that the current running scene has changed
+                m_scenes[m_current]->onChange(data);
+            }
+            return *this;
+        }
+
+        /**
+         * @brief Set the Current Id object
+         * 
+         * @param id the scene id
+         * @param data optional pointer to data for the scene
+         * @return SceneManager& 
+         */
+        SceneManager& setCurrentId(int id, void* data=nullptr);
 
         /**
          * @brief Initialize needed scenes with scripting informations
@@ -119,20 +149,21 @@ namespace sgl
          * @tparam S The type of the scene
          * @tparam Args 
          * @param args Arguments for the constructor of the scene
-         * @return int Identifier of the scene
          */
         template <typename S, typename... Args>
-        int add(Args&&... args)
+        void add(Args&&... args)
         {
             m_scenes.push_back(std::make_unique<S>(static_cast<int>(m_scenes.size()), std::forward<Args>(args)...));
             // register the scene manger in the newly created scene
             m_scenes.back().get()->m_sceneManager = this;
-            // return the identifier of the scene
-            return static_cast<int>(m_scenes.size()) - 1;
+
+            const std::type_info& type(typeid(S));
+            m_hashCodeToSceneId[type.hash_code()] = static_cast<int>(m_scenes.size()) - 1;
         }
 
     private:
         std::vector<std::unique_ptr<Scene>> m_scenes;
+        std::unordered_map<std::size_t, int> m_hashCodeToSceneId;
         int m_current;
         sf::Transform m_transform;  ///< This transform never change, we just use it as a base when rendering
     };

@@ -12,12 +12,14 @@ endif()
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # search for needed libraries
-find_package(SFML 2.5 COMPONENTS system graphics window audio network REQUIRED)
+find_package(SFML 2.5.1 COMPONENTS system graphics window audio network REQUIRED)
 find_package(Threads REQUIRED)
 find_package(OpenGL REQUIRED)
 
 # add thirdparties
 add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty)
+set(BUILD_STATIC_LIBS On)
+add_subdirectory(${PROJECT_SOURCE_DIR}/thirdparty/glm)
 
 # search for source files
 file(GLOB_RECURSE SOURCE_FILES ${PROJECT_SOURCE_DIR}/source/*.cpp)
@@ -29,7 +31,7 @@ add_library(${PROJECT_NAME} STATIC ${SOURCE_FILES} ${THIRDPARTY_SOURCES})
 
 # link libraries
 target_link_libraries(${PROJECT_NAME} PUBLIC
-    sfml-system sfml-graphics sfml-window sfml-audio sfml-network
+    sfml-system sfml-graphics sfml-window sfml-audio sfml-network glm::glm_static
     ${THIRDPARTY_LIBS}
     ${CMAKE_THREAD_LIBS_INIT}
     ${OPENGL_LIBRARIES}

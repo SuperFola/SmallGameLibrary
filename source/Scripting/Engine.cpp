@@ -8,7 +8,12 @@ namespace sgl::Scripting
 {
     bool compileScript(const std::string& file, const std::string& output, const std::string& arkscriptLibDir)
     {
-        Ark::Compiler compiler(/* debug level */ 0, arkscriptLibDir);
+        Ark::Compiler compiler(
+            /* debug level */ 0,
+            arkscriptLibDir,
+            // we don't want to remove unused variables
+            /* options */ Ark::FeaturePersist
+        );
 
         std::ifstream fileStream(file);
         std::stringstream buffer;

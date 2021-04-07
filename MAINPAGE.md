@@ -83,8 +83,8 @@ int main(int argc, char** argv)
         .setFPSLimit(60)
         .setDebug(true);
 
-    int id = app.add<MyScene>(12);
-    app.setCurrentScene(id);
+    app.add<MyScene>(12);
+    app.setCurrentScene<MyScene>();
 
     app.run();
 
@@ -93,3 +93,37 @@ int main(int argc, char** argv)
 ~~~~
 
 The sgl::Settings can be modified to change the `width` and `height` of the window, as well as its `style` (presence of titlebar, close button...). Some other settings can be modified but are linked to the backend, OpenGL, so modify them only if you know what you are doing.
+
+We add and create a new scene to an application by using `app.add<Scene>(args)`, and set it as the current one by using `app.setCurrentScene<MyScene>()`. This means that if we want to use the same scene multiple time with different parameters, for example a `Level` scene, we wouldn't be able to have more than a single level registered at a time since they are selected by the class name and not by their scene id. Thus we can use a workaround with templated classes:
+
+~~~~{.cpp}
+template <class T, int N>
+class Wrapper : public T
+{
+public:
+    template <typename... Args>
+    Wrapper(Args&&... args) :
+        T(std::forward<Args>(args)...)
+    {}
+};
+
+int main(int argc, char** argv)
+{
+    const sgl::Settings settings = {};
+    sgl::Application app(settings);
+
+    app.setTitle("Hello world!")
+        .setVSync(false)
+        .setFPSLimit(60)
+        .setDebug(true);
+
+    app.add<Wrapper<Level, 1>>(12);
+    app.add<Wrapper<Level, 2>>(15);
+    app.add<Wrapper<Level, 3>>(32);
+    app.setCurrentScene<Wrapper<Level, 1>>();
+
+    app.run();
+
+    return 0;
+}
+~~~~

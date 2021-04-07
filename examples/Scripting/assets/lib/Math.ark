@@ -1,0 +1,25 @@
+# @author: https://github.com/rstefanic
+(let math:abs (fun (_x)
+    (if (< _x 0) (* -1 _x) _x)))
+
+# @author: https://github.com/rstefanic
+(let math:even (fun (_n)
+    (= 0 (mod _n 2))))
+
+# @author: https://github.com/rstefanic
+(let math:odd (fun (_n)
+    (= 1 (math:abs (mod _n 2)))))
+
+# @author: https://github.com/rstefanic
+(let math:min (fun (_a _b)
+    (if (< _a _b) _a _b)))
+
+# @author: https://github.com/rstefanic
+(let math:max (fun (_a _b)
+    (if (> _a _b) _a _b)))
+
+# @author: https://github.com/SuperFola
+(let math:pow (fun (x _a) (math:exp (* _a (math:ln x)))))
+
+# @author: https://github.com/SuperFola
+(let math:sqrt (fun (x) (math:exp (* 0.5 (math:ln x)))))

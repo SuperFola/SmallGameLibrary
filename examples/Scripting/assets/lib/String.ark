@@ -1,0 +1,223 @@
+# (([String]index)
+# !String
+# \string:toLower Reverse a string.
+# \string:toLower The original string is left unmodified. Example:
+# `
+# (import "String.ark")
+# (let message "HeLLo World, I like cheese")
+# (let new (string:toLower message))  # => hello world, i like cheese
+# `
+# @_string the string to make lowercase
+# author: https://github.com/Natendrtfm
+# )
+(let string:toLower (fun (text) {
+    (mut _index 0)
+    (mut _e "")
+    (mut _output "")
+    (while (< _index (len text)) {
+        (set _e (@ text _index))
+        #Conditions
+        (if (= _e "A") (set _e "a")
+        (if (= _e "B") (set _e "b")
+        (if (= _e "C") (set _e "c")
+        (if (= _e "D") (set _e "d")
+        (if (= _e "E") (set _e "e")
+        (if (= _e "F") (set _e "f")
+        (if (= _e "G") (set _e "g")
+        (if (= _e "H") (set _e "h")
+        (if (= _e "I") (set _e "i")
+        (if (= _e "J") (set _e "j")
+        (if (= _e "K") (set _e "k")
+        (if (= _e "L") (set _e "l")
+        (if (= _e "M") (set _e "m")
+        (if (= _e "N") (set _e "n")
+        (if (= _e "O") (set _e "o")
+        (if (= _e "P") (set _e "p")
+        (if (= _e "Q") (set _e "q")
+        (if (= _e "R") (set _e "r")
+        (if (= _e "S") (set _e "s")
+        (if (= _e "T") (set _e "t")
+        (if (= _e "U") (set _e "u")
+        (if (= _e "V") (set _e "v")
+        (if (= _e "W") (set _e "w")
+        (if (= _e "X") (set _e "x")
+        (if (= _e "Z") (set _e "z")
+        (if (= _e "Â") (set _e "â")
+        (if (= _e "À") (set _e "à")
+        (if (= _e "Á") (set _e "á")
+        (if (= _e "Ã") (set _e "ã")
+        (if (= _e "Ä") (set _e "ä")
+        (if (= _e "Å") (set _e "å")
+        (if (= _e "Æ") (set _e "æ")
+        (if (= _e "Ç") (set _e "ç")
+        (if (= _e "È") (set _e "è")
+        (if (= _e "É") (set _e "é")
+        (if (= _e "Ê") (set _e "ê")
+        (if (= _e "Ë") (set _e "ë")
+        (if (= _e "Ì") (set _e "ì")
+        (if (= _e "Í") (set _e "í")
+        (if (= _e "Î") (set _e "î")
+        (if (= _e "Ï") (set _e "ï")
+        (if (= _e "Ô") (set _e "ô") ()))))))))))))))))))))))))))))))))))))))))))
+        # End conditions
+        (set _output (+ _output _e))
+        (set _index (+ _index 1))
+    })
+    _output
+}))
+
+# (([String]index)
+# !String
+# \string:toUpper Reverse a string.
+# \string:toUpper The original string is left unmodified. Example:
+# `
+# (import "String.ark")
+# (let message "hello world, I like cheese")
+# (let new (string:toUpper message))  # => HELLO WORLD, I LIKE CHEESE
+# `
+# @_string the string to make uppercase
+# author: https://github.com/Natendrtfm
+# )
+(let string:toUpper (fun (_string) {
+    (mut _index 0)
+    (mut _e "")
+    (mut _output "")
+    (while (< _index (len _string)) {
+        (set _e (@ _string _index))
+        #Conditions
+        (if (= _e "a") (set _e "A")
+        (if (= _e "b") (set _e "B")
+        (if (= _e "c") (set _e "C")
+        (if (= _e "d") (set _e "D")
+        (if (= _e "e") (set _e "E")
+        (if (= _e "f") (set _e "F")
+        (if (= _e "g") (set _e "G")
+        (if (= _e "h") (set _e "H")
+        (if (= _e "i") (set _e "I")
+        (if (= _e "j") (set _e "J")
+        (if (= _e "k") (set _e "K")
+        (if (= _e "l") (set _e "L")
+        (if (= _e "m") (set _e "M")
+        (if (= _e "n") (set _e "N")
+        (if (= _e "o") (set _e "O")
+        (if (= _e "p") (set _e "P")
+        (if (= _e "q") (set _e "Q")
+        (if (= _e "r") (set _e "R")
+        (if (= _e "s") (set _e "S")
+        (if (= _e "t") (set _e "T")
+        (if (= _e "u") (set _e "U")
+        (if (= _e "w") (set _e "W")
+        (if (= _e "v") (set _e "V")
+        (if (= _e "x") (set _e "X")
+        (if (= _e "y") (set _e "Y")
+        (if (= _e "z") (set _e "Z")
+        (if (= _e "a") (set _e "Â")
+        (if (= _e "à") (set _e "À")
+        (if (= _e "á") (set _e "Á")
+        (if (= _e "ã") (set _e "Ã")
+        (if (= _e "ä") (set _e "Ä")
+        (if (= _e "å") (set _e "Å")
+        (if (= _e "æ") (set _e "Æ")
+        (if (= _e "ç") (set _e "Ç")
+        (if (= _e "è") (set _e "È")
+        (if (= _e "é") (set _e "É")
+        (if (= _e "ê") (set _e "Ê")
+        (if (= _e "ë") (set _e "Ë")
+        (if (= _e "ì") (set _e "Ì")
+        (if (= _e "í") (set _e "Í")
+        (if (= _e "î") (set _e "Î")
+        (if (= _e "ï") (set _e "Ï")
+        (if (= _e "ô") (set _e "Ô") ())))))))))))))))))))))))))))))))))))))))))))
+        #End of conditions
+        (set _output (+ _output _e))
+        (set _index (+ _index 1))
+    })
+    _output
+}))
+
+# (([String]index)
+# !String
+# \string:reverse Reverse a string.
+# \string:reverse The original string is left unmodified. Example:
+# `
+# (import "String.ark")
+# (let message "hello world, I like goats")
+# (let reversed (string:reverse message))  # => staog ekil I ,dlrow olleh
+# `
+# @_string the string to reverse
+# author: https://github.com/Natendrtfm
+# )
+(let string:reverse (fun (_string) {
+    (mut _index (- (len _string) 1))
+    (mut _returnedString "")
+    (while (> _index -1) {
+        (set _returnedString (+ _returnedString (@ _string _index)))
+        (set _index (- _index 1))
+    })
+    _returnedString
+}))
+
+# (([String]index)
+# !String
+# \string:slice Get a slice of a given string, from a given index with a given length
+# \string:slice The original string is left unmodified. Example:
+# `
+# (import "String.ark")
+# (let message "hello world, I like goats")
+# (let slice (string:slice message 6 4))  # => worl
+# `
+# @_string the string to get a slice of
+# @_startingIndex the index in the string where to start slicing
+# @_length the length of the slice
+# author: https://github.com/Natendrtfm
+# )
+(let string:slice (fun (_string _startingIndex _length) {
+    (assert (>= _length 1) "slice length must be greater or equal to 1")
+    (assert (and (>= _startingIndex 0) (< _startingIndex (len _string))) "slice start index must be in range [0, string length[")
+
+    (mut _returnedString "")
+    (mut _index _startingIndex)
+    (let _end (if (> _length (len _string)) (len _string) (+ _index _length)))
+
+    (while (< _index _end) {
+        (set _returnedString (+ _returnedString (@ _string _index)))
+        (set _index (+ _index 1))
+    })
+    _returnedString
+}))
+
+# (([String]index)
+# !String
+# \string:split Split a string in multiple substrings in a list, given a separator (single character)
+# \string:split Returns a list of strings. Example :
+# `
+# (import "String.ark")
+# (let message "hello world, I like boats")
+# (let splitted (string:split message " "))
+# `
+# @_string the string to split
+# @_separator the separator to use for splitting (single char)
+# author: https://github.com/Natendrtfm
+# )
+(let string:split (fun (_string _separator) {
+    (assert (!= "" _separator) "Separator of split can not be empty")
+    (assert (= 1 (len _separator)) "Separator length must be equal to 1")
+    (mut _index 0)
+    (mut _word "")
+    (mut _letter "")
+    (mut _output [])
+
+    (while (< _index (len _string)) {
+        (set _letter (@ _string _index))
+        (if (= _letter _separator)
+            {
+                (set _output (append _output _word))
+                (set _word "")
+            }
+            (set _word (+ _word _letter)))
+        (set _index (+ _index 1))
+    })
+    (if (empty? _word)
+        _output
+        (append _output _word))
+}))

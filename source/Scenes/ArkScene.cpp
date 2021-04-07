@@ -6,7 +6,10 @@
 namespace sgl::Scenes
 {
     ArkScene::ArkScene(int id, const std::string& scriptName) :
-        Scene(id), m_scriptName(scriptName), m_vm(&m_state)
+        Scene(id), m_scriptName(scriptName),
+        // we don't want to remove unused variables
+        m_state(Ark::FeaturePersist),
+        m_vm(&m_state)
     {}
 
     ArkScene::~ArkScene()
@@ -22,7 +25,7 @@ namespace sgl::Scenes
         Scripting::bindSystem(&m_state);
         Scripting::bindWidgets(&m_state);
 
-        m_state.feed(config.compiledScriptsDir + "/" + m_scriptName + "c");
+        m_state.feed(config.compiledScriptsDir + "/" + m_scriptName + "c");  // scripts ends in .arkc when compiled, we need to add the c
         m_vm.run();
 
         m_vm.call("onLoad");

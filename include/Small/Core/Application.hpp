@@ -52,6 +52,8 @@ namespace sgl
         unsigned depth = 0;          ///< Depth buffer bits
         unsigned stencil = 0;        ///< Stencil buffer bits
         unsigned antiAliasing = 1;   ///< Anti aliasing level
+        unsigned major = 3;          ///< Major version for OpenGL
+        unsigned minor = 3;          ///< Minor version for OpenGL
     };
 
     /**
@@ -123,10 +125,23 @@ namespace sgl
          * @brief Set the Current Scene
          * @details By default, no scene is selected, thus nothing will be rendered
          * 
-         * @param id 
+         * @tparam S The type of the scene
          * @return Application& 
          */
-        Application& setCurrentScene(int id);
+        template <typename S>
+        Application& setCurrentScene()
+        {
+            m_sceneManager.setCurrent<S>();
+            return *this;
+        }
+
+        /**
+         * @brief Set the Current Scene Id object
+         * 
+         * @param id the id of the scene
+         * @return Application& 
+         */
+        Application& setCurrentSceneId(int id);
 
         /**
          * @brief Enable or disable scripting
@@ -149,17 +164,18 @@ namespace sgl
 
         /**
          * @brief Add a scene to the application
-         * @details Create the scene in place, and return its identifier to refer to it later.
+         * @details Create the scene in place.
          * 
          * @tparam S The type of the scene
          * @tparam Args 
          * @param args Arguments for the constructor of the scene
-         * @return int 
+         * @return Application& 
          */
         template <typename S, typename... Args>
-        int add(Args&&... args)
+        Application& add(Args&&... args)
         {
-            return m_sceneManager.add<S>(std::forward<Args>(args)...);
+            m_sceneManager.add<S>(std::forward<Args>(args)...);
+            return *this;
         }
 
         /**
@@ -186,6 +202,7 @@ namespace sgl
         bool m_showDebug;
         const int m_debugKey = sf::Keyboard::F4;
         bool m_wireframe = false;
+        bool m_vsync = false;
 
         /**
          * @brief Handling basic events (closing window, triggering debug mode), and passing the events to the active scene

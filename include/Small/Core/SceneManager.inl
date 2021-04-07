@@ -7,6 +7,11 @@ namespace sgl
 
     inline Scene* SceneManager::operator[](int id)
     {
-        return m_scenes[id].get();
+        for (std::size_t i=0, end=m_scenes.size(); i < end; ++i)
+        {
+            if (m_scenes[i]->getId() == id)
+                return m_scenes[i].get();
+        }
+        return nullptr;
     }
 }

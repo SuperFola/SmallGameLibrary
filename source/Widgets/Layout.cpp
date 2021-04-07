@@ -14,7 +14,7 @@ namespace sgl::Widgets
     void Layout::onUpdate(const sf::Time dt)
     {
         for (std::size_t i=0, size=m_children.size(); i < size; ++i)
-            (*this)[static_cast<int>(i)]->onUpdate(dt);
+            static_cast<Base*>(m_children[i].get())->onUpdate(dt);
     }
 
     void Layout::onEvent(const sf::Event& event)
@@ -31,11 +31,6 @@ namespace sgl::Widgets
                     m_focused = false;
             }
         }
-    }
-
-    Base* Layout::operator[](int i) const
-    {
-        return static_cast<Base*>(m_children[i].get());
     }
 
     void Layout::onRender(sf::RenderTarget& screen, const sf::Transform& transform)

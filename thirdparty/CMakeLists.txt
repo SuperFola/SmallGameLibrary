@@ -14,6 +14,8 @@ file(GLOB_RECURSE all_sources
     # imgui
     ${CMAKE_CURRENT_LIST_DIR}/imgui/*.c
     ${CMAKE_CURRENT_LIST_DIR}/imgui/*.cpp
+    # glad
+    ${CMAKE_CURRENT_LIST_DIR}/glad/glad.c
 )
 
 set(THIRDPARTY_SOURCES
@@ -28,6 +30,8 @@ set(THIRDPARTY_INCLUDES
     ${CMAKE_CURRENT_LIST_DIR}/entt/src
     ${CMAKE_CURRENT_LIST_DIR}/arkscript/include
     ${CMAKE_CURRENT_LIST_DIR}/toml
+    ${CMAKE_CURRENT_LIST_DIR}/glad
+    ${CMAKE_CURRENT_LIST_DIR}/
 
     PARENT_SCOPE
 )

@@ -12,8 +12,8 @@ int main(int argc, char** argv)
         .setVSync(false)
         .setFPSLimit(60);
 
-    int id = app.add<MyScene>();
-    app.setCurrentScene(id);
+    app.add<MyScene>();
+    app.setCurrentScene<MyScene>();
 
     app.run();
 

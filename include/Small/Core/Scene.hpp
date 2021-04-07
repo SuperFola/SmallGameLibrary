@@ -96,6 +96,14 @@ namespace sgl
         virtual void onQuit();
 
         /**
+         * @brief Method called when the scene manager changes the current scene
+         * 
+         * @param data Pointer to optional transfered data from the previous scene
+         * 
+         */
+        virtual void onChange(void* data);
+
+        /**
          * @brief Set the State object
          * 
          * @param state 

@@ -53,26 +53,17 @@ namespace sgl::Widgets
         virtual void onEvent(const sf::Event& event);
 
         /**
-         * @brief Return a pointer to a child widget by its identifer
-         * 
-         * @param i Identifier of the widget
-         * @return Base* 
-         */
-        virtual Base* operator[](int i) const final;
-
-        /**
          * @brief Create a new widget in place and add it to the layout
          * 
          * @tparam W Class name of the widget to add
          * @tparam 
          * @param args Args arguments (other than the identifier and the parent's pointer)
-         * @return int Unique identifier for the widget
+         * @return W* Raw owned pointer to the widget
          */
         template <typename W, typename... Args>
-        int add(Args&&... args)
+        W* add(Args&&... args)
         {
-            this->attach<W>(static_cast<int>(m_children.size()), this, std::forward<Args>(args)...);
-            return static_cast<int>(m_children.size()) - 1;
+            return this->attach<W>(static_cast<int>(m_children.size()), this, std::forward<Args>(args)...);
         }
 
         /**

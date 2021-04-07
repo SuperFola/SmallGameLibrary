@@ -1,0 +1,58 @@
+[data]
+spriteSheet="assets/Civilian Enemies.gif"
+steps=["fall", "crash"]
+
+[fall]
+frameTime=0.3
+framesCount=6
+    [fall.frame0]
+    left=121
+    top=55
+    width=28
+    height=25
+
+    [fall.frame1]
+    left=157
+    top=52
+    width=28
+    height=25
+
+    [fall.frame2]
+    left=195
+    top=55
+    width=28
+    height=25
+
+    [fall.frame3]
+    left=10
+    top=55
+    width=28
+    height=25
+
+    [fall.frame4]
+    left=48
+    top=55
+    width=28
+    height=25
+
+    [fall.frame5]
+    left=84
+    top=54
+    width=28
+    height=25
+
+[crash]
+frameTime=0.3
+framesCount=2
+    [crash.frame0]
+    left=230
+    top=56
+    width=37
+    height=20
+
+    [crash.frame1]
+    left=286
+    top=55
+    width=37
+    height=20
+    end=true

@@ -1,32 +1,60 @@
-{
-    (let range (fun (_a _b) {
-        (let astList (fun () {
-            # _a and _b are going to be captured by the caller
-            (mut _output [])
-            (mut a_ _a)
-            (while (< a_ _b) {
-                (set _output (append _output a_))
-                (set a_ (+ 1 a_))
+(let range (fun (_a _b) {
+    (let asList (fun () {
+        # _a and _b are going to be captured by the caller
+        (mut _output [])
+        (mut a_ _a)
+        (while (< a_ _b) {
+            (set _output (append _output a_))
+            (set a_ (+ 1 a_))
+        })
+        _output
+    }))
+
+    (fun (&_a &_b &asList) {
+        (if (< _a _b)
+            {
+                (set _a (+ _a 1))
+                (- _a 1)
             })
-            _output
-        }))
+    })
+}))
 
-        (fun (&_a &_b &asList) {
-            (if (< _a _b) {
-                    (mut c _a)
-                    (set _a (+ _a 1))
-                    c
-                }
-                nil
-            )
-        })
-    }))
+(let range:forEach (fun (_r _f) {
+    (mut _val (_r))
+    (while (not (nil?_ val)) {
+        (_f _val)
+        (set _val (_r))
+    })
+}))
 
-    (let forEachR (fun (r _f) {
-        (mut val (r))
-        (while (= false (nil? val)) {
-            (_f val)
-            (set val (r))
-        })
-    }))
-}
+(let range:filter (fun (_range _fun) {
+    (mut _value (_range))
+    (mut _output [])
+    (while (not (nil? _value)) {
+        (if (_fun _value) (set _output (append _output _value)))
+        (set _value (_range))
+    })
+
+    _output
+}))
+
+(let range:map (fun (_range _fun) {
+    (mut _value (_range))
+    (mut _output [])
+    (while (not (nil? _value)) {
+        (set _output (append _output (_fun _value)))
+        (set _value (_range))
+    })
+
+    _output
+}))
+
+(let range:reduce (fun (_range _fun) {
+    (mut _output (_range))
+    (mut _last (_range))
+    (while (not (nil? _last)) {
+        (set _output (_fun _output _last))
+        (set _last (_range))
+    })
+    _output
+}))

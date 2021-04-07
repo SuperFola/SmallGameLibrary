@@ -15,5 +15,5 @@ bin/
 documentation/
 *.tmp
 warnings.log
-
-examples/Disney
+# personal vscode setup
+.vscode/settings.json

@@ -27,6 +27,8 @@ namespace sgl
 
         if (m_showDebug)
         {
+            m_screen.pushGLStates();
+
             m_profiler.Begin(internal::Profiler::Stage::Plot);
 
             m_profiler.Begin(internal::Profiler::Stage::NewFrame);
@@ -39,13 +41,13 @@ namespace sgl
                 ImGui::Begin("Debug");
 
                 ImGui::PlotVariable("Frame time: ", dt.asSeconds() * 1000.0f);
+                ImGui::Text("FPS: %0.2f", 1.f / dt.asSeconds());
 
-                if (ImGui::Checkbox("Wireframe", &m_wireframe))
+                ImGui::Checkbox("Wireframe", &m_wireframe);
+
+                if (ImGui::Checkbox("VSync", &m_vsync))
                 {
-                    if (m_wireframe)
-                        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-                    else
-                        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+                    setVSync(m_vsync);
                 }
 
                 ImGui::End();
@@ -59,8 +61,8 @@ namespace sgl
 
                 auto& entry = m_profiler._entries[m_profiler.GetCurrentEntryIndex()];
                 ImGuiWidgetFlameGraph::PlotFlame(
-                    "CPU", &internal::ProfilerValueGetter, &entry, internal::Profiler::_StageCount,
-                    0, "Main Thread", FLT_MAX, FLT_MAX, ImVec2(600, 200)
+                    "", &internal::ProfilerValueGetter, &entry, internal::Profiler::_StageCount,
+                    0, "Main Thread", FLT_MAX, FLT_MAX, ImVec2(400, 200)
                 );
 
                 std::chrono::duration<float, std::milli> frameDuration = entry._frameEnd - entry._frameStart;
@@ -83,6 +85,8 @@ namespace sgl
             }
 
             m_profiler.End(internal::Profiler::Stage::Plot);
+
+            m_screen.popGLStates();
         }
 
         m_sceneManager.onUpdate(dt);
@@ -103,15 +107,22 @@ namespace sgl
         // then the debug interface on top of it
         if (m_showDebug)
         {
+            m_screen.pushGLStates();
+
             m_profiler.Begin(internal::Profiler::Stage::ImGuiRender);
 
             if (m_wireframe)
                 glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
             ImGui::SFML::Render(m_screen);
-            if (m_wireframe)
-                glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
             m_profiler.End(internal::Profiler::Stage::ImGuiRender);
+
+            m_screen.popGLStates();
+
+            if (m_wireframe)
+                glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+            else
+                glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
         }
 
         m_profiler.Begin(internal::Profiler::Stage::SwapWindow);

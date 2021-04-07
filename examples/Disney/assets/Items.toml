@@ -1,0 +1,70 @@
+[data]
+spriteSheet="assets/items.png"
+steps=["gem", "static_gem"]
+
+[gem]
+frameTime=0.16
+framesCount=9
+    [gem.frame0]
+    left=340
+    top=111
+    width=17
+    height=16
+
+    [gem.frame1]
+    left=363
+    top=111
+    width=17
+    height=16
+
+    [gem.frame2]
+    left=386
+    top=111
+    width=17
+    height=16
+
+    [gem.frame3]
+    left=409
+    top=111
+    width=17
+    height=16
+
+    [gem.frame4]
+    left=432
+    top=111
+    width=17
+    height=16
+
+    [gem.frame5]
+    left=460
+    top=111
+    width=17
+    height=16
+
+    [gem.frame6]
+    left=492
+    top=112
+    width=17
+    height=16
+
+    [gem.frame7]
+    left=522
+    top=112
+    width=17
+    height=16
+
+    [gem.frame8]
+    left=545
+    top=112
+    width=17
+    height=16
+
+[static_gem]
+frameTime=0.16
+framesCount=1
+    [static_gem.frame0]
+    left=386
+    top=111
+    width=17
+    height=16
+    end=true

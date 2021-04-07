@@ -1,0 +1,41 @@
+[data]
+spriteSheet="assets/Vendor.gif"
+steps=["idleLeft", "idleRight"]
+
+[idleLeft]
+framesCount=5
+frameTime=0.16
+    [idleLeft.frame0]
+    left=4
+    top=1
+    width=30
+    height=58
+
+    [idleLeft.frame1]
+    left=39
+    top=0
+    width=30
+    height=58
+
+    [idleLeft.frame2]
+    left=73
+    top=0
+    width=30
+    height=58
+
+    [idleLeft.frame3]
+    left=108
+    top=0
+    width=30
+    height=58
+
+    [idleLeft.frame4]
+    left=139
+    top=0
+    width=30
+    height=58
+
+[idleRight]
+frameTime=0.16
+copy="idleLeft"
+invertX=true

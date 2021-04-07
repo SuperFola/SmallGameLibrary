@@ -1,7 +1,6 @@
 #include <Small/All.hpp>
 
 #include <MyScene.hpp>
-#include <iostream>
 
 int main(int argc, char** argv)
 {
@@ -12,10 +11,9 @@ int main(int argc, char** argv)
         .setVSync(false)
         .setFPSLimit(60)
         .setDebug(true);
-    
-    int id = app.add<MyScene>(12);
-    std::cout << id;
-    app.setCurrentScene(id);
+
+    app.add<MyScene>(12);
+    app.setCurrentScene<MyScene>();
 
     app.run();
 

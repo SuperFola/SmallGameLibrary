@@ -1,0 +1,14 @@
+# @author: https://github.com/rstefanic
+(let compose (fun (_f _g)
+    (fun (_y &_f &_g) (_f (_g _y)))))
+
+(let left (fun (_x)
+    (fun (_injl _injr &_x) (_injl _x))
+))
+(let right (fun (_y)
+    (fun (_injl _injr &_y) (_injr _y))
+))
+
+# @author: https://github.com/rstefanic
+(let flip (fun (_f _a)
+    (fun (_b &_f &_a) (_f _b _a))))
