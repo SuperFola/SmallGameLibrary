@@ -27,7 +27,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        submodules: true
+        submodules: recursive
 
     - name: Update compilers
       if: ${{ matrix.config.cc }} == 'gcc' && ${{ matrix.config.os_short }} == 'Ubuntu'
