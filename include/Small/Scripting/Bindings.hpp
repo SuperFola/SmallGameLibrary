@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_scripting_bindings
-#define sgl_small_scripting_bindings
+#ifndef SMALL_SCRIPTING_BINDINGS_HPP
+#define SMALL_SCRIPTING_BINDINGS_HPP
 
 #include <Ark/VM/State.hpp>
 

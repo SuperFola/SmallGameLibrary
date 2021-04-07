@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_gameobjects_manager
-#define sgl_small_gameobjects_manager
+#ifndef SMALL_GAMEOBJECTS_MANAGER_HPP
+#define SMALL_GAMEOBJECTS_MANAGER_HPP
 
 #include <string>
 #include <unordered_map>

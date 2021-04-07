@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_graphics_tileview
-#define sgl_small_graphics_tileview
+#ifndef SMALL_GRAPHICS_TILEVIEW_HPP
+#define SMALL_GRAPHICS_TILEVIEW_HPP
 
 #include <SFML/Graphics/View.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>

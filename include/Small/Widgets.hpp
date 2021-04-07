@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_widgets
-#define sgl_small_widgets
+#ifndef SMALL_WIDGETS_HPP
+#define SMALL_WIDGETS_HPP
 
 /**
  * @brief Contain all the base widget classes

@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_core_application
-#define sgl_core_application
+#ifndef SMALL_CORE_APPLICATION_HPP
+#define SMALL_CORE_APPLICATION_HPP
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Window/Event.hpp>

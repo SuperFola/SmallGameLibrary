@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_scenes_arkscene
-#define sgl_small_scenes_arkscene
+#ifndef SMALL_SCENES_ARKSCENE_HPP
+#define SMALL_SCENES_ARKSCENE_HPP
 
 #include <Small/Core/Scene.hpp>
 #include <Ark/Ark.hpp>

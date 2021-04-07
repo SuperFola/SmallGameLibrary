@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_scripting_engine
-#define sgl_small_scripting_engine
+#ifndef SMALL_SCRIPTING_ENGINE_HPP
+#define SMALL_SCRIPTING_ENGINE_HPP
 
 #include <Ark/Ark.hpp>
 

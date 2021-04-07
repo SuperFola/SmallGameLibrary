@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_scripting_config
-#define sgl_small_scripting_config
+#ifndef SMALL_SCRIPTING_CONFIG_HPP
+#define SMALL_SCRIPTING_CONFIG_HPP
 
 #include <string>
 

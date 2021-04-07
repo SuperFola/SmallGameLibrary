@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_gameobjects_triggers_manager
-#define sgl_small_gameobjects_triggers_manager
+#ifndef SMALL_GAMEOBJECTS_TRIGGERS_MANAGER_HPP
+#define SMALL_GAMEOBJECTS_TRIGGERS_MANAGER_HPP
 
 #include <functional>
 #include <Small/GameObjects/Manager.hpp>

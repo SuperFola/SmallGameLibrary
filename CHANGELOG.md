@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased changes
+### Added
+
+### Changed
+
+### Removed
+
 ## 0.0.5
 ### Added
 - added a widget maker `sgl::Widgets::make<Type>(args)`
@@ -16,8 +23,6 @@
 - instead of using the scene id to select the current scene we now use the scene class name (template parameter)
 - now removing scene correctly to avoid invalidation of `m_current` (index of the current running scene)
 - better handling of imgui in debug mode to avoid depth problems with OpenGL
-
-### Removed
 
 ## 0.0.4
 ### Added

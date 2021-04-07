@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_debug_profiler
-#define sgl_debug_profiler
+#ifndef SMALL_DEBUG_PROFILER_HPP
+#define SMALL_DEBUG_PROFILER_HPP
 
 #include <array>
 #include <chrono>

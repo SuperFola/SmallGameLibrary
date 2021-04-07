@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_gameobjects_triggers_trigger
-#define sgl_small_gameobjects_triggers_trigger
+#ifndef SMALL_GAMEOBJECTS_TRIGGERS_TRIGGER_HPP
+#define SMALL_GAMEOBJECTS_TRIGGERS_TRIGGER_HPP
 
 #include <functional>
 #include <string>

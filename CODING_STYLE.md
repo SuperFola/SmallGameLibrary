@@ -4,9 +4,9 @@ All files (and folders) must be named following Pascal case.
 
 ## Header guards
 
-Should be written as follows: `sgl_folder1_folder2_file`.
+Should be written as follows: `SMALL_FOLDER1_FOLDER2_FILE_HPP`.
 
-Eg: a file `include/Something/Sub/Hello.hpp` will have a header guard named `sgl_something_sub_hello`.
+Eg: a file `include/Something/Sub/Hello.hpp` will have a header guard named `SOMETHING_SUB_HELLO_HPP`.
 
 # C++ code
 

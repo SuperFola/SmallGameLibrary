@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_system_platform
-#define sgl_system_platform
+#ifndef SMALL_SYSTEM_PLATFORM_HPP
+#define SMALL_SYSTEM_PLATFORM_HPP
 
 #if defined(_WIN32) && !defined(_WIN64)
     #define SGL_SYS_WIN32

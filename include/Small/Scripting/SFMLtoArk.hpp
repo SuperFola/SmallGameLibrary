@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_scripting_sfmltoark
-#define sgl_small_scripting_sfmltoark
+#ifndef SMALL_SCRIPTING_SFMLTOARK_HPP
+#define SMALL_SCRIPTING_SFMLTOARK_HPP
 
 #include <Ark/Ark.hpp>
 #include <SFML/Window/Event.hpp>

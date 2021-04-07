@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_widgets_checkbox
-#define sgl_small_widgets_checkbox
+#ifndef SMALL_WIDGETS_CHECKBOX_HPP
+#define SMALL_WIDGETS_CHECKBOX_HPP
 
 #include <Small/Widgets/Base.hpp>
 

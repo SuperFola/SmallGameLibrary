@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_gameobjects_triggers_update
-#define sgl_small_gameobjects_triggers_update
+#ifndef SMALL_GAMEOBJECTS_TRIGGERS_UPDATE_HPP
+#define SMALL_GAMEOBJECTS_TRIGGERS_UPDATE_HPP
 
 #include <Small/GameObjects/Triggers/Trigger.hpp>
 #include <SFML/System/Time.hpp>

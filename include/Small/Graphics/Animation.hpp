@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_graphics_animation
-#define sgl_small_graphics_animation
+#ifndef SMALL_GRAPHICS_ANIMATION_HPP
+#define SMALL_GRAPHICS_ANIMATION_HPP
 
 #include <SFML/Graphics/Rect.hpp>
 #include <SFML/Graphics/Texture.hpp>

@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_scenes_zones
-#define sgl_small_scenes_zones
+#ifndef SMALL_SCENES_ZONE_HPP
+#define SMALL_SCENES_ZONE_HPP
 
 #include <Small/Core/Scene.hpp>
 #include <Small/Graphics/TileView.hpp>

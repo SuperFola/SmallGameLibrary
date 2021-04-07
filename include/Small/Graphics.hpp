@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_graphics
-#define sgl_small_graphics
+#ifndef SMALL_GRAPHICS_HPP
+#define SMALL_GRAPHICS_HPP
 
 /**
  * @brief Contain all the code related to graphics and rendering

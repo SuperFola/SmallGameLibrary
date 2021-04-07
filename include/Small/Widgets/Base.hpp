@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_widgets_base
-#define sgl_small_widgets_base
+#ifndef SMALL_WIDGETS_BASE_HPP
+#define SMALL_WIDGETS_BASE_HPP
 
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>

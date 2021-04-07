@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_core_scene
-#define sgl_core_scene
+#ifndef SMALL_CORE_SCENE_HPP
+#define SMALL_CORE_SCENE_HPP
 
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Clock.hpp>

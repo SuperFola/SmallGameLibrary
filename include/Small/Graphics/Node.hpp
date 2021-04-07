@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_graphics_node
-#define sgl_small_graphics_node
+#ifndef SMALL_GRAPHICS_NODE_HPP
+#define SMALL_GRAPHICS_NODE_HPP
 
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/Transform.hpp>

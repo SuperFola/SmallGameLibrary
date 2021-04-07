@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_core
-#define sgl_small_core
+#ifndef SMALL_CORE_HPP
+#define SMALL_CORE_HPP
 
 /**
  * @brief Contain all the code related to the core of the library

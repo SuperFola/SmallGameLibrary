@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_gameobjects_actor
-#define sgl_small_gameobjects_actor
+#ifndef SMALL_GAMEOBJECTS_ACTOR_HPP
+#define SMALL_GAMEOBJECTS_ACTOR_HPP
 
 #include <SFML/System/Time.hpp>
 #include <SFML/Window/Event.hpp>

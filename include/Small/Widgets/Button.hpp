@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_widgets_button
-#define sgl_small_widgets_button
+#ifndef SMALL_WIDGETS_BUTTON_HPP
+#define SMALL_WIDGETS_BUTTON_HPP
 
 #include <Small/Widgets/Base.hpp>
 

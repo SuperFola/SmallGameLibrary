@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_widgets_textbox
-#define sgl_small_widgets_textbox
+#ifndef SMALL_WIDGETS_TEXTBOX_HPP
+#define SMALL_WIDGETS_TEXTBOX_HPP
 
 #include <Small/Widgets/Base.hpp>
 

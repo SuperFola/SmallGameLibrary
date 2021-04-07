@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_gameobjects
-#define sgl_small_gameobjects
+#ifndef SMALL_GAMEOBJECTS_HPP
+#define SMALL_GAMEOBJECTS_HPP
 
 /**
  * @brief Contain all the code related to the game objects

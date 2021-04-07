@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_scripting
-#define sgl_small_scripting
+#ifndef SMALL_SCRIPTING_HPP
+#define SMALL_SCRIPTING_HPP
 
 /**
  * @brief Easing the developer work to deploy a scripting API in the scenes and application

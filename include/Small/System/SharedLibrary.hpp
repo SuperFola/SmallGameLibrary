@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_sharedlibrary
-#define sgl_sharedlibrary
+#ifndef SMALL_SYSTEM_SHAREDLIBRARY_HPP
+#define SMALL_SYSTEM_SHAREDLIBRARY_HPP
 
 #include <Small/System/Platform.hpp>
 
@@ -114,4 +114,4 @@ namespace sgl
     };
 }
 
-#endif  // ge_core_plugin_hpp
+#endif

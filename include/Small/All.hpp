@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_all
-#define sgl_small_all
+#ifndef SMALL_ALL_HPP
+#define SMALL_ALL_HPP
 
 /**
  * @brief Base namespace for the library.

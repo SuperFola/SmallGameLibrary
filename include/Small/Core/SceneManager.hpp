@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_core_scenemanager
-#define sgl_core_scenemanager
+#ifndef SMALL_CORE_SCENEMANAGER_HPP
+#define SMALL_CORE_SCENEMANAGER_HPP
 
 #include <vector>
 #include <memory>

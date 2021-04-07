@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_system_filesystem
-#define sgl_small_system_filesystem
+#ifndef SMALL_SYSTEM_FILESYSTEM_HPP
+#define SMALL_SYSTEM_FILESYSTEM_HPP
 
 #include <string>
 #include <vector>

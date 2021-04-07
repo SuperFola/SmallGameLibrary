@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_small_system
-#define sgl_small_system
+#ifndef SMALL_SYSTEM_HPP
+#define SMALL_SYSTEM_HPP
 
 /**
  * @brief Functions and classes to related to system programming

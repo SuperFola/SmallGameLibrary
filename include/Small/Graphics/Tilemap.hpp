@@ -9,8 +9,8 @@
  * 
  */
 
-#ifndef sgl_graphics_tilemap
-#define sgl_graphics_tilemap
+#ifndef SMALL_GRAPHICS_TILEMAP_HPP
+#define SMALL_GRAPHICS_TILEMAP_HPP
 
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/Transformable.hpp>
