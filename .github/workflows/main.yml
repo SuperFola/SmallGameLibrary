@@ -1,31 +1,47 @@
-# This is a basic workflow to help you get started with Actions
 name: CI
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+env:
+  BUILD_TYPE: Release
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+jobs:
+  build:
+    runs-on: ${{ matrix.config.os }}
+    name: ${{ matrix.config.name }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+        - {
+            name: "Ubuntu Latest GCC",
+            os: ubuntu-latest, os_short: "Ubuntu",
+            build_type: "Release", cc: "gcc-8", cxx: "g++-8"
+          }
+
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-    
-    - name: Update Compilers
+      with:
+        submodules: true
+
+    - name: Update compilers
+      if: ${{ matrix.config.cc }} == 'gcc' && ${{ matrix.config.os_short }} == 'Ubuntu'
+      shell: bash
       run: |
-        sudo apt-add-repository -y ppa:ubuntu-toolchain-r/test
-        sudo apt-get -yq install g++-8 gcc-8
-  
+        if [[ ${{ matrix.config.cc }} == 'gcc-8' && ${{ matrix.config.os_short }} == 'Ubuntu' ]]; then
+          sudo apt-add-repository -y ppa:ubuntu-toolchain-r/test
+          sudo apt-get -yq install g++-8 gcc-8
+        elif [[ ${{ matrix.config.cc }} == 'clang' && ${{ matrix.config.os_short }} == 'Ubuntu' ]]; then
+          sudo apt-get install -y clang-10 lld-10 libc++-10-dev libc++abi-10-dev clang-tools-10
+        elif [[ ${{ matrix.config.os_short }} == 'macOS' ]]; then
+          brew install gcc && brew link gcc && CXX=/usr/local/bin/g++-9
+        fi
+
     - name: OpenGL / SFML install
       run: |
         wget -O sfml.tar.gz https://www.sfml-dev.org/files/SFML-2.5.1-linux-gcc-64-bit.tar.gz
@@ -33,14 +49,10 @@ jobs:
         tar -xzf sfml.tar.gz -C sfml
         sudo apt-get -y install freeglut3-dev
 
-    - name: Build CMake
-      uses: ashutoshvarma/action-cmake-build@v1
-      with:
-        build-dir: ${{ runner.workspace }}/build
-        build-type: Debug
-        submodule-update: true
-        configure-options: -DSFML_ROOT=sfml/SFML-2.5.1/lib/cmake/SFML
-        cc: gcc-8
-        cxx: g++-8
-        #target: # optional
-        #build-options: # Misc Options to pass to CMake while building project using cmake --build, optional
+    - name: Configure CMake
+      shell: bash
+      run: cmake -Bbuild -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_C_COMPILER=${{ matrix.config.cc }} -DCMAKE_CXX_COMPILER=${{ matrix.config.cxx }} -DSFML_ROOT=sfml/SFML-2.5.1/lib/cmake/SFML
+
+    - name: Build
+      shell: bash
+      run: cmake --build build --config $BUILD_TYPE
