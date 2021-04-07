@@ -12,7 +12,7 @@ namespace sgl::Scripting
             /* debug level */ 0,
             arkscriptLibDir,
             // we don't want to remove unused variables
-            /* options */ Ark::FeaturePersist | Ark::FeatureFunctionArityCheck | Ark::FeatureDisallowInvalidTokenAfterParen
+            /* options */ Ark::FeaturePersist
         );
 
         std::ifstream fileStream(file);

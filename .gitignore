@@ -15,3 +15,5 @@ bin/
 documentation/
 *.tmp
 warnings.log
+# personal vscode setup
+.vscode/settings.json

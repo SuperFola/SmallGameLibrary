@@ -12,7 +12,7 @@ endif()
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # search for needed libraries
-find_package(SFML 2.5 COMPONENTS system graphics window audio network REQUIRED)
+find_package(SFML 2.5.1 COMPONENTS system graphics window audio network REQUIRED)
 find_package(Threads REQUIRED)
 find_package(OpenGL REQUIRED)
 

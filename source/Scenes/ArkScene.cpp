@@ -8,7 +8,7 @@ namespace sgl::Scenes
     ArkScene::ArkScene(int id, const std::string& scriptName) :
         Scene(id), m_scriptName(scriptName),
         // we don't want to remove unused variables
-        m_state(Ark::FeaturePersist | Ark::FeatureFunctionArityCheck | Ark::FeatureDisallowInvalidTokenAfterParen),
+        m_state(Ark::FeaturePersist),
         m_vm(&m_state)
     {}
 
