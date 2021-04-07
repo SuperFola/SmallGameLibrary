@@ -6,12 +6,12 @@
 - [ ] parallax helper
 - [ ] raycasting
 - [ ] actors
+- [ ] tiled map loader
 
 ## 0.0.5
 - [x] redo the animation loader
 - [x] actors WIP
 - [x] Resource management
-- [ ] Tiled map loader
 - [x] triggers, update trigers
 - [x] send data from scene to scene when changing the active scene
 
